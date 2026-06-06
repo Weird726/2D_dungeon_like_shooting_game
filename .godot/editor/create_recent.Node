@@ -1,3 +1,6 @@
 Label
-TextureRect
+TextureButton
 Control
+VBoxContainer
+Button
+TextureRect
