@@ -1,60 +1,74 @@
 extends Control
-#为UI创建一个类名用于背景功能调用各个控件
+## 主菜单界面，管理主菜单相关的按钮与动画
 class_name MainMenu
 
-#引入节点，目的控制按钮的动画效果引入参数
+## 主按钮组（开始/设置/退出）
 @onready var main_buttons: Control = $MainButtons
+## 设置按钮组（音乐/音效/窗口/返回）
 @onready var settings_buttons: Control = $SettingsButtons
+@onready var ui_sound: AudioStreamPlayer = $UISound
+@onready var music_label: Label = %MusicLabel
+@onready var sfx_label: Label = %SFXLabel
+@onready var window_label: Label = %WindowLabel
 
-#开始按钮的信号链接
+
+## 音频标签的热更新
+func _ready() -> void:
+	update_audio_bus("Music", music_label, Global.settings.music)
+	update_audio_bus("SFX", sfx_label, Global.settings.sfx)
+	update_fullscreen(Global.settings.fullscreen)
+
+## 切换音频总线的静音状态，并更新按钮标签
+func update_audio_bus(bus_name: String, label: Label, is_on: bool) -> void:
+	AudioServer.set_bus_mute(AudioServer.get_bus_index(bus_name), not is_on)
+	label.text = "%s: %s" % [bus_name, "ON" if is_on else "OFF"]
+
+## 判断布尔值切换窗口大小的状态
+func update_fullscreen(is_on: bool) -> void:
+	var mode = DisplayServer.WINDOW_MODE_FULLSCREEN if is_on else DisplayServer.WINDOW_MODE_WINDOWED
+	DisplayServer.window_set_mode(mode)
+	window_label.text = "FULLSCREEN" if is_on else "WINDOWE"
+
+
 func _on_play_button_pressed() -> void:
-#调用过度方法,并写入新场景路径用于传送到新场景
+	ui_sound.play()
 	Transition.transition_to("res://Scenes/UI/CharacterSelection/character_selection.tscn")
 
 
-#设置按钮的信号链接
 func _on_settings_button_pressed() -> void:
-#创建一个渐变类，用于出发设置按钮的渐变效果
+	ui_sound.play()
 	var tween := create_tween()
-#设置渐变属性，在其间输入信号位置，并对其全局位置属性进行位置数据的输入
-#用于实现设置按钮被点击后进行Y值竖向进行的动画效果实现
-	tween.tween_property(main_buttons,"global_position:y",350,0.2)
-	#在渐变库中调用渐变时间间隔来实现延迟效果
+	# 主按钮组下移，露出设置按钮组
+	tween.tween_property(main_buttons, "global_position:y", 350, 0.2)
 	tween.tween_interval(0.1)
-#设置渐变属性，在其间输入信号位置，并对其全局位置属性进行位置数据的输入
-#用于实现设置按钮被点击后进行X值横向移动动画效果的实现
-	tween.tween_property(settings_buttons,"global_position:x",145,0.3)
+	tween.tween_property(settings_buttons, "global_position:x", 145, 0.3)
 
 
-#退出按钮的信号链接
 func _on_quit_button_pressed() -> void:
-	pass # Replace with function body.
+	ui_sound.play()
+	get_tree().quit()
 
-
-#音乐按钮的信号链接
 func _on_music_button_pressed() -> void:
-	pass # Replace with function body.
+	ui_sound.play()
+	# 获取音乐按钮全局信息，并传给音频总线
+	update_audio_bus("Music", music_label, Global.settings.music)
 
 
-#音效按钮的信号链接
 func _on_sfx_button_pressed() -> void:
-	pass # Replace with function body.
+	ui_sound.play()
+	# 获取音效按钮全局信息，并传给音频总线
+	update_audio_bus("SFX", sfx_label, Global.settings.sfx)
 
 
-#窗口按钮的信号链接
 func _on_window_button_pressed() -> void:
-	pass # Replace with function body.
+	ui_sound.play()
+	update_fullscreen(Global.settings.fullscreen)
 
 
-#返回按钮的信号链接
 func _on_back_button_pressed() -> void:
-#创建一个渐变类，用于出发设置按钮的渐变效果
+	ui_sound.play()
 	var tween := create_tween()
-#设置渐变属性，在其间输入信号位置，并对其全局位置属性进行位置数据的输入
-#用于实现设置按钮被点击后进行X值横向移动动画效果的实现
-	tween.tween_property(settings_buttons,"global_position:x",558,0.3)
-#在渐变库中调用渐变时间间隔来实现延迟效果
+	# 设置按钮组右移收回，主按钮组上移复位
+	tween.tween_property(settings_buttons, "global_position:x", 558, 0.3)
 	tween.tween_interval(0.1)
-#设置渐变属性，在其间输入信号位置，并对其全局位置属性进行位置数据的输入
-#用于实现设置按钮被点击后进行Y值竖向进行的动画效果实现
-	tween.tween_property(main_buttons,"global_position:y",115,0.2)
+	tween.tween_property(main_buttons, "global_position:y", 115, 0.2)

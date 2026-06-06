@@ -4,3 +4,5 @@ res://Scenes/UI/main_menu.gd
 res://Autoloads/transition.tscn
 res://Shaders/transition.gdshader
 res://Autoloads/transition.gd
+res://default_bus_layout.tres
+res://Autoloads/global.gd
