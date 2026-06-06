@@ -1,3 +1,6 @@
 res://Scenes/UI/main_menu.tscn
-res://Scenes/UI/main_menu.gd
 res://Shaders/background.gdshader
+res://Scenes/UI/main_menu.gd
+res://Autoloads/transition.tscn
+res://Shaders/transition.gdshader
+res://Autoloads/transition.gd
