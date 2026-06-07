@@ -23,11 +23,13 @@ buses/default_bus_layout="uid://bhub2hnoitghb"
 
 Transition="*uid://b7jalvuo1fx6d"
 Global="*uid://b0pgc21n3xfhd"
+Music="*uid://bsdvcv0vfcesj"
 
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=360
+window/size/mode=3
 window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/stretch/mode="canvas_items"

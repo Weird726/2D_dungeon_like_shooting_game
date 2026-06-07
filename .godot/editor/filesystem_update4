@@ -1,8 +1,8 @@
 res://Scenes/UI/main_menu.tscn
-res://Shaders/background.gdshader
-res://Scenes/UI/main_menu.gd
-res://Autoloads/transition.tscn
 res://Shaders/transition.gdshader
+res://Shaders/background.gdshader
+res://Autoloads/global.gd
+res://Scenes/UI/main_menu.gd
+res://Autoloads/music.tscn
 res://Autoloads/transition.gd
 res://default_bus_layout.tres
-res://Autoloads/global.gd

@@ -1,9 +1,11 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1780717969
+::res://::1780797962
+default_bus_layout.tres::AudioBusLayout::2919139466062170911::1780732661::0::1::::<><><>0<>0<><>::
 icon.svg::CompressedTexture2D::8875455564616539033::1780682606::1780682614::1::::<><><>0<>0<>57d3206b79a801ec803a6d17324c2ef3<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
-::res://Autoloads/::1780717879
-transition.gd::GDScript::8517071286405628595::1780717879::0::1::::<>Node<><>0<>0<><>::
-transition.tscn::PackedScene::4651063858187135365::1780717879::0::1::::<><><>0<>0<><>::uid://dtly6jg737qul::::res://Autoloads/transition.gd
+::res://Autoloads/::1780770069
+global.gd::GDScript::4172476773423572509::1780770069::0::1::::<>Node<><>0<>0<><>::
+transition.gd::GDScript::8517071286405628595::1780741796::0::1::::<>Node<><>0<>0<><>::
+transition.tscn::PackedScene::4651063858187135365::1780725096::0::1::::<><><>0<>0<><>::uid://dtly6jg737qul::::res://Autoloads/transition.gd<>uid://bgdngns4bq18l::::res://Shaders/transition.gdshader
 ::res://Extra/::1780712271
 font_16.tres::LabelSettings::8686766626982023712::1780712271::0::1::::<><><>0<>0<><>::uid://cmkei0r5t77jr::::res://Font/Lilian.ttf
 font_48.tres::LabelSettings::3549343685327209776::1780686068::0::1::::<><><>0<>0<><>::uid://cmkei0r5t77jr::::res://Font/Lilian.ttf
@@ -12,11 +14,14 @@ Comicoro.ttf::FontFile::5983426668108525059::1780682991::1780682993::1::::<><><>
 font_game.png::FontFile::6830074796940968156::1780682991::1780682993::1::::<><><>0<>0<>ae223b2d9cb1d022bfbe98def38095da<>res://.godot/imported/font_game.png-a3950f1798b81b14598e6fecf84f2942.fontdata::
 Lilian.ttf::FontFile::5636009763640670323::1780682991::1780682993::1::::<><><>0<>0<>69a0fc62810918d9b9aaa4166d18272b<>res://.godot/imported/Lilian.ttf-1efe25222ec2acac736904af3b25edee.fontdata::
 ::res://Scenes/::1780683699
-::res://Scenes/UI/::1780717959
-main_menu.gd::GDScript::5687915514614335747::1780717959::0::1::::MainMenu<>Control<><>0<>0<><>::
-main_menu.tscn::PackedScene::6547357565323202685::1780717959::0::1::::<><><>0<>0<><>::uid://cnbjew7yxm3u2::::res://Scenes/UI/main_menu.gd<>uid://bjnh3sonwurje::::res://Sprites/background_tiled.png<>uid://pycpf7esklnh::::res://Shaders/background.gdshader<>uid://bqtlf30utmmmy::::res://Extra/font_48.tres<>uid://dy8e3xkc5qdbp::::res://Sprites/Interface/Tilemap/tilemap_packed.png<>uid://dv061oo3gwrj1::::res://Extra/font_16.tres
-::res://Shaders/::1780686143
-background.gdshader::Shader::1102526253818720733::1780686143::0::1::::<><><>0<>0<><>::
+::res://Scenes/UI/::1780770083
+main_menu.gd::GDScript::5687915514614335747::1780743680::0::1::::MainMenu<>Control<><>0<>0<><>::
+main_menu.tscn::PackedScene::6547357565323202685::1780770083::0::1::::<><><>0<>0<><>::uid://cnbjew7yxm3u2::::res://Scenes/UI/main_menu.gd<>uid://bjnh3sonwurje::::res://Sprites/background_tiled.png<>uid://pycpf7esklnh::::res://Shaders/background.gdshader<>uid://bqtlf30utmmmy::::res://Extra/font_48.tres<>uid://dy8e3xkc5qdbp::::res://Sprites/Interface/Tilemap/tilemap_packed.png<>uid://dv061oo3gwrj1::::res://Extra/font_16.tres<>uid://dtxhputnlac6::::res://Sounds/select-a.ogg
+::res://Scenes/UI/CharacterSelection/::1780724445
+character_selection.tscn::PackedScene::5235478714378934237::1780724445::0::1::::<><><>0<>0<><>::
+::res://Shaders/::1780769354
+background.gdshader::Shader::1102526253818720733::1780769354::0::1::::<><><>0<>0<><>::
+transition.gdshader::Shader::2814547626382523141::1780769354::0::1::::<><><>0<>0<><>::
 ::res://Sounds/::1780682994
 Bg Music.mp3::AudioStreamMP3::8640269941490428004::1780682991::1780682993::1::::<><><>0<>0<>32b90c6afe0e9307692459d47f84857e<>res://.godot/imported/Bg Music.mp3-4059ed292d78b379f7e9007d991582af.mp3str::
 button_hover.wav::AudioStreamWAV::7982270706055900154::1780682991::1780682994::1::::<><><>0<>0<>b4c6253388d60aec3ccb42f5b37c7065<>res://.godot/imported/button_hover.wav-da75df7f7aaf232e9ee2575861e348bd.sample::
