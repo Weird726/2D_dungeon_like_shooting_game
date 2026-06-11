@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bktvmfiq8ipkr"]
+
+[ext_resource type="Script" uid="uid://vteach866mat" path="res://Scenes/Player/player.gd" id="1_jfsk2"]
+[ext_resource type="Resource" uid="uid://djvbqy1552e8g" path="res://Data/Player/player_dog.tres" id="2_kxl1r"]
+
+[node name="PlayerBase" type="CharacterBody2D" unique_id=1462209833]
+script = ExtResource("1_jfsk2")
+data = ExtResource("2_kxl1r")
+
+[node name="Visuals" type="Node2D" parent="." unique_id=20176190]
+
+[node name="Shadow" type="Sprite2D" parent="Visuals" unique_id=708317019]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals" unique_id=630515562]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=418624751]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1683629579]

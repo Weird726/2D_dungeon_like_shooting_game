@@ -1,8 +1,8 @@
-res://Scenes/UI/main_menu.tscn
 res://Shaders/transition.gdshader
 res://Shaders/background.gdshader
-res://Autoloads/global.gd
-res://Scenes/UI/main_menu.gd
-res://Autoloads/music.tscn
-res://Autoloads/transition.gd
+res://Scenes/Player/player_base.tscn
+res://Scenes/Player/player_dog.tscn
+res://Data/Player/player_data.gd
+res://Data/Player/player_dog.tres
+res://Scenes/Player/player.gd
 res://default_bus_layout.tres
