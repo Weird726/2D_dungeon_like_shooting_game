@@ -8,3 +8,7 @@ res://Scenes/Player/player_cat.tscn
 res://Data/Player/player_bunny.tres
 res://Data/Player/player_cat.tres
 res://Data/Player/player_mouse.tres
+res://Scenes/Components/health_component.tscn
+res://Scenes/Components/health_component.gd
+res://Data/Player/player_data.gd
+res://Scenes/UI/main_menu.gd
