@@ -1,8 +1,10 @@
 res://Shaders/transition.gdshader
 res://Shaders/background.gdshader
+res://Scenes/Player/player_bunny.tscn
 res://Scenes/Player/player_base.tscn
-res://Scenes/Player/player_dog.tscn
-res://Data/Player/player_data.gd
+res://Scenes/Player/player_mouse.tscn
 res://Data/Player/player_dog.tres
-res://Scenes/Player/player.gd
-res://default_bus_layout.tres
+res://Scenes/Player/player_cat.tscn
+res://Data/Player/player_bunny.tres
+res://Data/Player/player_cat.tres
+res://Data/Player/player_mouse.tres
