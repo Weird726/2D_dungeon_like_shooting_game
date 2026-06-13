@@ -1,14 +1,4 @@
+res://Scenes/Components/health_component.tscn
 res://Shaders/transition.gdshader
 res://Shaders/background.gdshader
-res://Scenes/Player/player_bunny.tscn
-res://Scenes/Player/player_base.tscn
-res://Scenes/Player/player_mouse.tscn
-res://Data/Player/player_dog.tres
-res://Scenes/Player/player_cat.tscn
-res://Data/Player/player_bunny.tres
-res://Data/Player/player_cat.tres
-res://Data/Player/player_mouse.tres
-res://Scenes/Components/health_component.tscn
-res://Scenes/Components/health_component.gd
-res://Data/Player/player_data.gd
-res://Scenes/UI/main_menu.gd
+res://Scenes/Arena/arena.tscn
