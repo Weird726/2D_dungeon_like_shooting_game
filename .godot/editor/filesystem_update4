@@ -1,4 +1,9 @@
-res://Scenes/Components/health_component.tscn
+res://Scenes/Arena/arena.tscn
 res://Shaders/transition.gdshader
 res://Shaders/background.gdshader
-res://Scenes/Arena/arena.tscn
+res://Scenes/Arena/arena.gd
+res://Scenes/Player/player_base.tscn
+res://Scenes/Player/player.gd
+res://Autoloads/event_bus.gd
+res://Scenes/UI/main_menu.gd
+res://Scenes/Player/player_dog.tscn

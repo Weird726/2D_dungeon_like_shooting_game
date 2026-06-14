@@ -10,6 +10,8 @@ class_name Player
 @onready var shadow: Sprite2D = $Visuals/Shadow
 ## 角色动画精灵，播放 idle/move 等动画
 @onready var anim_sprite: AnimatedSprite2D = %AnimatedSprite2D
+## 生命值组件，处理受伤/治疗/死亡逻辑
+@onready var health_component: HealthComponent = $HealthComponent
 
 ## 控制玩家是否可移动（被击晕、死亡等状态时设为 false）
 var can_move: bool = true
@@ -17,6 +19,10 @@ var can_move: bool = true
 var movement: Vector2
 ## 当前输入方向（归一化向量，用于判断朝向）
 var direction: Vector2
+
+## 初始化角色属性，从 PlayerData 资源读取配置
+func _ready() -> void:
+	health_component.init_health(data.max_hp)
 
 ## 物理帧处理：读取输入 → 计算移动 → 播放动画 → 翻转朝向
 func _physics_process(delta: float) -> void:
@@ -49,3 +55,20 @@ func rotate_player() -> void:
 		else:
 			# 向左：scale.x 为负，实现水平镜像翻转
 			visuals.scale = Vector2(-1.25, 1.25)
+
+## 测试用输入处理，监听攻击键触发受伤逻辑
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept"):
+		health_component.take_damage(1)
+
+## 受伤信号回调，将生命值变化广播到事件总线供 HUD 监听
+func _on_health_component_on_unit_damaged(amount: float) -> void:
+	EventBus.on_player_health_updated.emit(health_component.current_health, data.max_hp)
+
+## 死亡信号回调，移除玩家实体
+func _on_health_component_on_unit_dead() -> void:
+	queue_free()
+
+## 治疗信号回调，可在此扩展治疗特效等逻辑
+func _on_health_component_on_unit_healed(amount: float) -> void:
+	pass

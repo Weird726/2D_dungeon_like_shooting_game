@@ -39,7 +39,6 @@ func _on_play_button_pressed() -> void:
 	ui_sound.play()
 	Transition.transition_to("res://Scenes/UI/CharacterSelection/character_selection.tscn")
 
-
 func _on_settings_button_pressed() -> void:
 	ui_sound.play()
 	var tween := create_tween()
@@ -59,7 +58,7 @@ func _on_music_button_pressed() -> void:
 	ui_sound.play()
 	Global.settings.music = not Global.settings.music
 	update_audio_bus("Music", music_label, Global.settings.music)
-
+ 
 
 func _on_sfx_button_pressed() -> void:
 	ui_sound.play()
