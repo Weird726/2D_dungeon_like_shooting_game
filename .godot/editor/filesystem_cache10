@@ -8,13 +8,16 @@ global.gd::GDScript::4172476773423572509::1780801105::0::1::::<>Node<><>0<>0<><>
 music.tscn::PackedScene::3657292773447141693::1780801159::0::1::::<><><>0<>0<><>::uid://dvdn8parrbyvc::::res://Sounds/Bg Music.mp3
 transition.gd::GDScript::8517071286405628595::1780801105::0::1::::<>Node<><>0<>0<><>::
 transition.tscn::PackedScene::4651063858187135365::1781204640::0::1::::<><><>0<>0<><>::uid://dtly6jg737qul::::res://Autoloads/transition.gd<>uid://bgdngns4bq18l::::res://Shaders/transition.gdshader
-::res://Data/::1781160575
+::res://Data/::1781493122
 ::res://Data/Player/::1781278960
 player_bunny.tres::Resource/PlayerData::9097728149451088633::1781247517::0::1::::<><><>0<>0<><>::uid://d3u1rr67e3yg::::res://Sprites/Players/tile_0012.png<>uid://b4d8c7xiovqbb::::res://Data/Player/player_data.gd
 player_cat.tres::Resource/PlayerData::8098676980419818536::1781247560::0::1::::<><><>0<>0<><>::uid://c2onnhy8ivnwm::::res://Sprites/Players/tile_0004.png<>uid://b4d8c7xiovqbb::::res://Data/Player/player_data.gd
 player_data.gd::GDScript::4430099231468064811::1781278960::0::1::::PlayerData<>Resource<><>0<>0<><>::
 player_dog.tres::Resource/PlayerData::7834404168481632752::1781247297::0::1::::<><><>0<>0<><>::uid://ccab6or5n1nai::::res://Sprites/Players/tile_0000.png<>uid://b4d8c7xiovqbb::::res://Data/Player/player_data.gd
 player_mouse.tres::Resource/PlayerData::3233906025872652359::1781247560::0::1::::<><><>0<>0<><>::uid://b3ao4n36yvjd0::::res://Sprites/Players/tile_0008.png<>uid://b4d8c7xiovqbb::::res://Data/Player/player_data.gd
+::res://Data/weapons/::1781500110
+weapon_pistol.tres::Resource/WeaponData::3796844140171962064::1781499686::0::1::::<><><>0<>0<><>::uid://cqvwy8c5l0aod::::res://Sprites/Weapons/Tiles/tile_0001.png<>uid://bsj8uog4jqrwe::::res://Data/weapons/weqpon_data.gd
+weqpon_data.gd::GDScript::3670439391529645284::1781500110::0::1::::WeaponData<>Resource<><>0<>0<><>::
 ::res://Extra/::1780712271
 font_16.tres::LabelSettings::8686766626982023712::1780712271::0::1::::<><><>0<>0<><>::uid://cmkei0r5t77jr::::res://Font/Lilian.ttf
 font_48.tres::LabelSettings::3549343685327209776::1780686068::0::1::::<><><>0<>0<><>::uid://cmkei0r5t77jr::::res://Font/Lilian.ttf
@@ -23,9 +26,9 @@ Comicoro.ttf::FontFile::5983426668108525059::1780682991::1780682993::1::::<><><>
 font_game.png::FontFile::6830074796940968156::1780682991::1780682993::1::::<><><>0<>0<>ae223b2d9cb1d022bfbe98def38095da<>res://.godot/imported/font_game.png-a3950f1798b81b14598e6fecf84f2942.fontdata::
 Lilian.ttf::FontFile::5636009763640670323::1780682991::1780682993::1::::<><><>0<>0<>69a0fc62810918d9b9aaa4166d18272b<>res://.godot/imported/Lilian.ttf-1efe25222ec2acac736904af3b25edee.fontdata::
 ::res://Scenes/::1781347841
-::res://Scenes/Arena/::1781419314
+::res://Scenes/Arena/::1781500110
 arena.gd::GDScript::7086514088681336978::1781409554::0::1::::Arena<>Node2D<><>0<>0<><>::
-arena.tscn::PackedScene::607857662633273425::1781419314::0::1::::<><><>0<>0<><>::uid://dy8e3xkc5qdbp::::res://Sprites/Interface/Tilemap/tilemap_packed.png<>uid://c77037s0htobq::::res://Scenes/Arena/arena.gd<>uid://ccab6or5n1nai::::res://Sprites/Players/tile_0000.png<>uid://dxp7naqy4gvku::::res://Sprites/Interface/bar_under.png<>uid://bvr7in7eey6cb::::res://Sprites/Interface/bar_over.png<>uid://cf2ypr83psjfm::::res://Sprites/Interface/bar_health.png<>uid://djtqrhxpxpjeg::::res://Sprites/Interface/bar_mana.png<>uid://pd4h72eqbo16::::res://Scenes/Player/player_dog.tscn
+arena.tscn::PackedScene::607857662633273425::1781500110::0::1::::<><><>0<>0<><>::uid://dy8e3xkc5qdbp::::res://Sprites/Interface/Tilemap/tilemap_packed.png<>uid://c77037s0htobq::::res://Scenes/Arena/arena.gd<>uid://ccab6or5n1nai::::res://Sprites/Players/tile_0000.png<>uid://dxp7naqy4gvku::::res://Sprites/Interface/bar_under.png<>uid://bvr7in7eey6cb::::res://Sprites/Interface/bar_over.png<>uid://cf2ypr83psjfm::::res://Sprites/Interface/bar_health.png<>uid://djtqrhxpxpjeg::::res://Sprites/Interface/bar_mana.png<>uid://pd4h72eqbo16::::res://Scenes/Player/player_dog.tscn
 ::res://Scenes/Components/::1781347096
 health_component.gd::GDScript::7937815801680461556::1781278960::0::1::::HealthComponent<>Node2D<><>0<>0<><>::
 health_component.tscn::PackedScene::4942463709262105963::1781347096::0::1::::<><><>0<>0<><>::uid://dldewwrcnayca::::res://Scenes/Components/health_component.gd
@@ -41,9 +44,9 @@ main_menu.gd::GDScript::5687915514614335747::1781406593::0::1::::MainMenu<>Contr
 main_menu.tscn::PackedScene::6547357565323202685::1780808803::0::1::::<><><>0<>0<><>::uid://cnbjew7yxm3u2::::res://Scenes/UI/main_menu.gd<>uid://bjnh3sonwurje::::res://Sprites/background_tiled.png<>uid://pycpf7esklnh::::res://Shaders/background.gdshader<>uid://bqtlf30utmmmy::::res://Extra/font_48.tres<>uid://dy8e3xkc5qdbp::::res://Sprites/Interface/Tilemap/tilemap_packed.png<>uid://dv061oo3gwrj1::::res://Extra/font_16.tres<>uid://dtxhputnlac6::::res://Sounds/select-a.ogg
 ::res://Scenes/UI/CharacterSelection/::1780724445
 character_selection.tscn::PackedScene::5235478714378934237::1780724445::0::1::::<><><>0<>0<><>::
-::res://Shaders/::1781397783
-background.gdshader::Shader::1102526253818720733::1781397783::0::1::::<><><>0<>0<><>::
-transition.gdshader::Shader::2814547626382523141::1781397783::0::1::::<><><>0<>0<><>::
+::res://Shaders/::1781495944
+background.gdshader::Shader::1102526253818720733::1781495944::0::1::::<><><>0<>0<><>::
+transition.gdshader::Shader::2814547626382523141::1781495944::0::1::::<><><>0<>0<><>::
 ::res://Sounds/::1780682994
 Bg Music.mp3::AudioStreamMP3::8640269941490428004::1780682991::1780682993::1::::<><><>0<>0<>32b90c6afe0e9307692459d47f84857e<>res://.godot/imported/Bg Music.mp3-4059ed292d78b379f7e9007d991582af.mp3str::
 button_hover.wav::AudioStreamWAV::7982270706055900154::1780682991::1780682994::1::::<><><>0<>0<>b4c6253388d60aec3ccb42f5b37c7065<>res://.godot/imported/button_hover.wav-da75df7f7aaf232e9ee2575861e348bd.sample::
