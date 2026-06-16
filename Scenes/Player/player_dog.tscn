@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cemiyrcpjly84" path="res://Sprites/Players/tile_0001.png" id="3_da5b7"]
 [ext_resource type="Texture2D" uid="uid://cnttucjccgouq" path="res://Sprites/Players/tile_0003.png" id="3_yhbja"]
 [ext_resource type="Texture2D" uid="uid://cyey76bu4l4v5" path="res://Sprites/Players/tile_0002.png" id="4_j7ddg"]
+[ext_resource type="PackedScene" uid="uid://jo8ht7pc50mw" path="res://Scenes/Weapons/Range/weapon_range_pistol.tscn" id="6_j7ddg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_k54n3"]
 animations = [{
@@ -53,3 +54,9 @@ autoplay = "idle"
 [node name="CollisionShape2D" parent="." index="1" unique_id=418624751]
 position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_j7ddg")
+
+[node name="WeaponController" parent="." index="4" unique_id=514907263]
+position = Vector2(0, -1)
+
+[node name="WeaponRangePistol" parent="WeaponController" index="0" unique_id=1074675833 instance=ExtResource("6_j7ddg")]
+position = Vector2(0, -7)
