@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://vdr136w0nftf"]
+
+[ext_resource type="Texture2D" uid="uid://bpa7uv0kkmria" path="res://Sprites/Weapons/Tiles/tile_0005.png" id="1_js78q"]
+[ext_resource type="Script" uid="uid://bsj8uog4jqrwe" path="res://Data/weapons/weapon_data.gd" id="2_ygcad"]
+
+[resource]
+script = ExtResource("2_ygcad")
+weapon_name = "Ak47"
+icon = ExtResource("1_js78q")
+damage = 1.0
+cooldown = 0.4
+mana_cost = 1.0
+spread = 7.0
+bullet_spreed = 250.0
+metadata/_custom_type_script = "uid://bsj8uog4jqrwe"

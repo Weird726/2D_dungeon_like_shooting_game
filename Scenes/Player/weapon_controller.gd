@@ -4,6 +4,7 @@ class_name WeaponController
 ## 测试用手枪武器引用（后续改为动态切换）
 @onready var weapon_pistol: WeaponRange = $WeaponRangePistol
 
+
 ## 当前装备的武器（支持运行时切换）
 var current_weapon: Weapon
 ## 鼠标在世界坐标中的位置，用于武器朝向计算

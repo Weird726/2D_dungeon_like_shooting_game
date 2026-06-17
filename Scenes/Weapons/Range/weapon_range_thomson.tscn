@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cseoobyejbqvh"]
+
+[ext_resource type="PackedScene" uid="uid://c5t8iupfxmi4t" path="res://Scenes/Weapons/Range/weapon_range_base.tscn" id="1_brjnj"]
+[ext_resource type="Resource" uid="uid://dlwbokcut4kr6" path="res://Data/weapons/weapon_thomson.tres" id="2_l4k17"]
+[ext_resource type="Texture2D" uid="uid://d0unfm6gf7rj5" path="res://Sprites/Weapons/Tiles/tile_0004.png" id="2_wbjbr"]
+
+[node name="WeaponRangeThomson" unique_id=1074675833 instance=ExtResource("1_brjnj")]
+data = ExtResource("2_l4k17")
+
+[node name="Sprite2D" parent="Pivot" parent_id_path=PackedInt32Array(1182863817) index="0" unique_id=17802358]
+texture = ExtResource("2_wbjbr")
+
+[node name="Marker2D" parent="Pivot" parent_id_path=PackedInt32Array(1182863817) index="1" unique_id=2089254432]
+position = Vector2(21.999996, -1.9999998)

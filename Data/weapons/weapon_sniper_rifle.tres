@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://dvkwu61vdspum"]
+
+[ext_resource type="Texture2D" uid="uid://b3162fce4jytf" path="res://Sprites/Weapons/Tiles/tile_0003.png" id="1_6jekd"]
+[ext_resource type="Script" uid="uid://bsj8uog4jqrwe" path="res://Data/weapons/weapon_data.gd" id="2_2jr62"]
+
+[resource]
+script = ExtResource("2_2jr62")
+weapon_name = "R93"
+icon = ExtResource("1_6jekd")
+damage = 1.0
+cooldown = 0.4
+mana_cost = 1.0
+spread = 7.0
+bullet_spreed = 250.0
+metadata/_custom_type_script = "uid://bsj8uog4jqrwe"

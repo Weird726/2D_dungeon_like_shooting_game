@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://dlwbokcut4kr6"]
+
+[ext_resource type="Texture2D" uid="uid://d0unfm6gf7rj5" path="res://Sprites/Weapons/Tiles/tile_0004.png" id="1_jfdxu"]
+[ext_resource type="Script" uid="uid://bsj8uog4jqrwe" path="res://Data/weapons/weapon_data.gd" id="2_60tue"]
+
+[resource]
+script = ExtResource("2_60tue")
+weapon_name = "Thomson"
+icon = ExtResource("1_jfdxu")
+damage = 1.0
+cooldown = 0.4
+mana_cost = 1.0
+spread = 7.0
+bullet_spreed = 250.0
+metadata/_custom_type_script = "uid://bsj8uog4jqrwe"

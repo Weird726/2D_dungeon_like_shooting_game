@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cadvltt3u0qu8"]
+
+[ext_resource type="PackedScene" uid="uid://c5t8iupfxmi4t" path="res://Scenes/Weapons/Range/weapon_range_base.tscn" id="1_teomi"]
+[ext_resource type="Resource" uid="uid://dvkwu61vdspum" path="res://Data/weapons/weapon_sniper_rifle.tres" id="2_wna17"]
+[ext_resource type="Texture2D" uid="uid://b3162fce4jytf" path="res://Sprites/Weapons/Tiles/tile_0003.png" id="3_ooty1"]
+
+[node name="WeaponRangeR93" unique_id=1074675833 instance=ExtResource("1_teomi")]
+data = ExtResource("2_wna17")
+
+[node name="Sprite2D" parent="Pivot" parent_id_path=PackedInt32Array(1182863817) index="0" unique_id=17802358]
+texture = ExtResource("3_ooty1")
+
+[node name="Marker2D" parent="Pivot" parent_id_path=PackedInt32Array(1182863817) index="1" unique_id=2089254432]
+position = Vector2(24.000004, 0)
