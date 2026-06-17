@@ -1,6 +1,9 @@
 extends Node2D
 class_name Arena
 
+## 代替原有光标的新精灵图
+@export var arena_cursor: Texture2D
+
 ## 生命值进度条，显示当前/最大生命值的比例
 @onready var health_bar: TextureProgressBar = %HealthBar
 ## 魔法值进度条，显示当前/最大魔法值的比例
@@ -8,6 +11,8 @@ class_name Arena
 
 ## 监听全局事件总线，当玩家生命值变化时更新 HUD
 func _ready() -> void:
+	# 进入场景时切换全局光标为当前场景专用光标
+	Cursor.sprite.texture = arena_cursor
 	EventBus.on_player_health_updated.connect(_on_player_health_updated)
 
 ## 生命值变化回调，更新进度条显示

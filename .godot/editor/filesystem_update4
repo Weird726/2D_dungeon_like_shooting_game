@@ -1,11 +1,7 @@
+res://Scenes/UI/main_menu.tscn
 res://Shaders/transition.gdshader
-res://Data/weapons/weapon_data.gd
 res://Shaders/background.gdshader
-res://Scenes/Weapons/Range/weapon_range_base.tscn
-res://Scenes/Weapons/Range/weapon_range_pistol.tscn
-res://Scenes/Weapons/weapon.gd
-res://Scenes/Weapons/Range/weapon_range.gd
-res://Scenes/Player/player_base.tscn
-res://Scenes/Player/weapon_controller.gd
-res://Scenes/Player/player_dog.tscn
+res://Scenes/UI/main_menu.gd
 res://Scenes/Arena/arena.tscn
+res://Scenes/Arena/arena.gd
+res://Autoloads/cursor.gd

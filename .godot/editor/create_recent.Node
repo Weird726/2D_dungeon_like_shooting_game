@@ -1,12 +1,12 @@
+Sprite2D
+CanvasLayer
 Node2D
 Weapon
 AudioStreamPlayer
 Marker2D
-Sprite2D
 TextureProgressBar
 TextureRect
 Control
-CanvasLayer
 Camera2D
 CollisionShape2D
 AnimatedSprite2D

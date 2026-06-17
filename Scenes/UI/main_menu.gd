@@ -2,6 +2,9 @@ extends Control
 ## 主菜单界面，管理主菜单相关的按钮与动画
 class_name MainMenu
 
+## 光标（代替原有鼠标精灵图）
+@export var menu_cursor: Texture2D
+
 ## 主按钮组（开始/设置/退出）
 @onready var main_buttons: Control = $MainButtons
 ## 设置按钮组（音乐/音效/窗口/返回）
@@ -19,6 +22,8 @@ class_name MainMenu
 ## 初始化：加载存档数据并同步 UI 状态
 func _ready() -> void:
 	Global.load_data()
+	# 进入主菜单时切换全局光标为菜单专用光标
+	Cursor.sprite.texture = menu_cursor
 	update_audio_bus("Music", music_label, Global.settings.music)
 	update_audio_bus("SFX", sfx_label, Global.settings.sfx)
 	update_fullscreen(Global.settings.fullscreen)
@@ -37,7 +42,9 @@ func update_fullscreen(is_on: bool) -> void:
 
 func _on_play_button_pressed() -> void:
 	ui_sound.play()
-	Transition.transition_to("res://Scenes/UI/CharacterSelection/character_selection.tscn")
+	#Transition.transition_to("res://Scenes/UI/CharacterSelection/character_selection.tscn")
+	# 过渡代码，测试光标
+	Transition.transition_to("res://Scenes/Arena/arena.tscn")
 
 func _on_settings_button_pressed() -> void:
 	ui_sound.play()
