@@ -1,3 +1,6 @@
+res://Scenes/UI/WeaponCard/
+res://Scenes/UI/PlayerCard/
+res://Scenes/UI/
 res://Scenes/Weapons/Range/
 res://Autoloads/
 res://Scenes/Weapons/
@@ -9,4 +12,3 @@ res://Data/Player/
 res://Scenes/UI/CharacterSelection/
 res://Shaders/
 res://Extra/
-res://Scenes/UI/
