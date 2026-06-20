@@ -28,10 +28,12 @@ func _ready() -> void:
 	update_audio_bus("SFX", sfx_label, Global.settings.sfx)
 	update_fullscreen(Global.settings.fullscreen)
 
+
 ## 切换音频总线的静音状态，并更新按钮标签
 func update_audio_bus(bus_name: String, label: Label, is_on: bool) -> void:
 	AudioServer.set_bus_mute(AudioServer.get_bus_index(bus_name), not is_on)
 	label.text = "%s: %s" % [bus_name, "ON" if is_on else "OFF"]
+
 
 ## 切换窗口模式（全屏/窗口），并更新标签
 func update_fullscreen(is_on: bool) -> void:
@@ -42,9 +44,8 @@ func update_fullscreen(is_on: bool) -> void:
 
 func _on_play_button_pressed() -> void:
 	ui_sound.play()
-	#Transition.transition_to("res://Scenes/UI/CharacterSelection/character_selection.tscn")
-	# 过渡代码，测试光标
-	Transition.transition_to("res://Scenes/Arena/arena.tscn")
+	Transition.transition_to("res://Scenes/UI/CharacterSelection/character_selection.tscn")
+
 
 func _on_settings_button_pressed() -> void:
 	ui_sound.play()
@@ -60,6 +61,7 @@ func _on_quit_button_pressed() -> void:
 	ui_sound.play()
 	Global.save_data()
 	get_tree().quit()
+
 
 func _on_music_button_pressed() -> void:
 	ui_sound.play()
@@ -86,6 +88,7 @@ func _on_back_button_pressed() -> void:
 	tween.tween_property(settings_buttons, "global_position:x", 558, 0.3)
 	tween.tween_interval(0.1)
 	tween.tween_property(main_buttons, "global_position:y", 115, 0.2)
+
 
 ## 系统通知回调，用于监听窗口关闭事件
 ##
