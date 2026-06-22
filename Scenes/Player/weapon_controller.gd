@@ -1,18 +1,10 @@
 extends Node2D
 class_name WeaponController
 
-## 测试用手枪武器引用（后续改为动态切换）
-@onready var weapon_pistol: WeaponRange = $WeaponRangePistol
-
-
 ## 当前装备的武器（支持运行时切换）
 var current_weapon: Weapon
 ## 鼠标在世界坐标中的位置，用于武器朝向计算
 var target_pos: Vector2
-
-## 初始化当前武器为手枪
-func _ready() -> void:
-	current_weapon = weapon_pistol
 
 ## 每帧追踪鼠标位置并旋转武器朝向
 func _process(delta: float) -> void:

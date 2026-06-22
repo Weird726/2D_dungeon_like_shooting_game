@@ -14,6 +14,13 @@ func _ready() -> void:
 	# 进入场景时切换全局光标为当前场景专用光标
 	Cursor.sprite.texture = arena_cursor
 	EventBus.on_player_health_updated.connect(_on_player_health_updated)
+	load_game_selection()
+
+## 从全局单例读取选中的角色场景并实例化添加到 Arena 中
+func load_game_selection() -> void:
+	var player = Global.get_player().instantiate()
+	add_child(player)
+
 
 ## 生命值变化回调，更新进度条显示
 ##

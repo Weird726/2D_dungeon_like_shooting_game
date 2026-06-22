@@ -33,6 +33,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5wsvm")
 menu_cursor = SubResource("AtlasTexture_k33u3")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="Background" type="TextureRect" parent="." unique_id=945524841]
 material = SubResource("ShaderMaterial_mrfpk")

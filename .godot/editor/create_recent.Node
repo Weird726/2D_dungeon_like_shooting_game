@@ -1,7 +1,7 @@
+AudioStreamPlayer
 Label
 TextureButton
 Control
-AudioStreamPlayer
 TextureRect
 HBoxContainer
 Sprite2D

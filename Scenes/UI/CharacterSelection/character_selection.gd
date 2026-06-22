@@ -17,6 +17,8 @@ const WEAPON_CARD_SCENE = preload("uid://djdnyv7k0co2f")
 @onready var player_container: HBoxContainer = $PlayerContainer
 ## 武器卡片容器（水平排列）
 @onready var weapon_container: HBoxContainer = $WeaponContainer
+## UI 点击音效播放器
+@onready var ui_sound: AudioStreamPlayer = $UISound
 
 ## 初始化：切换光标并加载所有可选卡片
 func _ready() -> void:
@@ -38,11 +40,34 @@ func load_selection_items() -> void:
 	# 为每个 PlayerData 资源实例化一张角色卡片
 	for data: PlayerData in players:
 		var card: PlayerCard = PLAYER_CARD_SCENE.instantiate()
+		card.pressed.connect(_on_player_card_pressed.bind(data))
 		player_container.add_child(card)
 		card.set_data(data)
 	
 	# 为每个 WeaponData 资源实例化一张武器卡片
 	for data: WeaponData in weapons:
 		var card: WeaponCard = WEAPON_CARD_SCENE.instantiate()
+		card.pressed.connect(_on_weapon_card_pressed.bind(data))
 		weapon_container.add_child(card)
 		card.set_data(data)
+
+
+## 开始按钮回调：过渡到战斗场景
+func _on_play_button_pressed() -> void:
+	ui_sound.play()
+	Transition.transition_to("res://Scenes/Arena/arena.tscn")
+
+## 返回按钮回调：过渡回主菜单
+func _on_back_button_pressed() -> void:
+	ui_sound.play()
+	Transition.transition_to("res://Scenes/UI/main_menu.tscn")
+
+## 角色卡片点击回调：将选中的角色数据存入全局单例
+func _on_player_card_pressed(data: PlayerData) -> void:
+	ui_sound.play()
+	Global.selected_player = data
+
+## 武器卡片点击回调：将选中的武器数据存入全局单例
+func _on_weapon_card_pressed(data: WeaponData) -> void:
+	ui_sound.play()
+	Global.selected_weapon = data

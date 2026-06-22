@@ -10,6 +10,27 @@ var settings: Dictionary = {
 	"fullscreen": true
 }
 
+## 全部可选角色场景映射（key 为角色 id，value 为 PackedScene）
+var all_players: Dictionary[String, PackedScene] = {
+	"Bunny": preload("uid://bmkt5wibg2k55"),
+	"Dog": preload("uid://pd4h72eqbo16"),
+	"Mouse": preload("uid://dnsjdwshtpqp2"),
+	"Cat": preload("uid://bajjniw8jfhwc"),
+}
+
+## 当前选中的角色数据（由角色选择界面赋值，未选择时为 null）
+var selected_player: PlayerData
+## 当前选中的武器数据（由角色选择界面赋值，未选择时为 null）
+var selected_weapon: WeaponData
+
+## 根据选中角色 id 从 all_players 中取出对应的 PackedScene
+##
+## [b]难点说明[/b]：selected_player 可能为 null（如 F6 单独运行 Arena 场景、
+## 或用户未选择角色就进入战斗），访问 null.id 会崩溃。
+## 调用前需确保 selected_player 已被赋值，或在此处加空值保护。
+func get_player() -> PackedScene:
+	return all_players[selected_player.id]
+
 ## 将当前设置持久化到磁盘
 func save_data() -> void:
 	var save: Dictionary = settings.duplicate()
