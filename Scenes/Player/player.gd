@@ -12,6 +12,8 @@ class_name Player
 @onready var anim_sprite: AnimatedSprite2D = %AnimatedSprite2D
 ## 生命值组件，处理受伤/治疗/死亡逻辑
 @onready var health_component: HealthComponent = $HealthComponent
+## 武器的引用
+@onready var weapon_controller: WeaponController = $WeaponController
 
 ## 控制玩家是否可移动（被击晕、死亡等状态时设为 false）
 var can_move: bool = true

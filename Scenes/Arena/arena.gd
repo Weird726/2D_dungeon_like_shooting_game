@@ -16,10 +16,12 @@ func _ready() -> void:
 	EventBus.on_player_health_updated.connect(_on_player_health_updated)
 	load_game_selection()
 
-## 从全局单例读取选中的角色场景并实例化添加到 Arena 中
+## 从全局单例读取选中的角色场景并实例化，然后装备选中的武器
 func load_game_selection() -> void:
-	var player = Global.get_player().instantiate()
+	var player: Player = Global.get_player().instantiate()
 	add_child(player)
+	# 角色实例化后再装备武器，因为武器控制器是角色的子节点
+	player.weapon_controller.equip_weapon()
 
 
 ## 生命值变化回调，更新进度条显示

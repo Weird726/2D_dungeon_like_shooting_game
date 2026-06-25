@@ -5,8 +5,6 @@ class_name WeaponData
 @export var weapon_name: String
 ## 武器图标纹理（用于背包/选择界面显示）
 @export var icon: Texture2D
-## 武器实例化场景（武器在游戏中的实体表现）
-@export var scene: PackedScene
 ## 单次攻击伤害值（浮点数，支持小数伤害）
 @export var damage: float
 ## 攻击冷却时间（秒），控制两次攻击的最小间隔

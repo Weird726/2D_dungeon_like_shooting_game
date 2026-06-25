@@ -18,6 +18,17 @@ var all_players: Dictionary[String, PackedScene] = {
 	"Cat": preload("uid://bajjniw8jfhwc"),
 }
 
+## 全部可选武器场景映射（key 为武器名称，value 为 PackedScene）
+var all_weapons: Dictionary[String, PackedScene] = {
+	"Ak47": preload("uid://cxdab8nut0a6g"),
+	"Mp7": preload("uid://bartsw5ocoyll"),
+	"Pistol": preload("uid://jo8ht7pc50mw"),
+	"R93": preload("uid://cadvltt3u0qu8"),
+	"Spas12": preload("uid://d3pjsry6r4xtr"),
+	"Thomson": preload("uid://cseoobyejbqvh"),
+	"Uzi": preload("uid://n28dex5w8mxf"),
+}
+
 ## 当前选中的角色数据（由角色选择界面赋值，未选择时为 null）
 var selected_player: PlayerData
 ## 当前选中的武器数据（由角色选择界面赋值，未选择时为 null）
@@ -30,6 +41,13 @@ var selected_weapon: WeaponData
 ## 调用前需确保 selected_player 已被赋值，或在此处加空值保护。
 func get_player() -> PackedScene:
 	return all_players[selected_player.id]
+
+## 根据选中武器名称从 all_weapons 中取出对应的 PackedScene
+##
+## [b]难点说明[/b]：与 get_player() 同理，selected_weapon 可能为 null，
+## 访问 null.weapon_name 会崩溃。调用前需确保已赋值或加空值保护。
+func get_weapon() -> PackedScene:
+	return all_weapons[selected_weapon.weapon_name]
 
 ## 将当前设置持久化到磁盘
 func save_data() -> void:

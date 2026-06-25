@@ -42,11 +42,17 @@ func update_fullscreen(is_on: bool) -> void:
 	window_label.text = "FULLSCREEN" if is_on else "WINDOWED"
 
 
+## 开始按钮回调：过渡到角色选择界面
 func _on_play_button_pressed() -> void:
 	ui_sound.play()
 	Transition.transition_to("res://Scenes/UI/CharacterSelection/character_selection.tscn")
 
 
+## 设置按钮回调：展开设置面板
+##
+## [b]难点说明[/b]：使用 Tween 补间动画实现按钮组位移动画，
+## 主按钮组下移（y→350）露出设置按钮组，设置按钮组右移（x→145）进入视野。
+## Tween 链式调用需按顺序排列，tween_interval 控制动作间隔。
 func _on_settings_button_pressed() -> void:
 	ui_sound.play()
 	var tween := create_tween()
@@ -63,24 +69,31 @@ func _on_quit_button_pressed() -> void:
 	get_tree().quit()
 
 
+## 音乐开关按钮回调：切换音乐静音状态
 func _on_music_button_pressed() -> void:
 	ui_sound.play()
 	Global.settings.music = not Global.settings.music
 	update_audio_bus("Music", music_label, Global.settings.music)
  
 
+## 音效开关按钮回调：切换音效静音状态
 func _on_sfx_button_pressed() -> void:
 	ui_sound.play()
 	Global.settings.sfx = not Global.settings.sfx 
 	update_audio_bus("SFX", sfx_label, Global.settings.sfx)
 
 
+## 窗口模式按钮回调：切换全屏/窗口模式
 func _on_window_button_pressed() -> void:
 	ui_sound.play()
 	Global.settings.fullscreen = not Global.settings.fullscreen
 	update_fullscreen(Global.settings.fullscreen)
 
 
+## 返回按钮回调：收起设置面板，恢复主菜单
+##
+## [b]难点说明[/b]：与设置展开动画对称，设置按钮组右移收回（x→558），
+## 主按钮组上移复位（y→115）。动画顺序与展开时相反。
 func _on_back_button_pressed() -> void:
 	ui_sound.play()
 	var tween := create_tween()
