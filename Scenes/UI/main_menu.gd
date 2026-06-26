@@ -17,6 +17,8 @@ class_name MainMenu
 @onready var sfx_label: Label = %SFXLabel
 ## 窗口模式状态标签
 @onready var window_label: Label = %WindowLabel
+## 触碰音效播放器（鼠标悬停按钮时触发）
+@onready var hover_sound: AudioStreamPlayer = $HoverSound
 
 
 ## 初始化：加载存档数据并同步 UI 状态
@@ -102,6 +104,10 @@ func _on_back_button_pressed() -> void:
 	tween.tween_interval(0.1)
 	tween.tween_property(main_buttons, "global_position:y", 115, 0.2)
 
+
+## 按钮鼠标悬停回调：播放触碰音效
+func _on_button_mouse_enter() -> void:
+	hover_sound.play()
 
 ## 系统通知回调，用于监听窗口关闭事件
 ##

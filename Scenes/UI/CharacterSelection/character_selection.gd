@@ -19,6 +19,8 @@ const WEAPON_CARD_SCENE = preload("uid://djdnyv7k0co2f")
 @onready var weapon_container: HBoxContainer = $WeaponContainer
 ## UI 点击音效播放器
 @onready var ui_sound: AudioStreamPlayer = $UISound
+## 触碰音效播放器（鼠标悬停时触发）
+@onready var hover_sound: AudioStreamPlayer = $HoverSound
 
 ## 初始化：切换光标并加载所有可选卡片
 func _ready() -> void:
@@ -53,7 +55,14 @@ func load_selection_items() -> void:
 
 
 ## 开始按钮回调：过渡到战斗场景
+##
+## [b]难点说明[/b]：此处添加了空值保护（防御性编程），
+## 未选完角色/武器时按开始不会进入战斗场景，防止后续 null 引用崩溃。
 func _on_play_button_pressed() -> void:
+	if not Global.selected_player:
+		return
+	if not Global.selected_weapon:
+		return
 	ui_sound.play()
 	Transition.transition_to("res://Scenes/Arena/arena.tscn")
 
@@ -71,3 +80,13 @@ func _on_player_card_pressed(data: PlayerData) -> void:
 func _on_weapon_card_pressed(data: WeaponData) -> void:
 	ui_sound.play()
 	Global.selected_weapon = data
+
+
+## 开始按钮鼠标悬停回调：播放触碰音效
+func _on_play_button_mouse_entered() -> void:
+	hover_sound.play()
+
+
+## 返回按钮鼠标悬停回调：播放触碰音效
+func _on_back_button_mouse_entered() -> void:
+	hover_sound.play()
