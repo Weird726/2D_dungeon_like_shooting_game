@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://clv0dnuyxhqg8" path="res://Sprites/Interface/Button_Blue.png" id="1_x1rxe"]
 [ext_resource type="Texture2D" uid="uid://ccab6or5n1nai" path="res://Sprites/Players/tile_0000.png" id="2_5382o"]
 [ext_resource type="Script" uid="uid://bgh57gtfmte8w" path="res://Scenes/UI/PlayerCard/player_card.gd" id="2_saay4"]
+[ext_resource type="Texture2D" uid="uid://btvvlw1s6noca" path="res://Sprites/Interface/Selector.png" id="4_nvhj8"]
 [ext_resource type="AudioStream" uid="uid://dlyw3ke5ldgn7" path="res://Sounds/button_hover.wav" id="4_saay4"]
 
 [node name="PlayerCard" type="TextureButton" unique_id=827549629]
@@ -27,6 +28,25 @@ grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0)
 mouse_filter = 2
 texture = ExtResource("2_5382o")
+
+[node name="Selector" type="TextureRect" parent="." unique_id=1249542791]
+visible = false
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -35.0
+offset_right = 35.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_nvhj8")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="HoverSound" type="AudioStreamPlayer" parent="." unique_id=1047523674]
 stream = ExtResource("4_saay4")

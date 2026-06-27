@@ -42,14 +42,14 @@ func load_selection_items() -> void:
 	# 为每个 PlayerData 资源实例化一张角色卡片
 	for data: PlayerData in players:
 		var card: PlayerCard = PLAYER_CARD_SCENE.instantiate()
-		card.pressed.connect(_on_player_card_pressed.bind(data))
+		card.pressed.connect(_on_player_card_pressed.bind(data, card))
 		player_container.add_child(card)
 		card.set_data(data)
 	
 	# 为每个 WeaponData 资源实例化一张武器卡片
 	for data: WeaponData in weapons:
 		var card: WeaponCard = WEAPON_CARD_SCENE.instantiate()
-		card.pressed.connect(_on_weapon_card_pressed.bind(data))
+		card.pressed.connect(_on_weapon_card_pressed.bind(data, card))
 		weapon_container.add_child(card)
 		card.set_data(data)
 
@@ -71,15 +71,26 @@ func _on_back_button_pressed() -> void:
 	ui_sound.play()
 	Transition.transition_to("res://Scenes/UI/main_menu.tscn")
 
-## 角色卡片点击回调：将选中的角色数据存入全局单例
-func _on_player_card_pressed(data: PlayerData) -> void:
+## 角色卡片点击回调：将选中的角色数据存入全局单例，并显示选择框
+##
+## [b]难点说明[/b]：先遍历隐藏所有卡片的选择框，再显示当前选中卡片的选择框，
+## 实现"单选"效果。bind(data, card) 将数据和卡片引用一起传递给回调。
+func _on_player_card_pressed(data: PlayerData, selected_card: PlayerCard) -> void:
 	ui_sound.play()
 	Global.selected_player = data
+	for card: PlayerCard in player_container.get_children():
+		card.selector.hide()
+	selected_card.selector.show()
 
-## 武器卡片点击回调：将选中的武器数据存入全局单例
-func _on_weapon_card_pressed(data: WeaponData) -> void:
+## 武器卡片点击回调：将选中的武器数据存入全局单例，并显示选择框
+##
+## [b]难点说明[/b]：与角色卡片同理，先隐藏所有选择框再显示当前选中的。
+func _on_weapon_card_pressed(data: WeaponData, selected_card: WeaponCard) -> void:
 	ui_sound.play()
 	Global.selected_weapon = data
+	for card: WeaponCard in weapon_container.get_children():
+		card.selector.hide()
+	selected_card.selector.show()
 
 
 ## 开始按钮鼠标悬停回调：播放触碰音效

@@ -5,6 +5,8 @@ class_name WeaponCard
 @onready var icon: TextureRect = $Icon
 ## 触碰音效播放器（鼠标悬停时触发）
 @onready var hover_sound: AudioStreamPlayer = $HoverSound
+## 选择指示框（选中时显示，用于单选视觉反馈）
+@onready var selector: TextureRect = $Selector
 
 ## 当前卡片绑定的武器数据引用
 var data: WeaponData
