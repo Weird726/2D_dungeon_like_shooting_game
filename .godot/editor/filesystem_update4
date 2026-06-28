@@ -9,3 +9,6 @@ res://Scenes/UI/DescriptionPanel/description_panel.gd
 res://default_bus_layout.tres
 res://Scenes/UI/WeaponCard/weapon_card.tscn
 res://Data/weapons/weapon_ak47.tres
+res://Scenes/UI/main_menu.tscn
+res://Autoloads/global.gd
+res://Scenes/UI/main_menu.gd

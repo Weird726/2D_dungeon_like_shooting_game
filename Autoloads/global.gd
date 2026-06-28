@@ -34,6 +34,10 @@ var selected_player: PlayerData
 ## 当前选中的武器数据（由角色选择界面赋值，未选择时为 null）
 var selected_weapon: WeaponData
 
+## 节点初始化：引擎启动时自动加载磁盘存档（设置项）
+func _ready() -> void:
+	load_data()
+
 ## 根据选中角色 id 从 all_players 中取出对应的 PackedScene
 ##
 ## [b]难点说明[/b]：selected_player 可能为 null（如 F6 单独运行 Arena 场景、

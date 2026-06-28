@@ -23,7 +23,6 @@ class_name MainMenu
 
 ## 初始化：加载存档数据并同步 UI 状态
 func _ready() -> void:
-	Global.load_data()
 	# 进入主菜单时切换全局光标为菜单专用光标
 	Cursor.sprite.texture = menu_cursor
 	update_audio_bus("Music", music_label, Global.settings.music)
