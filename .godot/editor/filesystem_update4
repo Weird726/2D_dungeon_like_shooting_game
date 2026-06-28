@@ -1,10 +1,11 @@
-res://Scenes/UI/PlayerCard/player_card.gd
 res://Scenes/UI/PlayerCard/player_card.tscn
 res://Shaders/transition.gdshader
 res://Shaders/background.gdshader
-res://Scenes/UI/WeaponCard/weapon_card.gd
-res://Scenes/UI/WeaponCard/weapon_card.tscn
-res://Scenes/UI/main_menu.tscn
-res://Scenes/UI/main_menu.gd
-res://Scenes/UI/CharacterSelection/character_selection.tscn
 res://Scenes/UI/CharacterSelection/character_selection.gd
+res://Scenes/UI/PlayerCard/player_card.gd
+res://Scenes/UI/WeaponCard/weapon_card.gd
+res://Scenes/UI/DescriptionPanel/description_panel.tscn
+res://Scenes/UI/DescriptionPanel/description_panel.gd
+res://default_bus_layout.tres
+res://Scenes/UI/WeaponCard/weapon_card.tscn
+res://Data/weapons/weapon_ak47.tres

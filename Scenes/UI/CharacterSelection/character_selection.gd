@@ -27,6 +27,7 @@ func _ready() -> void:
 	Cursor.sprite.texture = selection_cursor
 	load_selection_items()
 
+
 ## 清空并重建所有角色/武器选择卡片
 ##
 ## [b]难点说明[/b]：先遍历删除旧子节点再重建，
@@ -66,10 +67,12 @@ func _on_play_button_pressed() -> void:
 	ui_sound.play()
 	Transition.transition_to("res://Scenes/Arena/arena.tscn")
 
+
 ## 返回按钮回调：过渡回主菜单
 func _on_back_button_pressed() -> void:
 	ui_sound.play()
 	Transition.transition_to("res://Scenes/UI/main_menu.tscn")
+
 
 ## 角色卡片点击回调：将选中的角色数据存入全局单例，并显示选择框
 ##
@@ -81,6 +84,7 @@ func _on_player_card_pressed(data: PlayerData, selected_card: PlayerCard) -> voi
 	for card: PlayerCard in player_container.get_children():
 		card.selector.hide()
 	selected_card.selector.show()
+
 
 ## 武器卡片点击回调：将选中的武器数据存入全局单例，并显示选择框
 ##

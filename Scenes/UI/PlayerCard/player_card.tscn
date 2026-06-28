@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://bgh57gtfmte8w" path="res://Scenes/UI/PlayerCard/player_card.gd" id="2_saay4"]
 [ext_resource type="Texture2D" uid="uid://btvvlw1s6noca" path="res://Sprites/Interface/Selector.png" id="4_nvhj8"]
 [ext_resource type="AudioStream" uid="uid://dlyw3ke5ldgn7" path="res://Sounds/button_hover.wav" id="4_saay4"]
+[ext_resource type="PackedScene" uid="uid://clnebnkrjqdcu" path="res://Scenes/UI/DescriptionPanel/description_panel.tscn" id="6_u5wgv"]
 
 [node name="PlayerCard" type="TextureButton" unique_id=827549629]
 custom_minimum_size = Vector2(60, 60)
@@ -52,4 +53,13 @@ stretch_mode = 5
 stream = ExtResource("4_saay4")
 bus = &"SFX"
 
+[node name="DescriptionPanel" parent="." unique_id=1107453060 instance=ExtResource("6_u5wgv")]
+visible = false
+layout_mode = 1
+offset_left = -70.0
+offset_top = -101.0
+offset_right = 70.0
+offset_bottom = -61.0
+
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
