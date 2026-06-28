@@ -14,7 +14,7 @@ class_name WeaponData
 ## 射击扩散角度（弧度），影响子弹发射方向的随机偏移范围
 @export var spread: float
 ## 子弹扩散系数（弧度），子弹实际飞行方向相对于瞄准方向的偏移
-@export var bullet_spreed: float
+@export var bullet_speed: float
 ## 子弹预制场景（每次射击生成的子弹实体）
 @export var bullet_scene: PackedScene
 ## 武器描述文本（用于 UI 中的武器详情面板）

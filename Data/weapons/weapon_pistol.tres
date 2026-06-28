@@ -2,14 +2,16 @@
 
 [ext_resource type="Texture2D" uid="uid://cqvwy8c5l0aod" path="res://Sprites/Weapons/Tiles/tile_0001.png" id="1_jsqlm"]
 [ext_resource type="Script" uid="uid://bsj8uog4jqrwe" path="res://Data/weapons/weapon_data.gd" id="1_k8266"]
+[ext_resource type="PackedScene" uid="uid://bd0t6nb3d21yh" path="res://Scenes/Bullets/bullet_pistol.tscn" id="1_pjw4c"]
 
 [resource]
 script = ExtResource("1_k8266")
 weapon_name = "Pistol"
 icon = ExtResource("1_jsqlm")
-damage = 1.0
-cooldown = 0.4
+damage = 1.4
+cooldown = 0.35
 mana_cost = 1.0
-spread = 7.0
-bullet_spreed = 250.0
+spread = 3.0
+bullet_speed = 250.0
+bullet_scene = ExtResource("1_pjw4c")
 metadata/_custom_type_script = "uid://bsj8uog4jqrwe"

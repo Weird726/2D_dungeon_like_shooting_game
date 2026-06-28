@@ -22,7 +22,7 @@ func set_data(value: WeaponData) -> void:
 ## 格式化武器属性文本并写入描述面板
 func set_description() -> void:
 	var string := "Weapon: %s" % data.weapon_name
-	string += "Damage: %.0f\nCooldown: %.0f\nMana Cost: %.0f\nSpread: %.0f\nBullet Spread: %.0f\nDescription: %s" % [data.damage, data.cooldown, data.mana_cost, data.spread, data.bullet_spreed, data.description]
+	string += "Damage: %.0f\nCooldown: %.0f\nMana Cost: %.0f\nSpread: %.0f\nBullet Spread: %.0f\nDescription: %s" % [data.damage, data.cooldown, data.mana_cost, data.spread, data.bullet_speed, data.description]
 	description_panel.set_text(string)
 
 ## 鼠标悬停回调：播放音效并对图标和描述面板施加阻尼振荡动画

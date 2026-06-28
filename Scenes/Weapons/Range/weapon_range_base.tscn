@@ -13,7 +13,8 @@ scale = Vector2(1.5, 1.5)
 unique_name_in_owner = true
 position = Vector2(12, 0)
 
-[node name="Marker2D" type="Marker2D" parent="Pivot" unique_id=2089254432]
+[node name="FirePos" type="Marker2D" parent="Pivot" unique_id=2089254432]
+unique_name_in_owner = true
 position = Vector2(22, 0)
 
 [node name="ShootSound" type="AudioStreamPlayer" parent="." unique_id=657936095]

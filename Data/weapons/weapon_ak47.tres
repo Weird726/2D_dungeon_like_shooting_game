@@ -11,6 +11,6 @@ damage = 1.0
 cooldown = 0.4
 mana_cost = 1.0
 spread = 7.0
-bullet_spreed = 250.0
+bullet_speed = 250.0
 description = "1"
 metadata/_custom_type_script = "uid://bsj8uog4jqrwe"
