@@ -17,3 +17,5 @@ res://Data/weapons/weapon_sniper_rifle.tres
 res://Data/weapons/weapon_spas12.tres
 res://Data/weapons/weapon_thomson.tres
 res://Data/weapons/weapon_uzi.tres
+res://Scenes/Bullets/bullet_mp_7.tscn
+res://Scenes/Bullets/bullet_uzi.tscn

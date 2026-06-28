@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://dpxqxi4jtnui7"]
 
+[ext_resource type="PackedScene" uid="uid://dyaeg4lajbmyo" path="res://Scenes/Bullets/bullet_mp_7.tscn" id="1_5fs63"]
 [ext_resource type="Texture2D" uid="uid://cgch73n7h4u3r" path="res://Sprites/Weapons/Tiles/tile_0006.png" id="1_patqj"]
 [ext_resource type="Script" uid="uid://bsj8uog4jqrwe" path="res://Data/weapons/weapon_data.gd" id="2_5fs63"]
 
@@ -8,8 +9,9 @@ script = ExtResource("2_5fs63")
 weapon_name = "Mp7"
 icon = ExtResource("1_patqj")
 damage = 1.0
-cooldown = 0.4
+cooldown = 0.1
 mana_cost = 1.0
-spread = 7.0
-bullet_speed = 250.0
+spread = 5.0
+bullet_speed = 500.0
+bullet_scene = ExtResource("1_5fs63")
 metadata/_custom_type_script = "uid://bsj8uog4jqrwe"
