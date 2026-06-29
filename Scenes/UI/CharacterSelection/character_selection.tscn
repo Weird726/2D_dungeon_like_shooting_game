@@ -20,6 +20,8 @@
 [ext_resource type="Resource" uid="uid://dt7iyo3abi2k6" path="res://Data/weapons/weapon_spas12.tres" id="12_l2dwk"]
 [ext_resource type="Resource" uid="uid://dlwbokcut4kr6" path="res://Data/weapons/weapon_thomson.tres" id="13_bw0q0"]
 [ext_resource type="Resource" uid="uid://cco8mk41jpouo" path="res://Data/weapons/weapon_uzi.tres" id="14_uwpgq"]
+[ext_resource type="Resource" uid="uid://ct7ftyd1msec1" path="res://Data/weapons/weapon_sword.tres" id="16_tfq0b"]
+[ext_resource type="Resource" uid="uid://dlepgo74j16ns" path="res://Data/weapons/weapon_axe.tres" id="17_8hxk8"]
 [ext_resource type="AudioStream" uid="uid://dtxhputnlac6" path="res://Sounds/select-a.ogg" id="21_bjn16"]
 [ext_resource type="AudioStream" uid="uid://dlyw3ke5ldgn7" path="res://Sounds/button_hover.wav" id="22_c5bnh"]
 
@@ -45,7 +47,7 @@ grow_vertical = 2
 script = ExtResource("1_80tfl")
 selection_cursor = SubResource("AtlasTexture_vojml")
 players = Array[ExtResource("2_vojml")]([ExtResource("3_bjn16"), ExtResource("4_c5bnh"), ExtResource("5_daxk4"), ExtResource("6_tfq0b")])
-weapons = Array[ExtResource("7_8hxk8")]([ExtResource("8_u0wir"), ExtResource("9_joq81"), ExtResource("10_wqfu2"), ExtResource("11_f5sk0"), ExtResource("12_l2dwk"), ExtResource("13_bw0q0"), ExtResource("14_uwpgq")])
+weapons = Array[ExtResource("7_8hxk8")]([ExtResource("8_u0wir"), ExtResource("9_joq81"), ExtResource("10_wqfu2"), ExtResource("11_f5sk0"), ExtResource("12_l2dwk"), ExtResource("13_bw0q0"), ExtResource("14_uwpgq"), ExtResource("16_tfq0b"), ExtResource("17_8hxk8")])
 
 [node name="Background" parent="." unique_id=587309398 instance=ExtResource("1_n66v8")]
 layout_mode = 1

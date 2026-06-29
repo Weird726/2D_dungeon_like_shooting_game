@@ -1,1 +1,9 @@
 res://Scenes/Weapons/Melee/weapon_melee.gd
+res://Scenes/Weapons/Melee/weapon_meleesword.tscn
+res://Shaders/transition.gdshader
+res://Shaders/background.gdshader
+res://Scenes/UI/CharacterSelection/character_selection.tscn
+res://Autoloads/global.gd
+res://Scenes/Weapons/Melee/weapon_melee_axe.tscn
+res://Data/weapons/weapon_sword.tres
+res://Data/weapons/weapon_axe.tres

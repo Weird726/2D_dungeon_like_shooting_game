@@ -13,7 +13,7 @@ class_name WeaponMelee
 ## 冷却计时器，控制近战攻击间隔
 @onready var cooldown: Timer = $Cooldown
 ## 可攻击状态标记（类似射程冷却，计时器归零后重置）
-var can_use: bool
+var can_use: bool = true
 
 ## 访问数据冷却时间
 func _ready() -> void:

@@ -27,6 +27,8 @@ var all_weapons: Dictionary[String, PackedScene] = {
 	"Spas12": preload("uid://d3pjsry6r4xtr"),
 	"Thomson": preload("uid://cseoobyejbqvh"),
 	"Uzi": preload("uid://n28dex5w8mxf"),
+	"Sword": preload("uid://r28cbjrn6ddt"),
+	"Axe": preload("uid://dxh5hbdppbk7i"),
 }
 
 ## 当前选中的角色数据（由角色选择界面赋值，未选择时为 null）

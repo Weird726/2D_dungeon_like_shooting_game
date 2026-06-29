@@ -3,10 +3,27 @@
 [ext_resource type="Texture2D" uid="uid://ddl1y3k5qm3mu" path="res://Sprites/Weapons/Tiles/tile_0008.png" id="1_m2myn"]
 [ext_resource type="Script" uid="uid://fc7apcurag83" path="res://Scenes/Weapons/Melee/weapon_melee.gd" id="1_sklpg"]
 [ext_resource type="Resource" uid="uid://ct7ftyd1msec1" path="res://Data/weapons/weapon_sword.tres" id="2_wmcaa"]
+[ext_resource type="Texture2D" uid="uid://d2akrrxsegdf4" path="res://Sprites/Weapons/swordslash.png" id="4_m8eit"]
 [ext_resource type="AudioStream" uid="uid://bpphir6sj7acr" path="res://Sounds/slash.ogg" id="4_sls40"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sklpg"]
 size = Vector2(20, 30)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_a3166"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2ijxr"]
+particle_flag_disable_z = true
+spread = 0.0
+initial_velocity_min = 350.0
+initial_velocity_max = 350.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.7
+anim_speed_min = 1.0
+anim_speed_max = 1.0
 
 [sub_resource type="Animation" id="Animation_sklpg"]
 length = 0.001
@@ -35,6 +52,35 @@ tracks/1/keys = {
 "values": [Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_m8eit"]
+resource_name = "idle"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="Animation" id="Animation_wmcaa"]
 resource_name = "slash"
 length = 0.1
@@ -49,7 +95,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.05017375, 0.1),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [-1.2217304763960306, 0.0, 0.0, 2.6179938779914944]
+"values": [-1.2217304763960306, -1.2217304763960306, 0.0, 2.6179938779914944]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -61,22 +107,24 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -10), Vector2(5, -10), Vector2(5, 10)]
+"values": [Vector2(0, -5), Vector2(5, -10), Vector2(5, 10)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sls40"]
 _data = {
 &"RESET": SubResource("Animation_sklpg"),
+&"idle": SubResource("Animation_m8eit"),
 &"slash": SubResource("Animation_wmcaa")
 }
 
-[node name="WeaponMeleesword" type="Node2D" unique_id=1024152463]
+[node name="WeaponMeleeSword" type="Node2D" unique_id=1024152463]
 script = ExtResource("1_sklpg")
 data = ExtResource("2_wmcaa")
 
 [node name="Pivot" type="Node2D" parent="." unique_id=1614717750]
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot" unique_id=230705449]
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_m2myn")
 
 [node name="Hitbox" type="Area2D" parent="Pivot" unique_id=1821176130]
@@ -85,13 +133,24 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Hitbox" unique_id=123600344]
 position = Vector2(10, 0)
+scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_sklpg")
 
 [node name="SlashParticle" type="GPUParticles2D" parent="Pivot" unique_id=130040546]
 unique_name_in_owner = true
+material = SubResource("CanvasItemMaterial_a3166")
+position = Vector2(16, 0)
+emitting = false
+amount = 1
+texture = ExtResource("4_m8eit")
+lifetime = 0.09999999999999999
+one_shot = true
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_2ijxr")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1908432052]
 libraries/ = SubResource("AnimationLibrary_sls40")
+autoplay = &"idle"
 
 [node name="SlashSound" type="AudioStreamPlayer" parent="." unique_id=1939363286]
 stream = ExtResource("4_sls40")
