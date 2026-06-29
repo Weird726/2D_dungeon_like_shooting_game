@@ -2,8 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://ddl1y3k5qm3mu" path="res://Sprites/Weapons/Tiles/tile_0008.png" id="1_m2myn"]
 [ext_resource type="Script" uid="uid://fc7apcurag83" path="res://Scenes/Weapons/Melee/weapon_melee.gd" id="1_sklpg"]
-[ext_resource type="Resource" uid="uid://ct7ftyd1msec1" path="res://Data/weapons/weapon_sword.tres" id="2_wmcaa"]
-[ext_resource type="AudioStream" uid="uid://bpphir6sj7acr" path="res://Sounds/slash.ogg" id="4_sls40"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sklpg"]
 size = Vector2(20, 30)
@@ -72,7 +70,6 @@ _data = {
 
 [node name="WeaponMeleesword" type="Node2D" unique_id=1024152463]
 script = ExtResource("1_sklpg")
-data = ExtResource("2_wmcaa")
 
 [node name="Pivot" type="Node2D" parent="." unique_id=1614717750]
 
@@ -88,15 +85,10 @@ position = Vector2(10, 0)
 shape = SubResource("RectangleShape2D_sklpg")
 
 [node name="SlashParticle" type="GPUParticles2D" parent="Pivot" unique_id=130040546]
-unique_name_in_owner = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1908432052]
 libraries/ = SubResource("AnimationLibrary_sls40")
 
 [node name="SlashSound" type="AudioStreamPlayer" parent="." unique_id=1939363286]
-stream = ExtResource("4_sls40")
-bus = &"SFX"
 
 [node name="Cooldown" type="Timer" parent="." unique_id=1042101882]
-
-[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
