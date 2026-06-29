@@ -14,6 +14,8 @@ class_name WeaponMelee
 @onready var cooldown: Timer = $Cooldown
 ## 可攻击状态标记（类似射程冷却，计时器归零后重置）
 var can_use: bool = true
+## 当前碰撞体积内的实体列表（用于近战命中伤害判定）
+var entities: Array[Node2D]
 
 ## 访问数据冷却时间
 func _ready() -> void:
@@ -28,6 +30,7 @@ func use_weapon() -> void:
 	cooldown.start()
 	slash_sound.play()
 	anim_player.play("slash")
+	print(entities)
 	
 	slash.global_rotation = pivot.global_rotation
 	slash.emitting = true
@@ -41,3 +44,15 @@ func _input(event: InputEvent) -> void:
 func _on_cooldown_timeout() -> void:
 	can_use = true
 	anim_player.play("idle")
+
+
+## 碰撞体进入近战判定区域时触发，将其加入命中列表
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	if is_instance_valid(body):
+		entities.append(body)
+
+
+## 碰撞体离开近战判定区域时触发，将其从命中列表移除
+func _on_hitbox_body_exited(body: Node2D) -> void:
+	if is_instance_valid(body):
+		entities.erase(body)

@@ -19,4 +19,5 @@ func _process(delta: float) -> void:
 
 ## 碰撞体（如敌人、墙壁等）时销毁子弹
 func _on_body_entered(body: Node2D) -> void:
+	Global.create_explosion(global_position)
 	queue_free()

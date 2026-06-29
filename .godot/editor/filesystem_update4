@@ -7,3 +7,9 @@ res://Autoloads/global.gd
 res://Scenes/Weapons/Melee/weapon_melee_axe.tscn
 res://Data/weapons/weapon_sword.tres
 res://Data/weapons/weapon_axe.tres
+res://Scenes/Effects/explosion_effect.tscn
+res://Scenes/Effects/explosion_effect.gd
+res://Scenes/Bullets/bullet_pistol.tscn
+res://Scenes/Bullets/bullet_pistol.gd
+res://Scenes/Arena/arena.tscn
+res://Data/weapons/weapon_ak47.tres

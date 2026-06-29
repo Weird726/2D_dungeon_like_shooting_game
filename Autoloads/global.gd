@@ -3,6 +3,10 @@ extends Node
 ## 用户存档文件路径
 var save_path: String = "user://save.json"
 
+## 爆炸特效预制场景，供 create_explosion() 实例化使用
+const EXPLOSION_EFFECT_SCENE = preload("uid://hhsw5ccj2s3p")
+
+
 ## 全局设置，存储音量、音效和全屏等用户偏好
 var settings: Dictionary = {
 	"music": true,
@@ -54,6 +58,12 @@ func get_player() -> PackedScene:
 ## 访问 null.weapon_name 会崩溃。调用前需确保已赋值或加空值保护。
 func get_weapon() -> PackedScene:
 	return all_weapons[selected_weapon.weapon_name]
+
+## 在指定世界坐标位置生成爆炸特效并添加到场景树
+func create_explosion(pos: Vector2) -> void:
+	var explosion: Node2D = EXPLOSION_EFFECT_SCENE.instantiate()
+	explosion.global_position = pos
+	get_tree().root.add_child(explosion)
 
 ## 将当前设置持久化到磁盘
 func save_data() -> void:

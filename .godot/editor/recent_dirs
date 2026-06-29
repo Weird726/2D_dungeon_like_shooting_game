@@ -1,6 +1,7 @@
+res://Sprites/Weapons/
+res://Scenes/Effects/
 res://Scenes/Weapons/Melee/
 res://Scenes/Bullets/
-res://Sprites/Weapons/
 res://Scenes/UI/DescriptionPanel/
 res://Scenes/UI/WeaponCard/
 res://Scenes/UI/PlayerCard/
