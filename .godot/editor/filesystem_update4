@@ -21,6 +21,3 @@ res://Scenes/Bullets/bullet_mp_7.tscn
 res://Scenes/Bullets/bullet_uzi.tscn
 res://Scenes/Weapons/Melee/weapon_meleesword.tscn
 res://Scenes/Weapons/Melee/weapon_melee.gd
-res://Data/weapons/weapon_sword.tres
-res://Data/weapons/weapon_axe.tres
-res://Scenes/Weapons/Melee/weapon_melee_axe.tscn
