@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://r28cbjrn6ddt"]
+
+[ext_resource type="Texture2D" uid="uid://ddl1y3k5qm3mu" path="res://Sprites/Weapons/Tiles/tile_0008.png" id="1_m2myn"]
+[ext_resource type="Script" uid="uid://fc7apcurag83" path="res://Scenes/Weapons/Melee/weapon_melee.gd" id="1_sklpg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sklpg"]
+size = Vector2(20, 30)
+
+[sub_resource type="Animation" id="Animation_sklpg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wmcaa"]
+resource_name = "slash"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.05017375, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-1.2217304763960306, 0.0, 0.0, 2.6179938779914944]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -10), Vector2(5, -10), Vector2(5, 10)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sls40"]
+_data = {
+&"RESET": SubResource("Animation_sklpg"),
+&"slash": SubResource("Animation_wmcaa")
+}
+
+[node name="WeaponMeleesword" type="Node2D" unique_id=1024152463]
+script = ExtResource("1_sklpg")
+
+[node name="Pivot" type="Node2D" parent="." unique_id=1614717750]
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot" unique_id=230705449]
+texture = ExtResource("1_m2myn")
+
+[node name="Hitbox" type="Area2D" parent="Pivot" unique_id=1821176130]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Hitbox" unique_id=123600344]
+position = Vector2(10, 0)
+shape = SubResource("RectangleShape2D_sklpg")
+
+[node name="SlashParticle" type="GPUParticles2D" parent="Pivot" unique_id=130040546]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1908432052]
+libraries/ = SubResource("AnimationLibrary_sls40")
+
+[node name="SlashSound" type="AudioStreamPlayer" parent="." unique_id=1939363286]
+
+[node name="Cooldown" type="Timer" parent="." unique_id=1042101882]
