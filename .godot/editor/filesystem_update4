@@ -1,10 +1,5 @@
+res://Scenes/Arena/arena.tscn
 res://Shaders/transition.gdshader
 res://Shaders/background.gdshader
-res://Scenes/Extra/damage_text.tscn
-res://Scenes/Extra/damage_text.gd
-res://Autoloads/global.gd
-res://Scenes/Bullets/bullet_pistol.tscn
-res://Scenes/Bullets/bullet_pistol.gd
-res://Scenes/Weapons/Melee/weapon_melee.gd
-res://Scenes/Arena/arena.tscn
-res://Data/weapons/weapon_uzi.tres
+res://Scenes/Levels/level_01_room.tscn
+res://Scenes/Levels/room.gd

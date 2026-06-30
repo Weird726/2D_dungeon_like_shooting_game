@@ -1,3 +1,5 @@
+res://Extra/
+res://Scenes/Levels/
 res://Scenes/Extra/
 res://Sprites/Weapons/
 res://Scenes/Effects/
@@ -17,4 +19,3 @@ res://Scenes/Player/
 res://Data/Player/
 res://Scenes/UI/CharacterSelection/
 res://Shaders/
-res://Extra/
