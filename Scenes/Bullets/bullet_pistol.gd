@@ -19,5 +19,8 @@ func _process(delta: float) -> void:
 
 ## 碰撞体（如敌人、墙壁等）时销毁子弹
 func _on_body_entered(body: Node2D) -> void:
+	# 在碰撞点生成爆炸特效
 	Global.create_explosion(global_position)
+	# 在碰撞体位置生成伤害数字
+	Global.create_damage_text(data.damage, body.global_position)
 	queue_free()

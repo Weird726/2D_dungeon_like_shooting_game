@@ -5,6 +5,8 @@ var save_path: String = "user://save.json"
 
 ## 爆炸特效预制场景，供 create_explosion() 实例化使用
 const EXPLOSION_EFFECT_SCENE = preload("uid://hhsw5ccj2s3p")
+## 伤害数字文本预制场景，供 create_damage_text() 实例化使用
+const DAMAGE_TEXT_SCENE = preload("uid://dksmdpebiv671")
 
 
 ## 全局设置，存储音量、音效和全屏等用户偏好
@@ -58,6 +60,18 @@ func get_player() -> PackedScene:
 ## 访问 null.weapon_name 会崩溃。调用前需确保已赋值或加空值保护。
 func get_weapon() -> PackedScene:
 	return all_weapons[selected_weapon.weapon_name]
+
+## 在指定位置生成伤害数字文本，带随机偏移防止多次伤害重叠
+##
+## [b]难点说明[/b]：使用极坐标随机（单位向量 旋转 × 固定半径）计算偏移，
+## 确保伤害文本均匀分布在碰撞点周围，避免多个数字完全重叠。
+func create_damage_text(value: float, pos: Vector2) -> void:
+	var damage: DamageText = DAMAGE_TEXT_SCENE.instantiate()
+	get_parent().add_child(damage)
+	var random_pos = randf_range(0, TAU)
+	damage.global_position = pos + Vector2.RIGHT.rotated(random_pos) * 20
+	
+	damage.setup(value)
 
 ## 在指定世界坐标位置生成爆炸特效并添加到场景树
 func create_explosion(pos: Vector2) -> void:
