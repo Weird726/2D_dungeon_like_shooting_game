@@ -64,7 +64,27 @@ func generate_level_layout() -> void:
 
 ## 从已有房间中挑选特殊房间（如起始点、主线房）
 func select_special_rooms() -> void:
-	pass
+	# 起始房间固定为原点（与生成算法的起点一致）
+	start_room_coord = Vector2i.ZERO
+	end_room_coord = find_farthest_room()
+	print("Start: %s" % start_room_coord)
+	print("End: %s" % end_room_coord)
+
+## 使用 欧式距离找到离起点最远的房间（作为终点/主线房）
+##
+## [b]难点说明[/b]：使用欧式距离而非 BFS 路径距离
+## 欧式距离是直线距离，不考虑走廊绕行；BFS 距离更准确但需要额外计算
+func find_farthest_room() -> Vector2i:
+	var farthest_room_coord := start_room_coord
+	var max_dist := 0.0
+	# 遍历所有房间坐标，记录最大距离对应的坐标
+	for room_coord: Vector2i in grid.keys():
+		var dist = start_room_coord.distance_to(room_coord)
+		if dist > max_dist:
+			max_dist = dist
+			farthest_room_coord = room_coord
+	return farthest_room_coord
+
 
 ## 从全局单例读取选中的角色场景并实例化，然后装备选中的武器
 func load_game_selection() -> void:
