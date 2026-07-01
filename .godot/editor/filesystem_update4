@@ -1,5 +1,7 @@
-res://Scenes/Arena/arena.tscn
+res://Scenes/Levels/level_01_room.tscn
 res://Shaders/transition.gdshader
 res://Shaders/background.gdshader
-res://Scenes/Levels/level_01_room.tscn
-res://Scenes/Levels/room.gd
+res://Extra/level_01_tileset.tres
+res://Data/Level/level_data.gd
+res://Data/Level/level_01.tres
+res://Data/Level/level_store_data.gd
