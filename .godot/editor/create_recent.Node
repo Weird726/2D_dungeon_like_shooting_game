@@ -1,3 +1,4 @@
+Camera2D
 Marker2D
 TileMapLayer
 Node2D
@@ -12,4 +13,3 @@ Timer
 AnimationPlayer
 GPUParticles2D
 Area2D
-NinePatchRect

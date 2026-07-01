@@ -3,3 +3,6 @@ res://Shaders/transition.gdshader
 res://Shaders/background.gdshader
 res://Extra/level_01_tileset.tres
 res://Scenes/Arena/arena.gd
+res://Data/Level/level_data.gd
+res://Scenes/Levels/level_01_room.tscn
+res://Scenes/Levels/room.gd

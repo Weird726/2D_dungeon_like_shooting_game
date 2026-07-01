@@ -27,7 +27,8 @@ func _ready() -> void:
 	
 	generate_level_layout()
 	select_special_rooms()
-	load_game_selection()
+	create_rooms()
+	#load_game_selection()
 
 ## 使用随机游走算法生成地牢房间布局
 ##
@@ -61,6 +62,31 @@ func generate_level_layout() -> void:
 	
 	for key: Vector2i in grid.keys():
 		print(key)
+
+## 遍历坐标网格，实例化房间场景并放置到对应位置
+##
+## [b]难点说明[/b]：使用 await 实现逐个房间生成的动画效果
+## 每生成一个房间暂停 0.5 秒，让玩家看到建造过程
+func create_rooms() -> void:
+	print("Creating rooms...")
+	for room_coord: Vector2i in grid.keys():
+		var room_instance: LevelRoom = level_data.room_scene.instantiate()
+		room_instance.position = room_coord * level_data.room_size
+		add_child(room_instance)
+		
+		# 将生成的房间实例存入网格字典，替换之前的 null 占位
+		grid[room_coord] = room_instance
+		connect_rooms(room_coord, room_instance)
+		
+		await get_tree().create_timer(0.5).timeout
+
+## 检查当前房间的四个相邻坐标，若已有房间则打通墙壁
+func connect_rooms(room_coord: Vector2i, room_instance: LevelRoom) -> void:
+	var directions := [Vector2i.UP, Vector2i.DOWN, Vector2i.RIGHT, Vector2i.LEFT]
+	for direction in directions:
+		var neighbor_coord = room_coord + direction
+		if grid.has(neighbor_coord):
+			room_instance.open_wall(direction)
 
 ## 从已有房间中挑选特殊房间（如起始点、主线房）
 func select_special_rooms() -> void:

@@ -7,7 +7,7 @@ class_name LevelData
 ## 每个子区域内的房间总数
 @export var num_rooms := 10
 ## 单个房间的像素尺寸（宽 × 高）
-@export var room_size := Vector2(352, 384)
+@export var room_size := Vector2i(352, 384)
 ## 房间场景预制体，用于实例化地牢房间
 @export var room_scene: PackedScene
 ## 每个房间生成的最小敌人数量
