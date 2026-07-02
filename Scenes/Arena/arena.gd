@@ -17,6 +17,8 @@ var grid: Dictionary[Vector2i, LevelRoom] = {}
 var start_room_coord: Vector2i
 ## 终点房间坐标（主线目标或出口）
 var end_room_coord: Vector2i
+## 单元格尺寸 = 房间尺寸 + 走廊尺寸，用于坐标到像素位置的换算
+var grid_cell_size: Vector2i
 
 
 ## 监听全局事件总线，当玩家生命值变化时更新 HUD
@@ -24,6 +26,12 @@ func _ready() -> void:
 	# 进入场景时切换全局光标为当前场景专用光标
 	Cursor.sprite.texture = arena_cursor
 	EventBus.on_player_health_updated.connect(_on_player_health_updated)
+	
+	# 计算单元格尺寸：房间宽高 + 走廊宽高，使房间之间留出走廊空间
+	grid_cell_size = Vector2i(
+		level_data.room_size.x + level_data.corridor_size.x,
+		level_data.room_size.y + level_data.corridor_size.y,
+	)
 	
 	generate_level_layout()
 	select_special_rooms()
@@ -72,7 +80,7 @@ func create_rooms() -> void:
 	print("Creating rooms...")
 	for room_coord: Vector2i in grid.keys():
 		var room_instance: LevelRoom = level_data.room_scene.instantiate()
-		room_instance.position = room_coord * level_data.room_size
+		room_instance.position = room_coord * grid_cell_size
 		add_child(room_instance)
 		
 		# 将生成的房间实例存入网格字典，替换之前的 null 占位
@@ -81,9 +89,9 @@ func create_rooms() -> void:
 
 ## 在相邻房间之间生成走廊连接节点
 ##
-## [b]难点说明[/b]：走廊位置取两个房间的中点
-## 公式：(room_pos + neighbor_pos) / 2.0，使走廊居中于两房间之间
-## 只检查右和下两个方向，避免重复生成（左和上会被邻居处理）
+## [b]难点说明[/b]：走廊位置改为偏移计算（不再取中点）
+## 水平走廊：从房间右边缘偏移半个单元格宽度
+## 垂直走廊：从房间下边缘偏移半个单元格高度
 func create_corridors() -> void:
 	print("Creating corridors...")
 	for room_coord: Vector2i in grid.keys():
@@ -93,10 +101,9 @@ func create_corridors() -> void:
 		var right_neighbor = room_coord + Vector2i.RIGHT
 		if grid.has(right_neighbor):
 			var corridor: Node2D = level_data.h_corridor.instantiate()
-			var room_pos = room_instance.position
-			var neighbor_pos = grid[right_neighbor].position
-			# 走廊中点计算：两房间位置取平均值
-			corridor.position = (room_pos + neighbor_pos) / 2.0
+			# 走廊偏移计算：从房间边缘偏移半个单元格尺寸
+			corridor.position = room_instance.position + Vector2(
+				grid_cell_size.x / 2.0, 0)
 			add_child(corridor)
 		
 		
@@ -104,10 +111,9 @@ func create_corridors() -> void:
 		var down_neighbor = room_coord + Vector2i.DOWN
 		if grid.has(down_neighbor):
 			var corridor: Node2D = level_data.v_corridor.instantiate()
-			var room_pos = room_instance.position
-			var neighbor_pos = grid[down_neighbor].position
-			# 走廊中点计算：两房间位置取平均值
-			corridor.position = (room_pos + neighbor_pos) / 2.0
+			# 走廊偏移计算：从房间边缘偏移半个单元格尺寸
+			corridor.position = room_instance.position + Vector2(
+				0, grid_cell_size.y / 2.0)
 			add_child(corridor)
 
 ## 检查当前房间的四个相邻坐标，若已有房间则打通墙壁
