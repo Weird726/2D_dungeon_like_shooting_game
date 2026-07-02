@@ -58,11 +58,6 @@ func rotate_player() -> void:
 			# 向左：scale.x 为负，实现水平镜像翻转
 			visuals.scale = Vector2(-1.25, 1.25)
 
-## 测试用输入处理，监听攻击键触发受伤逻辑
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
-		health_component.take_damage(1)
-
 ## 受伤信号回调，将生命值变化广播到事件总线供 HUD 监听
 func _on_health_component_on_unit_damaged(amount: float) -> void:
 	EventBus.on_player_health_updated.emit(health_component.current_health, data.max_hp)

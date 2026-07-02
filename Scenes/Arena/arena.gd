@@ -148,12 +148,15 @@ func find_farthest_room() -> Vector2i:
 	return farthest_room_coord
 
 
-## 从全局单例读取选中的角色场景并实例化，然后装备选中的武器
+## 从全局单例读取选中的角色场景并实例化，放置到起始房间的出生点标记位置
 func load_game_selection() -> void:
 	var player: Player = Global.get_player().instantiate()
+	# 获取起始房间实例
 	var first_room: LevelRoom = grid[Vector2i.ZERO]
+	# 获取房间内的玩家出生点标记
 	var spawn_pos: Marker2D = first_room.player_spawn_pos
 	add_child(player)
+	# 将玩家放置到出生点的实际世界坐标
 	player.global_position = spawn_pos.global_position
 	# 角色实例化后再装备武器，因为武器控制器是角色的子节点
 	player.weapon_controller.equip_weapon()

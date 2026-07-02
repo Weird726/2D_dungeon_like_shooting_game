@@ -5,3 +5,4 @@ res://Extra/level_01_tileset.tres
 res://Scenes/Levels/level_01_room.tscn
 res://Scenes/Levels/room.gd
 res://Scenes/Arena/arena.gd
+res://Scenes/Player/player.gd
