@@ -28,6 +28,7 @@ func _ready() -> void:
 	generate_level_layout()
 	select_special_rooms()
 	create_rooms()
+	create_corridors()
 	#load_game_selection()
 
 ## 使用随机游走算法生成地牢房间布局
@@ -77,8 +78,37 @@ func create_rooms() -> void:
 		# 将生成的房间实例存入网格字典，替换之前的 null 占位
 		grid[room_coord] = room_instance
 		connect_rooms(room_coord, room_instance)
+
+## 在相邻房间之间生成走廊连接节点
+##
+## [b]难点说明[/b]：走廊位置取两个房间的中点
+## 公式：(room_pos + neighbor_pos) / 2.0，使走廊居中于两房间之间
+## 只检查右和下两个方向，避免重复生成（左和上会被邻居处理）
+func create_corridors() -> void:
+	print("Creating corridors...")
+	for room_coord: Vector2i in grid.keys():
+		var room_instance: LevelRoom = grid[room_coord]
 		
-		await get_tree().create_timer(0.5).timeout
+		# 创建向右连接
+		var right_neighbor = room_coord + Vector2i.RIGHT
+		if grid.has(right_neighbor):
+			var corridor: Node2D = level_data.h_corridor.instantiate()
+			var room_pos = room_instance.position
+			var neighbor_pos = grid[right_neighbor].position
+			# 走廊中点计算：两房间位置取平均值
+			corridor.position = (room_pos + neighbor_pos) / 2.0
+			add_child(corridor)
+		
+		
+		# 创建向下连接
+		var down_neighbor = room_coord + Vector2i.DOWN
+		if grid.has(down_neighbor):
+			var corridor: Node2D = level_data.v_corridor.instantiate()
+			var room_pos = room_instance.position
+			var neighbor_pos = grid[down_neighbor].position
+			# 走廊中点计算：两房间位置取平均值
+			corridor.position = (room_pos + neighbor_pos) / 2.0
+			add_child(corridor)
 
 ## 检查当前房间的四个相邻坐标，若已有房间则打通墙壁
 func connect_rooms(room_coord: Vector2i, room_instance: LevelRoom) -> void:

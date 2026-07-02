@@ -1,6 +1,6 @@
-Camera2D
 Marker2D
 TileMapLayer
+Camera2D
 Node2D
 Label
 Sprite2D
@@ -12,4 +12,3 @@ Weapon
 Timer
 AnimationPlayer
 GPUParticles2D
-Area2D

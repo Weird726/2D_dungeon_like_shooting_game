@@ -10,6 +10,12 @@ class_name LevelData
 @export var room_size := Vector2i(352, 384)
 ## 房间场景预制体，用于实例化地牢房间
 @export var room_scene: PackedScene
+## 水平走廊场景预制体（连接左右相邻房间）
+@export var h_corridor: PackedScene
+## 垂直走廊场景预制体（连接上下相邻房间）
+@export var v_corridor: PackedScene
+## 走廊的像素尺寸（宽 × 高）
+@export var corridor_size := Vector2i(192, 192)
 ## 每个房间生成的最小敌人数量
 @export var min_enemies_per_room := 5
 ## 每个房间生成的最大敌人数量
