@@ -12,7 +12,7 @@ config_version=5
 
 config/name="2D_dungeon_like_shooting_game"
 run/main_scene="uid://c0jua1beh8to4"
-config/features=PackedStringArray("4.6", "Mobile")
+config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
 
 [audio]

@@ -54,3 +54,6 @@ tile_set = ExtResource("2_5mnrw")
 unique_name_in_owner = true
 tile_map_data = PackedByteArray("AAD1//z/AAAAAAEAAAD1//3/AAAAAAEAAAD1//7/AAAAAAEAAAD1////AAAAAAEAAAD1/wAAAAAAAAEAAAD1/wEAAAAAAAEAAAD1/wIAAAAAAAEAAAD2//z/AAACAAEAAAD2//3/AAACAAEAAAD2//7/AAACAAEAAAD2////AAACAAEAAAD2/wAAAAACAAEAAAD2/wEAAAACAAEAAAD2/wIAAAACAAEAAAA=")
 tile_set = ExtResource("2_5mnrw")
+
+[node name="PlayerSpawnPos" type="Marker2D" parent="." unique_id=236327917]
+position = Vector2(0, 78)

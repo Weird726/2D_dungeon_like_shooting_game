@@ -2,6 +2,7 @@
 extends Node2D
 class_name LevelRoom
 
+@onready var player_spawn_pos: Marker2D = $PlayerSpawnPos
 ## 方向到墙壁 TileMapLayer 的映射字典，用于按方向控制墙壁开关
 @onready var room_walls: Dictionary[Vector2i, TileMapLayer] = {
 	Vector2i.UP:%WallUP, 

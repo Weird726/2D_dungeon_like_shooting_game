@@ -37,7 +37,7 @@ func _ready() -> void:
 	select_special_rooms()
 	create_rooms()
 	create_corridors()
-	#load_game_selection()
+	load_game_selection()
 
 ## 使用随机游走算法生成地牢房间布局
 ##
@@ -151,7 +151,10 @@ func find_farthest_room() -> Vector2i:
 ## 从全局单例读取选中的角色场景并实例化，然后装备选中的武器
 func load_game_selection() -> void:
 	var player: Player = Global.get_player().instantiate()
+	var first_room: LevelRoom = grid[Vector2i.ZERO]
+	var spawn_pos: Marker2D = first_room.player_spawn_pos
 	add_child(player)
+	player.global_position = spawn_pos.global_position
 	# 角色实例化后再装备武器，因为武器控制器是角色的子节点
 	player.weapon_controller.equip_weapon()
 
