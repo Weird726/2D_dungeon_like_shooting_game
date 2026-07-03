@@ -1,7 +1,9 @@
-res://Scenes/Levels/level_01_room.tscn
+res://Scenes/Arena/arena.tscn
 res://Shaders/transition.gdshader
 res://Shaders/background.gdshader
 res://Extra/level_01_tileset.tres
-res://Scenes/Levels/room.gd
-res://Scenes/Arena/arena.tscn
+res://Scenes/Arena/map_controller.gd
 res://Scenes/Arena/arena.gd
+res://Scenes/Levels/level_01_room.tscn
+res://Scenes/UI/MapCell/map_cell.tscn
+res://Scenes/UI/MapCell/map_cell.gd

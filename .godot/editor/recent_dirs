@@ -1,3 +1,4 @@
+res://Scenes/UI/MapCell/
 res://Scenes/Levels/
 res://Data/Level/
 res://Extra/
@@ -19,4 +20,3 @@ res://Scenes/Components/
 res://Scenes/Player/
 res://Data/Player/
 res://Scenes/UI/CharacterSelection/
-res://Shaders/

@@ -1,3 +1,5 @@
+Control
+TextureRect
 CollisionShape2D
 Area2D
 TileMapLayer
@@ -11,4 +13,3 @@ AudioStreamPlayer
 AnimatedSprite2D
 Weapon
 Timer
-AnimationPlayer

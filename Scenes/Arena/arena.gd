@@ -10,6 +10,8 @@ class_name Arena
 @onready var health_bar: TextureProgressBar = %HealthBar
 ## 魔法值进度条，显示当前/最大魔法值的比例
 @onready var mana_bar: TextureProgressBar = %ManaBar
+## 小地图控制器引用，用于在玩家进入房间时更新地图显示
+@onready var map_controller: MapController = $UI/MapController
 
 ## 地牢房间坐标网格，存储每个坐标位置的房间信息
 var grid: Dictionary[Vector2i, LevelRoom] = {}
@@ -193,6 +195,18 @@ func load_game_selection() -> void:
 	# 角色实例化后再装备武器，因为武器控制器是角色的子节点
 	player.weapon_controller.equip_weapon()
 
+## 根据房间实例反查其在网格中的绝对坐标
+##
+## [b]难点说明[/b]：反向查找的必要性
+## 小地图使用相对坐标（相对于起始房间），但 EventBus 传递的是房间引用
+## 因此需要先通过遍历 grid 找到绝对坐标，再减去起始坐标得到相对坐标
+func find_coord_from_room(room: LevelRoom) -> Vector2i:
+	# 线性遍历网格字典，匹配房间引用
+	for coord: Vector2i in grid:
+		if grid[coord] == room:
+			return coord
+	# 未找到时返回 Vector2i.MAX 作为哨兵值
+	return Vector2i.MAX
 
 ## 生命值变化回调，更新进度条显示
 ##
@@ -202,17 +216,24 @@ func load_game_selection() -> void:
 func _on_player_health_updated(current: float, max: float) -> void:
 	health_bar.value = current / max
 
-## 玩家进入房间时的锁门处理
+## 玩家进入房间时的锁门处理 + 小地图更新
 ##
-## [b]难点说明[/b]：起始房间保护 + 事件驱动锁门
-## 通过 EventBus 解耦 PlayerDetector 与 Arena 的直接引用
-## 起始房间必须跳过锁门，否则玩家出生在检测区内会被门碰撞体卡住
-## is_cleared 默认为 false，因此非起始房间首次进入必定触发锁门
+## [b]难点说明[/b]：三重职责的信号处理
+## 1. 更新 current_room 引用（仅在房间变更时）
+## 2. 计算相对坐标并通知 MapController 更新小地图
+## 3. 对未清理的房间执行锁门
+## 使用 room != current_room 守卫避免同一房间重复触发
 func _on_player_room_entered(room: LevelRoom) -> void:
-	current_room = room
-	# 起始房间始终不锁门，避免玩家出生时被卡住
-	if room == grid[Vector2i.ZERO]:
-		return
-	# 未清理的房间进入时立即锁门，阻止玩家离开
-	if not room.is_cleared:
-		room.lock_room()
+	# 仅当房间实际变更时才执行后续逻辑
+	if room != current_room:
+		current_room = room
+		
+		# 绝对坐标 → 相对坐标（以起始房间为原点）
+		var absolute_coord: Vector2i = find_coord_from_room(room)
+		var relative_coord: Vector2i = absolute_coord - start_room_coord
+		# 通知小地图控制器揭示新房间
+		map_controller.update_on_room_entered(relative_coord)
+		
+		# 未清理的房间进入时立即锁门，阻止玩家离开
+		if not room.is_cleared:
+			room.lock_room()
