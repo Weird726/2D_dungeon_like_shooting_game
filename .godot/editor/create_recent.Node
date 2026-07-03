@@ -1,7 +1,7 @@
-TileMapLayer
-Marker2D
 CollisionShape2D
 Area2D
+TileMapLayer
+Marker2D
 Camera2D
 Node2D
 Label

@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://bpxh2g2bg0o7s" path="res://Scenes/Levels/room.gd" id="1_dnve6"]
 [ext_resource type="TileSet" uid="uid://b5qmbqh4voda7" path="res://Extra/level_01_tileset.tres" id="2_5mnrw"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0pw74"]
+size = Vector2(260, 260)
+
 [node name="Level_01_room" type="Node2D" unique_id=807136734]
 script = ExtResource("1_dnve6")
 
@@ -21,18 +24,22 @@ tile_set = ExtResource("2_5mnrw")
 [node name="Doors" type="Node2D" parent="." unique_id=613433605]
 
 [node name="DoorUP" type="TileMapLayer" parent="Doors" unique_id=597374855]
+visible = false
 tile_map_data = PackedByteArray("AAD+//b/AAAPAAcAAAD+//T/AAAPAAUAAAABAPT/AAARAAUAAAABAPb/AAARAAcAAAABAPX/AAARAAYAAAD+//X/AAAPAAYAAAD///b/AAAQAAcAAAAAAPb/AAAQAAcAAAAAAPT/AAAQAAUAAAD///T/AAAQAAUAAAA=")
 tile_set = ExtResource("2_5mnrw")
 
 [node name="DoorRight" type="TileMapLayer" parent="Doors" unique_id=409066666]
+visible = false
 tile_map_data = PackedByteArray("AAAKAP7/AAARAAUAAAAKAP//AAARAAYAAAAKAAAAAAARAAYAAAAKAAEAAAARAAcAAAAJAP7/AAAPAAUAAAAJAP//AAAPAAYAAAAJAAAAAAAPAAYAAAAJAAEAAAAPAAcAAAA=")
 tile_set = ExtResource("2_5mnrw")
 
 [node name="DoorDown" type="TileMapLayer" parent="Doors" unique_id=883126860]
+visible = false
 tile_map_data = PackedByteArray("AAD+/wkAAAAPAAUAAAD+/woAAAAPAAYAAAD+/wsAAAAPAAcAAAD//wkAAAAQAAcAAAD//wsAAAAQAAUAAAAAAAkAAAAQAAcAAAAAAAsAAAAQAAUAAAABAAkAAAARAAUAAAABAAoAAAARAAYAAAABAAsAAAARAAcAAAA=")
 tile_set = ExtResource("2_5mnrw")
 
 [node name="DoorLeft" type="TileMapLayer" parent="Doors" unique_id=1772319040]
+visible = false
 tile_map_data = PackedByteArray("AAD1//7/AAAPAAUAAAD1////AAAPAAYAAAD1/wAAAAAPAAYAAAD1/wEAAAAPAAcAAAD2//7/AAARAAUAAAD2////AAARAAYAAAD2/wAAAAARAAYAAAD2/wEAAAARAAcAAAA=")
 tile_set = ExtResource("2_5mnrw")
 
@@ -60,3 +67,12 @@ tile_set = ExtResource("2_5mnrw")
 
 [node name="PlayerSpawnPos" type="Marker2D" parent="." unique_id=236327917]
 position = Vector2(0, 78)
+
+[node name="PlayerDetector" type="Area2D" parent="." unique_id=1633992751]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" unique_id=1438119774]
+shape = SubResource("RectangleShape2D_0pw74")
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]

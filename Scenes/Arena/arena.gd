@@ -20,12 +20,23 @@ var end_room_coord: Vector2i
 ## 单元格尺寸 = 房间尺寸 + 走廊尺寸，用于坐标到像素位置的换算
 var grid_cell_size: Vector2i
 
+## 当前玩家实例引用，由 load_game_selection() 创建
+var player: Player
+## 玩家当前所在的房间引用，由 _on_player_room_entered() 更新
+var current_room: LevelRoom
 
-## 监听全局事件总线，当玩家生命值变化时更新 HUD
+
+## 场景初始化：连接信号 → 生成地牢 → 放置玩家
+##
+## [b]难点说明[/b]：初始化管线顺序
+## 必须严格按 布局→房间→走廊→玩家 的顺序执行
+## 因为后续步骤依赖前序步骤的产出（如玩家放置依赖房间已存在）
 func _ready() -> void:
 	# 进入场景时切换全局光标为当前场景专用光标
 	Cursor.sprite.texture = arena_cursor
+	# 连接全局事件总线信号
 	EventBus.on_player_health_updated.connect(_on_player_health_updated)
+	EventBus.on_player_room_entered.connect(_on_player_room_entered)
 	
 	# 计算单元格尺寸：房间宽高 + 走廊宽高，使房间之间留出走廊空间
 	grid_cell_size = Vector2i(
@@ -33,11 +44,23 @@ func _ready() -> void:
 		level_data.room_size.y + level_data.corridor_size.y,
 	)
 	
-	generate_level_layout()
-	select_special_rooms()
-	create_rooms()
-	create_corridors()
-	load_game_selection()
+	# 按管线顺序执行地牢生成各阶段
+	generate_level_layout()   # 1. 随机生成房间坐标布局
+	select_special_rooms()    # 2. 标记起点/终点特殊房间
+	create_rooms()            # 3. 实例化房间场景并打通相邻墙壁
+	create_corridors()        # 4. 在相邻房间之间生成走廊视觉连接
+	load_game_selection()     # 5. 创建玩家并放置到起始房间
+	
+	# 标记起始房间为已清理，防止玩家出生在检测区内时误触发锁门
+	var first_room: LevelRoom = grid[Vector2i.ZERO]
+	first_room.is_cleared = true
+
+## 测试用输入处理：Esc 键手动解锁当前房间
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		# 解锁当前房间的门并标记为已清理
+		current_room.unlock_room()
+		current_room.is_cleared = true
 
 ## 使用随机游走算法生成地牢房间布局
 ##
@@ -48,11 +71,14 @@ func generate_level_layout() -> void:
 	grid.clear()
 	
 	print("Creating layout...")
+	# 从原点开始生成第一个房间
 	var current_coord := Vector2i.ZERO
 	grid[current_coord] = null
 	var directions := [Vector2i.UP, Vector2i.DOWN, Vector2i.RIGHT, Vector2i.LEFT]
 	
+	# 循环直到房间数量达到配置要求
 	while grid.size() < level_data.num_rooms:
+		# 50% 概率随机选择已有房间作为扩展起点（避免线性链）
 		if randf() > 0.5:
 			current_coord = grid.keys().pick_random()
 		
@@ -66,6 +92,7 @@ func generate_level_layout() -> void:
 			next_coord = current_coord + random_direction
 			attempts += 1
 		
+		# 找到空位则注册新房间坐标
 		if not grid.has(next_coord):
 			grid[next_coord] = null
 	
@@ -73,18 +100,17 @@ func generate_level_layout() -> void:
 		print(key)
 
 ## 遍历坐标网格，实例化房间场景并放置到对应位置
-##
-## [b]难点说明[/b]：使用 await 实现逐个房间生成的动画效果
-## 每生成一个房间暂停 0.5 秒，让玩家看到建造过程
 func create_rooms() -> void:
 	print("Creating rooms...")
 	for room_coord: Vector2i in grid.keys():
 		var room_instance: LevelRoom = level_data.room_scene.instantiate()
+		# 网格坐标 × 单元格尺寸 = 像素位置
 		room_instance.position = room_coord * grid_cell_size
 		add_child(room_instance)
 		
 		# 将生成的房间实例存入网格字典，替换之前的 null 占位
 		grid[room_coord] = room_instance
+		# 检查并打通与相邻房间的墙壁
 		connect_rooms(room_coord, room_instance)
 
 ## 在相邻房间之间生成走廊连接节点
@@ -116,11 +142,17 @@ func create_corridors() -> void:
 				0, grid_cell_size.y / 2.0)
 			add_child(corridor)
 
-## 检查当前房间的四个相邻坐标，若已有房间则打通墙壁
+## 检查当前房间的四个相邻坐标，若已有房间则打通对应方向墙壁
+##
+## [b]难点说明[/b]：单向打通机制
+## 只打通当前房间朝向邻居的墙壁，邻居朝向当前房间的墙壁保持不变
+## 例如房间B在A右侧：B的左墙被打通，但A的右墙仍然封闭
+## 这意味着走廊是单向的，锁门后无法原路返回
 func connect_rooms(room_coord: Vector2i, room_instance: LevelRoom) -> void:
 	var directions := [Vector2i.UP, Vector2i.DOWN, Vector2i.RIGHT, Vector2i.LEFT]
 	for direction in directions:
 		var neighbor_coord = room_coord + direction
+		# 仅当邻居坐标已有房间时才打通墙壁
 		if grid.has(neighbor_coord):
 			room_instance.open_wall(direction)
 
@@ -150,7 +182,7 @@ func find_farthest_room() -> Vector2i:
 
 ## 从全局单例读取选中的角色场景并实例化，放置到起始房间的出生点标记位置
 func load_game_selection() -> void:
-	var player: Player = Global.get_player().instantiate()
+	player = Global.get_player().instantiate()
 	# 获取起始房间实例
 	var first_room: LevelRoom = grid[Vector2i.ZERO]
 	# 获取房间内的玩家出生点标记
@@ -169,3 +201,18 @@ func load_game_selection() -> void:
 ## 若进度条配置为 0~100，则需乘以 100。
 func _on_player_health_updated(current: float, max: float) -> void:
 	health_bar.value = current / max
+
+## 玩家进入房间时的锁门处理
+##
+## [b]难点说明[/b]：起始房间保护 + 事件驱动锁门
+## 通过 EventBus 解耦 PlayerDetector 与 Arena 的直接引用
+## 起始房间必须跳过锁门，否则玩家出生在检测区内会被门碰撞体卡住
+## is_cleared 默认为 false，因此非起始房间首次进入必定触发锁门
+func _on_player_room_entered(room: LevelRoom) -> void:
+	current_room = room
+	# 起始房间始终不锁门，避免玩家出生时被卡住
+	if room == grid[Vector2i.ZERO]:
+		return
+	# 未清理的房间进入时立即锁门，阻止玩家离开
+	if not room.is_cleared:
+		room.lock_room()

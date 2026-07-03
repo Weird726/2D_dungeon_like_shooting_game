@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://c1k5glo15loej" path="res://Scenes/Player/weapon_controller.gd" id="5_pcgkm"]
 
 [node name="PlayerBase" type="CharacterBody2D" unique_id=1462209833]
+collision_layer = 2
 script = ExtResource("1_jfsk2")
 data = ExtResource("2_kxl1r")
 

@@ -1,5 +1,5 @@
 78098b89c88a74ebe8c20117b8754620
-::res://::1783018961
+::res://::1783038823
 default_bus_layout.tres::AudioBusLayout::2919139466062170911::1782958637::0::1::::<><><>0<>0<><>::
 icon.svg::CompressedTexture2D::8875455564616539033::1780682606::1780682614::1::::<><><>0<>0<>57d3206b79a801ec803a6d17324c2ef3<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://addons/::1782478152
@@ -11,10 +11,10 @@ AnimationInstance.gd::GDScript::7798088689118607659::1782478236::0::1::::<>Node<
 animation_instance.tscn::PackedScene::-1::1782478265::0::1::::<><><>0<>0<><>::res://addons/DampedOscillator/scripts/AnimationInstance.gd
 DampedOscillator.gd::GDScript::2966148885589301583::1782478206::0::1::::<>Node<><>0<>0<><>::
 damped_oscillator.tscn::PackedScene::-1::1782478255::0::1::::<><><>0<>0<><>::res://addons/DampedOscillator/scripts/DampedOscillator.gd
-::res://Autoloads/::1782783199
+::res://Autoloads/::1783035913
 cursor.gd::GDScript::5310165644018608152::1781676042::0::1::::<>CanvasLayer<><>0<>0<><>::
 cursor.tscn::PackedScene::6692232217587820553::1781671808::0::1::::<><><>0<>0<><>::uid://chwjwgdi3qmv5::::res://Autoloads/cursor.gd
-event_bus.gd::GDScript::3640411689377698082::1781409554::0::1::::<>Node<><>0<>0<><>::
+event_bus.gd::GDScript::3640411689377698082::1783035913::0::1::::<>Node<><>0<>0<><>::
 global.gd::GDScript::4172476773423572509::1782783479::0::1::::<>Node<><>0<>0<><>::
 music.tscn::PackedScene::3657292773447141693::1780801159::0::1::::<><><>0<>0<><>::uid://dvdn8parrbyvc::::res://Sounds/Bg Music.mp3
 transition.gd::GDScript::8517071286405628595::1780801105::0::1::::<>Node<><>0<>0<><>::
@@ -41,18 +41,18 @@ weapon_spas12.tres::Resource/WeaponData::8559439541910788527::1782689727::0::1::
 weapon_sword.tres::Resource/WeaponData::6172828266079641534::1782721287::0::1::::<><><>0<>0<><>::uid://ddl1y3k5qm3mu::::res://Sprites/Weapons/Tiles/tile_0008.png<>uid://bsj8uog4jqrwe::::res://Data/weapons/weapon_data.gd
 weapon_thomson.tres::Resource/WeaponData::7976841889052770593::1782689727::0::1::::<><><>0<>0<><>::uid://c7sor2gxkdx5r::::res://Scenes/Bullets/bullet_thomson.tscn<>uid://d0unfm6gf7rj5::::res://Sprites/Weapons/Tiles/tile_0004.png<>uid://bsj8uog4jqrwe::::res://Data/weapons/weapon_data.gd
 weapon_uzi.tres::Resource/WeaponData::4944146004734039798::1782788113::0::1::::<><><>0<>0<><>::uid://dmbbtgfj1v6bq::::res://Scenes/Bullets/bullet_uzi.tscn<>uid://dhmowywd5bkl7::::res://Sprites/Weapons/Tiles/tile_0002.png<>uid://bsj8uog4jqrwe::::res://Data/weapons/weapon_data.gd
-::res://Extra/::1782919427
+::res://Extra/::1783035901
 font_16.tres::LabelSettings::8686766626982023712::1780712271::0::1::::<><><>0<>0<><>::uid://cmkei0r5t77jr::::res://Font/Lilian.ttf
 font_48.tres::LabelSettings::3549343685327209776::1780686068::0::1::::<><><>0<>0<><>::uid://cmkei0r5t77jr::::res://Font/Lilian.ttf
-level_01_tileset.tres::TileSet::4525847279139608780::1782919427::0::1::::<><><>0<>0<><>::uid://b6i0q5i8rwf7l::::res://Sprites/Tiles/tilemap_packed.png
+level_01_tileset.tres::TileSet::4525847279139608780::1783035901::0::1::::<><><>0<>0<><>::uid://b6i0q5i8rwf7l::::res://Sprites/Tiles/tilemap_packed.png
 ::res://Font/::1780682993
 Comicoro.ttf::FontFile::5983426668108525059::1780682991::1780682993::1::::<><><>0<>0<>d019b76b0315cc23f7477fd677d21319<>res://.godot/imported/Comicoro.ttf-4e33eb1a37996bdc9d9bc5fc0f2a3326.fontdata::
 font_game.png::FontFile::6830074796940968156::1780682991::1780682993::1::::<><><>0<>0<>ae223b2d9cb1d022bfbe98def38095da<>res://.godot/imported/font_game.png-a3950f1798b81b14598e6fecf84f2942.fontdata::
 Lilian.ttf::FontFile::5636009763640670323::1780682991::1780682993::1::::<><><>0<>0<>69a0fc62810918d9b9aaa4166d18272b<>res://.godot/imported/Lilian.ttf-1efe25222ec2acac736904af3b25edee.fontdata::
 ::res://Scenes/::1782850320
-::res://Scenes/Arena/::1782960936
-arena.gd::GDScript::7086514088681336978::1782961281::0::1::::Arena<>Node2D<><>0<>0<><>::
-arena.tscn::PackedScene::607857662633273425::1782960936::0::1::::<><><>0<>0<><>::uid://dy8e3xkc5qdbp::::res://Sprites/Interface/Tilemap/tilemap_packed.png<>uid://c77037s0htobq::::res://Scenes/Arena/arena.gd<>uid://b5o6og4r1humu::::res://Sprites/Weapons/Tiles/tile_0025.png<>uid://ccab6or5n1nai::::res://Sprites/Players/tile_0000.png<>uid://g2cr2v8nbuqk::::res://Data/Level/level_01.tres<>uid://dxp7naqy4gvku::::res://Sprites/Interface/bar_under.png<>uid://bvr7in7eey6cb::::res://Sprites/Interface/bar_over.png<>uid://cf2ypr83psjfm::::res://Sprites/Interface/bar_health.png<>uid://djtqrhxpxpjeg::::res://Sprites/Interface/bar_mana.png
+::res://Scenes/Arena/::1783038048
+arena.gd::GDScript::7086514088681336978::1783038048::0::1::::Arena<>Node2D<><>0<>0<><>::
+arena.tscn::PackedScene::607857662633273425::1783037567::0::1::::<><><>0<>0<><>::uid://dy8e3xkc5qdbp::::res://Sprites/Interface/Tilemap/tilemap_packed.png<>uid://c77037s0htobq::::res://Scenes/Arena/arena.gd<>uid://b5o6og4r1humu::::res://Sprites/Weapons/Tiles/tile_0025.png<>uid://ccab6or5n1nai::::res://Sprites/Players/tile_0000.png<>uid://g2cr2v8nbuqk::::res://Data/Level/level_01.tres<>uid://dxp7naqy4gvku::::res://Sprites/Interface/bar_under.png<>uid://bvr7in7eey6cb::::res://Sprites/Interface/bar_over.png<>uid://cf2ypr83psjfm::::res://Sprites/Interface/bar_health.png<>uid://djtqrhxpxpjeg::::res://Sprites/Interface/bar_mana.png
 ::res://Scenes/Bullets/::1782783234
 bullet_ak_47.tscn::PackedScene::6955823641145919294::1782689479::0::1::::<><><>0<>0<><>::uid://bd0t6nb3d21yh::::res://Scenes/Bullets/bullet_pistol.tscn<>uid://62erre4aea2m::::res://Sprites/Weapons/All_Fire_Bullet_Pixel_16x16_00.png
 bullet_mp_7.tscn::PackedScene::8844049421308659398::1782689033::0::1::::<><><>0<>0<><>::uid://bd0t6nb3d21yh::::res://Scenes/Bullets/bullet_pistol.tscn<>uid://62erre4aea2m::::res://Sprites/Weapons/All_Fire_Bullet_Pixel_16x16_00.png
@@ -71,14 +71,14 @@ explosion_effect.tscn::PackedScene::506906321974443191::1782758053::0::1::::<><>
 ::res://Scenes/Extra/::1782782695
 damage_text.gd::GDScript::5860314097456335323::1782783479::0::1::::DamageText<>Control<><>0<>0<><>::
 damage_text.tscn::PackedScene::7899044042414073502::1782782695::0::1::::<><><>0<>0<><>::uid://dv061oo3gwrj1::::res://Extra/font_16.tres<>uid://cpq1rtvqleje6::::res://Scenes/Extra/damage_text.gd
-::res://Scenes/Levels/::1782958534
+::res://Scenes/Levels/::1783038698
 level_01_h_corridor.tscn::PackedScene::7674568396777980214::1782953985::0::1::::<><><>0<>0<><>::uid://b5qmbqh4voda7::::res://Extra/level_01_tileset.tres
-level_01_room.tscn::PackedScene::1855454125307232066::1782958534::0::1::::<><><>0<>0<><>::uid://bpxh2g2bg0o7s::::res://Scenes/Levels/room.gd<>uid://b5qmbqh4voda7::::res://Extra/level_01_tileset.tres
+level_01_room.tscn::PackedScene::1855454125307232066::1783038698::0::1::::<><><>0<>0<><>::uid://bpxh2g2bg0o7s::::res://Scenes/Levels/room.gd<>uid://b5qmbqh4voda7::::res://Extra/level_01_tileset.tres
 level_01_v_corridor.tscn::PackedScene::572198170271063070::1782954065::0::1::::<><><>0<>0<><>::uid://b5qmbqh4voda7::::res://Extra/level_01_tileset.tres
-room.gd::GDScript::3487207618896032530::1782948856::0::1::::LevelRoom<>Node2D<><>0<>0<><>::
-::res://Scenes/Player/::1782413081
-player.gd::GDScript::1513431879099240587::1782382270::0::1::::Player<>CharacterBody2D<><>0<>0<><>::
-player_base.tscn::PackedScene::3128829059522099185::1782382270::0::1::::<><><>0<>0<><>::uid://vteach866mat::::res://Scenes/Player/player.gd<>uid://djvbqy1552e8g::::res://Data/Player/player_dog.tres<>uid://dawvmsgg5mc6o::::res://Sprites/Shadow.png<>uid://ccofwjnscdv4f::::res://Scenes/Components/health_component.tscn<>uid://c1k5glo15loej::::res://Scenes/Player/weapon_controller.gd
+room.gd::GDScript::3487207618896032530::1783038676::0::1::::LevelRoom<>Node2D<><>0<>0<><>::
+::res://Scenes/Player/::1783038051
+player.gd::GDScript::1513431879099240587::1783028145::0::1::::Player<>CharacterBody2D<><>0<>0<><>::
+player_base.tscn::PackedScene::3128829059522099185::1783038051::0::1::::<><><>0<>0<><>::uid://vteach866mat::::res://Scenes/Player/player.gd<>uid://djvbqy1552e8g::::res://Data/Player/player_dog.tres<>uid://dawvmsgg5mc6o::::res://Sprites/Shadow.png<>uid://ccofwjnscdv4f::::res://Scenes/Components/health_component.tscn<>uid://c1k5glo15loej::::res://Scenes/Player/weapon_controller.gd
 player_bunny.tscn::PackedScene::3250538949496462874::1781247713::0::1::::<><><>0<>0<><>::uid://bktvmfiq8ipkr::::res://Scenes/Player/player_base.tscn<>uid://blvkxulqsu6ba::::res://Sprites/Players/tile_0015.png<>uid://d3u1rr67e3yg::::res://Sprites/Players/tile_0012.png<>uid://d2vaiu7xjqbs8::::res://Data/Player/player_bunny.tres<>uid://chs7lvyk6lwth::::res://Sprites/Players/tile_0013.png<>uid://dc2vbymyv8jdx::::res://Sprites/Players/tile_0014.png
 player_cat.tscn::PackedScene::2405570207419400546::1781248884::0::1::::<><><>0<>0<><>::uid://bktvmfiq8ipkr::::res://Scenes/Player/player_base.tscn<>uid://bhxl0srjwmbgv::::res://Sprites/Players/tile_0007.png<>uid://dnnca515v6sgm::::res://Data/Player/player_cat.tres<>uid://c2onnhy8ivnwm::::res://Sprites/Players/tile_0004.png<>uid://daftprnlwmrij::::res://Sprites/Players/tile_0005.png<>uid://bj5v2dmr0ecwv::::res://Sprites/Players/tile_0006.png
 player_dog.tscn::PackedScene::1060800803840330131::1782382511::0::1::::<><><>0<>0<><>::uid://bktvmfiq8ipkr::::res://Scenes/Player/player_base.tscn<>uid://ccab6or5n1nai::::res://Sprites/Players/tile_0000.png<>uid://cemiyrcpjly84::::res://Sprites/Players/tile_0001.png<>uid://cnttucjccgouq::::res://Sprites/Players/tile_0003.png<>uid://cyey76bu4l4v5::::res://Sprites/Players/tile_0002.png
@@ -116,9 +116,9 @@ weapon_range_r93.tscn::PackedScene::4780330229824288081::1781697282::0::1::::<><
 weapon_range_spas12.tscn::PackedScene::9156094867884934219::1781697351::0::1::::<><><>0<>0<><>::uid://c5t8iupfxmi4t::::res://Scenes/Weapons/Range/weapon_range_base.tscn<>uid://dt7iyo3abi2k6::::res://Data/weapons/weapon_spas12.tres<>uid://bbv84wvnnbldm::::res://Sprites/Weapons/Tiles/tile_0007.png
 weapon_range_thomson.tscn::PackedScene::6045373192692906537::1782361068::0::1::::<><><>0<>0<><>::uid://c5t8iupfxmi4t::::res://Scenes/Weapons/Range/weapon_range_base.tscn<>uid://dlwbokcut4kr6::::res://Data/weapons/weapon_thomson.tres<>uid://d0unfm6gf7rj5::::res://Sprites/Weapons/Tiles/tile_0004.png
 weapon_range_uzi.tscn::PackedScene::970202431814718891::1782133461::0::1::::<><><>0<>0<><>::uid://c5t8iupfxmi4t::::res://Scenes/Weapons/Range/weapon_range_base.tscn<>uid://dhmowywd5bkl7::::res://Sprites/Weapons/Tiles/tile_0002.png<>uid://cco8mk41jpouo::::res://Data/weapons/weapon_uzi.tres
-::res://Shaders/::1782919427
-background.gdshader::Shader::1102526253818720733::1782919427::0::1::::<><><>0<>0<><>::
-transition.gdshader::Shader::2814547626382523141::1782919427::0::1::::<><><>0<>0<><>::
+::res://Shaders/::1783035901
+background.gdshader::Shader::1102526253818720733::1783035901::0::1::::<><><>0<>0<><>::
+transition.gdshader::Shader::2814547626382523141::1783035901::0::1::::<><><>0<>0<><>::
 ::res://Sounds/::1780682994
 Bg Music.mp3::AudioStreamMP3::8640269941490428004::1780682991::1780682993::1::::<><><>0<>0<>32b90c6afe0e9307692459d47f84857e<>res://.godot/imported/Bg Music.mp3-4059ed292d78b379f7e9007d991582af.mp3str::
 button_hover.wav::AudioStreamWAV::7982270706055900154::1780682991::1780682994::1::::<><><>0<>0<>b4c6253388d60aec3ccb42f5b37c7065<>res://.godot/imported/button_hover.wav-da75df7f7aaf232e9ee2575861e348bd.sample::
