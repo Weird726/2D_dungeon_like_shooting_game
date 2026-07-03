@@ -7,3 +7,7 @@ res://Scenes/Arena/arena.gd
 res://Scenes/Levels/level_01_room.tscn
 res://Scenes/UI/MapCell/map_cell.tscn
 res://Scenes/UI/MapCell/map_cell.gd
+res://Scenes/Props/plant_1.tscn
+res://Scenes/Props/plant_3.tscn
+res://Scenes/Props/plant_4.tscn
+res://Scenes/Props/prop.gd
