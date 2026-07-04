@@ -104,6 +104,7 @@ func open_wall(direction: Vector2i) -> void:
 
 ## 关闭所有方向的墙壁（房间初始化时调用）
 func close_all_walls() -> void:
+	unlock_room()
 	# 遍历所有方向，启用墙壁碰撞和可见性
 	for key in room_walls:
 		room_walls[key].enabled = true

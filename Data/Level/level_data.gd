@@ -20,7 +20,9 @@ class_name LevelData
 @export var min_enemies_per_room := 5
 ## 每个房间生成的最大敌人数量
 @export var max_enemies_per_room := 10
+## 每个房间内可生成的最大道具数量（由 room.create_props() 使用）
 @export var max_props_per_room := 5
+## 可选道具场景池，生成时从中随机抽取（箱子、桶等 Area2D 预制体）
 @export var props: Array[PackedScene]
 ## 可选敌人场景池，生成时从中随机抽取
 @export var enemy_scenes: Array[PackedScene]

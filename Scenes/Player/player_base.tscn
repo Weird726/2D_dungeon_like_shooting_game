@@ -19,6 +19,7 @@ texture = ExtResource("3_isex5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals" unique_id=630515562]
 unique_name_in_owner = true
+y_sort_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=418624751]
 
