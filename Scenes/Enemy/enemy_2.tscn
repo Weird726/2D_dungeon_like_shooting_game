@@ -12,7 +12,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_3oo0a")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"die",
 "speed": 5.0
 }, {
@@ -20,7 +20,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("3_sivfp")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"hurt",
 "speed": 5.0
 }, {
@@ -40,7 +40,7 @@ animations = [{
 
 [node name="AnimSprite" parent="." index="1" unique_id=1788881857]
 sprite_frames = SubResource("SpriteFrames_45oeo")
-frame_progress = 0.8197316
+frame_progress = 0.0
 
 [node name="CollisionShape2D" parent="." index="2" unique_id=1295681227]
 position = Vector2(0, -5)

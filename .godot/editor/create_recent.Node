@@ -1,3 +1,4 @@
+Node2D
 AudioStreamPlayer
 CollisionShape2D
 Area2D
@@ -10,6 +11,4 @@ TextureRect
 TileMapLayer
 Marker2D
 Camera2D
-Node2D
 Label
-StaticBody2D

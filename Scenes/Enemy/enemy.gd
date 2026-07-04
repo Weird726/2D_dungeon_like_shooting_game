@@ -1,4 +1,9 @@
 ## 敌人基类，实现追踪玩家、朝向翻转和接触死亡逻辑
+##
+## [b]模块关系[/b]：
+## Global.player_ref → 敌人追踪玩家位置
+## Enemy → EventBus.on_enemy_die → EnemySpawner 监听计数
+## PlayerDetector（Area2D）→ 玩家接触时触发死亡动画
 extends CharacterBody2D
 class_name Enemy
 
@@ -36,23 +41,24 @@ func _physics_process(delta: float) -> void:
 ## 因为敌人只需翻转动画精灵，不需要像玩家那样翻转 Shadow + 角色整体
 ## 通过比较 x 坐标判断玩家在左侧还是右侧
 func rotate_enemy() -> void:
-	# 敌人在玩家右侧 → 玩家朝左 → 翻转精灵
+	# 敌人在玩家右侧 → 面朝左 → 翻转精灵
 	if global_position.x > Global.player_ref.global_position.x:
 		anim_sprite.flip_h = true
-	# 敌人在玩家左侧 → 玩家朝右 → 正常朝向
+	# 敌人在玩家左侧 → 面朝右 → 正常朝向
 	elif global_position.x < Global.player_ref.global_position.x:
 		anim_sprite.flip_h = false
 
 
-## 玩家进入检测区域时的信号回调：播放死亡动画后销毁自身
+## 玩家进入检测区域时的信号回调：播放死亡动画后通知生成器并销毁自身
 ##
 ## [b]难点说明[/b]：使用 await 等待动画播完再销毁
 ## animation_finished 信号在动画播放完成时触发
 ## 若直接 queue_free() 会导致动画被截断
+## 死亡后发射 on_enemy_die 信号，EnemySpawner 监听后累加击杀计数
 func _on_player_detector_body_entered(body: Node2D) -> void:
-	# 播放死亡动画
 	anim_sprite.play("die")
 	# 等待动画播放完成（异步挂起，不阻塞主线程）
 	await anim_sprite.animation_finished
-	# 动画结束后销毁自身节点
+	# 通知 EnemySpawner 有一个敌人已死亡
+	EventBus.on_enemy_die.emit()
 	queue_free()

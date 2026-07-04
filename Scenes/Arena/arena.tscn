@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://g2cr2v8nbuqk" path="res://Data/Level/level_01.tres" id="3_0ibrr"]
 [ext_resource type="Texture2D" uid="uid://dxp7naqy4gvku" path="res://Sprites/Interface/bar_under.png" id="3_t7yvt"]
 [ext_resource type="Texture2D" uid="uid://bvr7in7eey6cb" path="res://Sprites/Interface/bar_over.png" id="4_11not"]
+[ext_resource type="Script" uid="uid://c35ij8k8r70sl" path="res://Scenes/Arena/enemy_spawner.gd" id="4_xt8pn"]
 [ext_resource type="Texture2D" uid="uid://cf2ypr83psjfm" path="res://Sprites/Interface/bar_health.png" id="5_qnyor"]
 [ext_resource type="Texture2D" uid="uid://djtqrhxpxpjeg" path="res://Sprites/Interface/bar_mana.png" id="6_11not"]
 [ext_resource type="Script" uid="uid://dgilkcfyqj14a" path="res://Scenes/Arena/map_controller.gd" id="10_vgwd8"]
@@ -19,6 +20,9 @@ region = Rect2(48, 0, 48, 48)
 script = ExtResource("1_qnyor")
 arena_cursor = ExtResource("2_0ibrr")
 level_data = ExtResource("3_0ibrr")
+
+[node name="EnemySpawner" type="Node2D" parent="." unique_id=1767691851]
+script = ExtResource("4_xt8pn")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=2100465686]
 
