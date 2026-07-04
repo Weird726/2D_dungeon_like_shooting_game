@@ -43,3 +43,6 @@ res://Scenes/Levels/level_01_v_corridor.tscn
 res://Scenes/Levels/level_01_h_corridor.tscn
 res://Scenes/Enemy/enemy_1.tscn
 res://Scenes/Enemy/enemy.gd
+res://Scenes/Enemy/enemy_2.tscn
+res://Scenes/Enemy/enemy_4.tscn
+res://Scenes/Enemy/enemy_3.tscn

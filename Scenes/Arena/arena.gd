@@ -189,6 +189,9 @@ func find_farthest_room() -> Vector2i:
 
 
 ## 从全局单例读取选中的角色场景并实例化，放置到起始房间的出生点标记位置
+##
+## [b]难点说明[/b]：玩家创建后立即赋值 Global.player_ref
+## 敌人等组件通过此全局引用追踪玩家位置
 func load_game_selection() -> void:
 	player = Global.get_player().instantiate()
 	# 获取起始房间实例
@@ -200,6 +203,8 @@ func load_game_selection() -> void:
 	player.global_position = spawn_pos.global_position
 	# 角色实例化后再装备武器，因为武器控制器是角色的子节点
 	player.weapon_controller.equip_weapon()
+	# 将玩家实例存入全局单例，供敌人追踪等组件使用
+	Global.player_ref = player
 
 ## 根据房间实例反查其在网格中的绝对坐标
 ##

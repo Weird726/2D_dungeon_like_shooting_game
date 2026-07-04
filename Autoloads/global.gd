@@ -37,6 +37,12 @@ var all_weapons: Dictionary[String, PackedScene] = {
 	"Axe": preload("uid://dxh5hbdppbk7i"),
 }
 
+## 玩家实例的全局引用，供敌人等组件追踪玩家位置
+##
+## [b]难点说明[/b]：由 arena.load_game_selection() 在创建玩家后赋值
+## 敌人通过 Global.player_ref 获取玩家位置，避免每个敌人单独持有引用
+## 玩家死亡（queue_free）后变为 null，敌人需做守卫条件判断
+var player_ref: Player
 ## 当前选中的角色数据（由角色选择界面赋值，未选择时为 null）
 var selected_player: PlayerData
 ## 当前选中的武器数据（由角色选择界面赋值，未选择时为 null）

@@ -58,6 +58,7 @@ position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_t1nub")
 animation = &"move"
 autoplay = "move"
+frame_progress = 0.8921551
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1295681227]
 position = Vector2(0, -3)
@@ -74,3 +75,5 @@ shape = SubResource("CircleShape2D_45oeo")
 [node name="HurtSound" type="AudioStreamPlayer" parent="." unique_id=588333504]
 stream = ExtResource("1_aex4u")
 bus = &"SFX"
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
