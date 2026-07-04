@@ -102,6 +102,10 @@ func generate_level_layout() -> void:
 		print(key)
 
 ## 遍历坐标网格，实例化房间场景并放置到对应位置
+##
+## [b]难点说明[/b]：房间创建后立即生成道具
+## create_props() 在 add_child 之后、connect_rooms 之前调用
+## 确保道具放置在墙壁打通前完成，避免道具出现在门的位置
 func create_rooms() -> void:
 	print("Creating rooms...")
 	for room_coord: Vector2i in grid.keys():
@@ -109,6 +113,8 @@ func create_rooms() -> void:
 		# 网格坐标 × 单元格尺寸 = 像素位置
 		room_instance.position = room_coord * grid_cell_size
 		add_child(room_instance)
+		# 按关卡配置在房间内随机生成道具（箱子、桶等）
+		room_instance.create_props(level_data)
 		
 		# 将生成的房间实例存入网格字典，替换之前的 null 占位
 		grid[room_coord] = room_instance

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cgudtmmep50mb"]
 
 [ext_resource type="Script" uid="uid://gey3yqmn2j0q" path="res://Scenes/UI/CharacterSelection/character_selection.gd" id="1_80tfl"]
-[ext_resource type="PackedScene" uid="uid://dudeyuggrfl4t" path="res://Scenes/UI/background.tscn" id="1_n66v8"]
+[ext_resource type="PackedScene" uid="uid://dudeyuggrfl4t" path="res://Scenes/UI/BackGround/background.tscn" id="1_n66v8"]
 [ext_resource type="LabelSettings" uid="uid://bqtlf30utmmmy" path="res://Extra/font_48.tres" id="2_mebt0"]
 [ext_resource type="Script" uid="uid://b4d8c7xiovqbb" path="res://Data/Player/player_data.gd" id="2_vojml"]
 [ext_resource type="Resource" uid="uid://d2vaiu7xjqbs8" path="res://Data/Player/player_bunny.tres" id="3_bjn16"]

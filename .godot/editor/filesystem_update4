@@ -11,3 +11,9 @@ res://Scenes/Props/plant_1.tscn
 res://Scenes/Props/plant_3.tscn
 res://Scenes/Props/plant_4.tscn
 res://Scenes/Props/prop.gd
+res://Scenes/UI/main_menu.tscn
+res://Scenes/UI/CharacterSelection/character_selection.tscn
+res://Scenes/UI/BackGround/background.tscn
+res://Data/Level/level_data.gd
+res://Data/Level/level_01.tres
+res://Scenes/Levels/room.gd

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c0jua1beh8to4"]
 
-[ext_resource type="Script" uid="uid://cnbjew7yxm3u2" path="res://Scenes/UI/main_menu.gd" id="1_5wsvm"]
+[ext_resource type="Script" uid="uid://cnbjew7yxm3u2" path="res://Scenes/UI/MainMenu/main_menu.gd" id="1_5wsvm"]
 [ext_resource type="Texture2D" uid="uid://bjnh3sonwurje" path="res://Sprites/background_tiled.png" id="2_o14dv"]
 [ext_resource type="Shader" uid="uid://pycpf7esklnh" path="res://Shaders/background.gdshader" id="2_u7lva"]
 [ext_resource type="LabelSettings" uid="uid://bqtlf30utmmmy" path="res://Extra/font_48.tres" id="4_u7lva"]

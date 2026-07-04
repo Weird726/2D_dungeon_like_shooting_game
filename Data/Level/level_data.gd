@@ -20,6 +20,8 @@ class_name LevelData
 @export var min_enemies_per_room := 5
 ## 每个房间生成的最大敌人数量
 @export var max_enemies_per_room := 10
+@export var max_props_per_room := 5
+@export var props: Array[PackedScene]
 ## 可选敌人场景池，生成时从中随机抽取
 @export var enemy_scenes: Array[PackedScene]
 ## 商店物品配置列表，定义关卡中可出现的商品

@@ -45,6 +45,26 @@ func register_tiles() -> void:
 	for tile in tile_data.get_used_cells():
 		tiles.append(tile)
 
+## 在房间内随机生成道具（如箱子、桶等可破坏/可交互物体）
+##
+## [b]难点说明[/b]：地砖坐标到世界坐标的转换
+## tiles 数组存储的是 TileMap 本地坐标（格子索引）
+## 需通过 map_to_local() 转换为房间内的像素位置
+## 随机选取地砖 + 随机选取道具场景 = 完全随机的道具布局
+func create_props(data: LevelData) -> void:
+	# 按配置的最大道具数量循环生成
+	for i in data.max_props_per_room:
+		# 从缓存的地砖坐标中随机选取一个位置
+		var tile_coord: Vector2i = tiles.pick_random()
+		# TileMap 本地坐标 -> 房间内的像素位置
+		var tile_pos: Vector2 = tile_data.map_to_local(tile_coord)
+		# 从道具场景池中随机抽取一个预制体
+		var random_prop: PackedScene = data.props.pick_random()
+		# 实例化道具并放置到选定的地砖位置
+		var instance: Area2D = random_prop.instantiate()
+		instance.position = tile_pos
+		add_child(instance)
+
 ## 锁门：在所有已打通的开口处启用透明门碰撞和可见性，阻止玩家出入
 ##
 ## [b]难点说明[/b]：双层门系统的可见性分离
@@ -68,8 +88,8 @@ func lock_room() -> void:
 ## 解锁：关闭所有透明门碰撞和可见性，恢复通行
 ##
 ## [b]难点说明[/b]：enabled 与 visible 必须同步关闭
-## 若只关 enabled 不关 visible → 门可见但可穿透（逻辑错误）
-## 若只关 visible 不关 enabled → 门不可见但挡路（物理错误）
+## 若只关 enabled 不关 visible -> 门可见但可穿透（逻辑错误）
+## 若只关 visible 不关 enabled -> 门不可见但挡路（物理错误）
 func unlock_room() -> void:
 	# 遍历所有方向，同步关闭碰撞和可见性
 	for direction in clear_door_nodes:
