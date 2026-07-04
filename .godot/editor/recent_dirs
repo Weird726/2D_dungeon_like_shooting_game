@@ -1,3 +1,4 @@
+res://Scenes/Enemy/
 res://Scenes/Props/
 res://Scenes/UI/MapCell/
 res://Scenes/Levels/
@@ -19,4 +20,3 @@ res://Data/weapons/
 res://Scenes/Arena/
 res://Scenes/Components/
 res://Scenes/Player/
-res://Data/Player/

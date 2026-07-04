@@ -41,3 +41,5 @@ res://Scenes/Weapons/Range/weapon_range.gd
 res://Scenes/Player/player_base.tscn
 res://Scenes/Levels/level_01_v_corridor.tscn
 res://Scenes/Levels/level_01_h_corridor.tscn
+res://Scenes/Enemy/enemy_1.tscn
+res://Scenes/Enemy/enemy.gd

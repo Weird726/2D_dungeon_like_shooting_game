@@ -1,23 +1,31 @@
+## 子弹基类，实现直线飞行、碰撞伤害和自动销毁
 extends Area2D
 class_name Bullet
 
-## 武器的引用
+## 武器数据引用（伤害、速度等参数，由 setup() 注入）
 var data: WeaponData
 
 
-## 子弹武器的设置类
+## 子弹初始化：注入武器数据，必须在添加到场景树前调用
+##
+## [b]难点说明[/b]：data 不在 _ready() 中初始化，
+## 因为子弹是运行时动态实例化的，需由发射者（WeaponRange）传入数据。
 func setup(data: WeaponData) -> void:
 	self.data = data
 
 
-## 用于移动子弹
+## 每帧沿本地 X 轴移动子弹（飞行方向由 global_rotation 决定）
+##
+## [b]难点说明[/b]：使用 move_local_x 而非修改 position.x，
+## 因为 move_local_x 沿节点本地坐标系移动，
+## 子弹旋转后本地 X 轴即为飞行方向。
 func _process(delta: float) -> void:
-	# 判断子弹数据是否被引用（防御性编程)
+	# 防御性编程：data 未注入时跳过（防止实例化后未调用 setup 的异常子弹）
 	if not data: return
 	move_local_x(data.bullet_speed * delta)
 
 
-## 碰撞体（如敌人、墙壁等）时销毁子弹
+## 碰撞体（如敌人、墙壁等）时销毁子弹并触发伤害/特效
 func _on_body_entered(body: Node2D) -> void:
 	# 在碰撞点生成爆炸特效
 	Global.create_explosion(global_position)
