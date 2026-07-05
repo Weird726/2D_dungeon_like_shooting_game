@@ -5,6 +5,7 @@
 ## HealthComponent → on_unit_damaged/on_unit_dead → 敌人更新血条/播放死亡
 ## Enemy → EventBus.on_enemy_die → EnemySpawner 监听计数
 ## Bullet → body.health_component.take_damage() → 敌人受伤
+## WeaponController → 敌人武器朝向追踪 + 攻击（预留）
 extends CharacterBody2D
 class_name Enemy
 
@@ -20,7 +21,7 @@ class_name Enemy
 @export_group("Enemy Weapon")
 ## 基础移动速度（预留，未来区分行走/攻击状态速度）
 @export var move_speed := 40.0
-## 敌人武器配置数据（预留，未来实现远程攻击敌人）
+## 敌人武器配置数据，非空时敌人会装备武器并朝玩家方向瞄准
 @export var weapon: WeaponData
 
 ## 角色动画精灵，播放移动/死亡动画并通过 flip_h 控制朝向
@@ -29,23 +30,41 @@ class_name Enemy
 @onready var player_detector: Area2D = $PlayerDetector
 ## 受伤音效播放器（预留，未来受击时播放）
 @onready var hurt_sound: AudioStreamPlayer = $HurtSound
+## 敌人检测区域，用于检测附近其他敌人实现分离行为（防止重叠堆叠）
+@onready var enemy_detector: Area2D = $EnemyDetector
 
 ## 敌人头顶血条，显示当前生命值比例（0~1）
 @onready var health_bar: ProgressBar = $HealthBar
 ## 生命组件，处理受伤/治疗/死亡的信号分发
 @onready var health_component: HealthComponent = $HealthComponent
+## 敌人武器控制器，管理武器旋转朝向和攻击逻辑
+@onready var weapon_controller: WeaponController = $WeaponController
 
 ## 控制敌人是否可移动（被击晕、冻结等状态时设为 false）
 var can_move: bool = true
 ## 标记敌人是否已被击杀，防止重复触发死亡逻辑
 var is_killed: bool
 
-## 初始化：设置血条满值并从 export 属性读取最大生命值
+## 初始化：设置血条满值、生命值，并装备武器（若有配置）
 func _ready() -> void:
 	health_bar.value = 1.0
 	health_component.init_health(max_health)
+	
+	# 防御性检查：weapon 为空时跳过装备（非武器敌人无需武器控制器）
+	if not weapon: return
+	weapon_controller.equip_weapon(weapon)
 
-## 物理帧处理：守卫条件 → 追踪玩家 → 移动 → 翻转朝向
+## 每帧处理：朝向翻转 + 武器瞄准（与物理帧分离，避免旋转抖动）
+##
+## [b]难点说明[/b]：_process vs _physics_process 分离
+## 旋转朝向和武器瞄准放在 _process（渲染帧），移动放在 _physics_process（物理帧）
+## 因为 look_at() 需要每帧平滑更新，而 move_and_slide() 需要固定时间步长
+func _process(_delta: float) -> void:
+	if not Global.player_ref: return
+	rotate_enemy()
+	mange_weapon()
+
+## 物理帧处理：守卫条件 → 追踪玩家 → 分离避让 → 移动
 ##
 ## [b]难点说明[/b]：双重守卫条件
 ## 1. Global.player_ref 为空时退出（玩家未生成或已销毁）
@@ -58,10 +77,28 @@ func _physics_process(_delta: float) -> void:
 	
 	# 计算从自身指向玩家的单位方向向量（长度为 1.0）
 	var dir := global_position.direction_to(Global.player_ref.global_position)
+	# 分离行为（Boids Separation）：检测附近敌人并施加排斥力
+	# 排斥力公式：系数 × 归一化方向 / 距离 → 距离越近排斥力越大
+	for enemy: Enemy in enemy_detector.get_overlapping_bodies():
+		if enemy != self and enemy.is_inside_tree():
+			var vector = global_position - enemy.global_position
+			dir += 30 * vector.normalized() / vector.length()
+	
 	# 方向向量 × 追踪速度 = 追踪移动速度
 	velocity = dir * chase_speed
 	move_and_slide()
-	rotate_enemy()
+
+## 管理武器朝向：将玩家位置设为目标，调用武器控制器旋转
+##
+## [b]难点说明[/b]：双重守卫条件
+## 1. weapon 为空 → 非武器敌人无需旋转
+## 2. weapon_controller 为空 → 节点未就绪或场景未配置
+## 将 target_pos 设为玩家位置，使武器自动瞄准玩家
+func mange_weapon() -> void:
+	if not weapon: return
+	if not weapon_controller: return
+	weapon_controller.target_pos = Global.player_ref.global_position
+	weapon_controller.rotate_weapon()
 
 ## 根据玩家位置翻转精灵朝向
 ##
@@ -83,6 +120,12 @@ func rotate_enemy() -> void:
 ## 2. 生命值归零（_on_health_component_on_unit_dead）
 ## 避免两处重复代码，确保死亡行为一致
 func enemy_dead() -> void:
+	# 防重复死亡守卫：多个信号可能在同一帧触发（如接触+血量归零）
+	# is_killed 确保死亡流程只执行一次，防止重复发射信号和特效
+	if is_killed:
+		return
+	
+	is_killed = true
 	# 在敌人位置生成死亡粒子特效（纹理由 dead_texture 配置）
 	Global.create_dead_particle(dead_texture, global_position)
 	# 通知 EnemySpawner 有一个敌人已死亡

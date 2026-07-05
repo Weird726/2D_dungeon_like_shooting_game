@@ -14,13 +14,6 @@ var cooldown: float
 ## 每帧更新武器旋转朝向
 func _process(delta: float) -> void:
 	rotate_weapon()
-	
-	# 重置为武器数据资源中的设定的冷却时间，归零发射重置这个值
-	cooldown -= delta
-	if Input.is_action_pressed("shoot"):
-		if cooldown <= 0:
-			use_weapon()
-			cooldown = data.cooldown
 
 ## 远程武器攻击逻辑（待实现：生成子弹、消耗魔法、冷却判断）
 func use_weapon() -> void:

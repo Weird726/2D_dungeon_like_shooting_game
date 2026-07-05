@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://djvbqy1552e8g" path="res://Data/Player/player_dog.tres" id="2_kxl1r"]
 [ext_resource type="Texture2D" uid="uid://dawvmsgg5mc6o" path="res://Sprites/Shadow.png" id="3_isex5"]
 [ext_resource type="PackedScene" uid="uid://ccofwjnscdv4f" path="res://Scenes/Components/health_component.tscn" id="4_l7qia"]
-[ext_resource type="Script" uid="uid://c1k5glo15loej" path="res://Scenes/Player/weapon_controller.gd" id="5_pcgkm"]
+[ext_resource type="PackedScene" uid="uid://b0kruanm4gsts" path="res://Scenes/Weapons/weapon_controller.tscn" id="5_kpr8i"]
 
 [node name="PlayerBase" type="CharacterBody2D" unique_id=1462209833]
 collision_layer = 2
@@ -27,8 +27,7 @@ y_sort_enabled = true
 
 [node name="HealthComponent" parent="." unique_id=130533424 instance=ExtResource("4_l7qia")]
 
-[node name="WeaponController" type="Node2D" parent="." unique_id=514907263]
-script = ExtResource("5_pcgkm")
+[node name="WeaponController" parent="." unique_id=618897591 instance=ExtResource("5_kpr8i")]
 
 [connection signal="on_unit_damaged" from="HealthComponent" to="." method="_on_health_component_on_unit_damaged"]
 [connection signal="on_unit_dead" from="HealthComponent" to="." method="_on_health_component_on_unit_dead"]

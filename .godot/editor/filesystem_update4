@@ -12,3 +12,11 @@ res://Scenes/Bullets/bullet_pistol.tscn
 res://Scenes/Bullets/bullet_pistol.gd
 res://Shaders/hit.gdshader
 res://Scenes/Player/player_base.tscn
+res://Scenes/Player/weapon_controller.gd
+res://Scenes/Player/player.gd
+res://Scenes/Weapons/Range/weapon_range_base.tscn
+res://Scenes/Weapons/Range/weapon_range.gd
+res://Scenes/Weapons/Enemy/enemy_pistol.tres
+res://Scenes/Enemy/enemy_3.tscn
+res://Scenes/Enemy/enemy_4.tscn
+res://Scenes/Arena/arena.gd

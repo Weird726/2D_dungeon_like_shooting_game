@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b0kruanm4gsts"]
+
+[ext_resource type="Script" uid="uid://c1k5glo15loej" path="res://Scenes/Player/weapon_controller.gd" id="1_crgpd"]
+
+[node name="WeaponController" type="Node2D" unique_id=618897591]
+script = ExtResource("1_crgpd")

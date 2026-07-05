@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b0sfvyh7luhb2" path="res://Scenes/Enemy/enemy_1.tscn" id="1_oqcrg"]
 [ext_resource type="Texture2D" uid="uid://dt305ttjc2qw7" path="res://Sprites/Enemies/Sprites/tile_0015.png" id="2_5c6f1"]
+[ext_resource type="Resource" uid="uid://drjnl3vp1rdf6" path="res://Scenes/Weapons/Enemy/enemy_pistol.tres" id="2_aw1f6"]
 [ext_resource type="Texture2D" uid="uid://xo043uc37wpm" path="res://Sprites/Enemies/Sprites/tile_0014.png" id="3_aw1f6"]
 [ext_resource type="Texture2D" uid="uid://cijt4b5liatug" path="res://Sprites/Enemies/Sprites/tile_0012.png" id="4_ul4wm"]
 [ext_resource type="Texture2D" uid="uid://dlawjfchfn4so" path="res://Sprites/Enemies/Sprites/tile_0013.png" id="5_8jaht"]
@@ -40,6 +41,7 @@ animations = [{
 size = Vector2(16, 20)
 
 [node name="Enemy4" unique_id=1247672091 instance=ExtResource("1_oqcrg")]
+weapon = ExtResource("2_aw1f6")
 
 [node name="AnimSprite" parent="." index="1" unique_id=1788881857]
 sprite_frames = SubResource("SpriteFrames_ukm2e")

@@ -1,3 +1,5 @@
+res://Scenes/Weapons/Enemy/
+res://Scenes/Weapons/
 res://Extra/
 res://Shaders/
 res://Scenes/Bullets/
@@ -16,7 +18,5 @@ res://Scenes/UI/PlayerCard/
 res://Scenes/UI/
 res://Scenes/Weapons/Range/
 res://Autoloads/
-res://Scenes/Weapons/
 res://Data/weapons/
 res://Scenes/Arena/
-res://Scenes/Components/

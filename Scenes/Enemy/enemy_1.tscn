@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://d2gowyxbvkf5g" path="res://Sprites/Enemies/Sprites/tile_0001.png" id="4_45oeo"]
 [ext_resource type="Texture2D" uid="uid://bmi1eu80faffk" path="res://Sprites/Enemies/Sprites/tile_0002.png" id="4_iqetf"]
 [ext_resource type="PackedScene" uid="uid://ccofwjnscdv4f" path="res://Scenes/Components/health_component.tscn" id="8_iqetf"]
+[ext_resource type="PackedScene" uid="uid://b0kruanm4gsts" path="res://Scenes/Weapons/weapon_controller.tscn" id="9_scg6k"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t1nub"]
 animations = [{
@@ -45,6 +46,9 @@ radius = 2.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_45oeo"]
 radius = 7.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_w05ls"]
+radius = 30.007406
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_45oeo"]
 bg_color = Color(0.20318872, 0, 0.055762656, 1)
 
@@ -55,6 +59,7 @@ bg_color = Color(0.7867767, 0, 0.19790784, 1)
 scale = Vector2(1.5, 1.5)
 collision_layer = 4
 script = ExtResource("1_nwq83")
+chase_speed = 60.0
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=295252183]
 self_modulate = Color(1, 1, 0.98039216, 0.62352943)
@@ -80,6 +85,15 @@ collision_mask = 2
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_45oeo")
 
+[node name="EnemyDetector" type="Area2D" parent="." unique_id=1399050624]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector" unique_id=1578376587]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_w05ls")
+debug_color = Color(0.93333334, 0, 0.6431373, 0.15686275)
+
 [node name="HurtSound" type="AudioStreamPlayer" parent="." unique_id=588333504]
 stream = ExtResource("1_aex4u")
 bus = &"SFX"
@@ -96,6 +110,8 @@ value = 1.0
 show_percentage = false
 
 [node name="HealthComponent" parent="." unique_id=130533424 instance=ExtResource("8_iqetf")]
+
+[node name="WeaponController" parent="." unique_id=618897591 instance=ExtResource("9_scg6k")]
 
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
 [connection signal="on_unit_damaged" from="HealthComponent" to="." method="_on_health_component_on_unit_damaged"]
