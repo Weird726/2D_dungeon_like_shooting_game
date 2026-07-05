@@ -1,3 +1,4 @@
+ProgressBar
 GPUParticles2D
 AudioStreamPlayer
 AnimationPlayer
@@ -11,5 +12,3 @@ Control
 TextureRect
 TileMapLayer
 Marker2D
-Camera2D
-Label

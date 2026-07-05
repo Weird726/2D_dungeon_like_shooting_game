@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cgvslb1dnigc8" path="res://Sprites/Enemies/Sprites/tile_0000.png" id="3_j1nct"]
 [ext_resource type="Texture2D" uid="uid://d2gowyxbvkf5g" path="res://Sprites/Enemies/Sprites/tile_0001.png" id="4_45oeo"]
 [ext_resource type="Texture2D" uid="uid://bmi1eu80faffk" path="res://Sprites/Enemies/Sprites/tile_0002.png" id="4_iqetf"]
+[ext_resource type="PackedScene" uid="uid://ccofwjnscdv4f" path="res://Scenes/Components/health_component.tscn" id="8_iqetf"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t1nub"]
 animations = [{
@@ -44,7 +45,14 @@ radius = 2.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_45oeo"]
 radius = 7.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_45oeo"]
+bg_color = Color(0.20318872, 0, 0.055762656, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iqetf"]
+bg_color = Color(0.7867767, 0, 0.19790784, 1)
+
 [node name="Enemy1" type="CharacterBody2D" unique_id=1247672091]
+scale = Vector2(1.5, 1.5)
 collision_layer = 4
 script = ExtResource("1_nwq83")
 
@@ -76,4 +84,19 @@ shape = SubResource("CircleShape2D_45oeo")
 stream = ExtResource("1_aex4u")
 bus = &"SFX"
 
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=1875509961]
+offset_left = -10.0
+offset_top = -22.0
+offset_right = 10.0
+offset_bottom = -18.0
+theme_override_styles/background = SubResource("StyleBoxFlat_45oeo")
+theme_override_styles/fill = SubResource("StyleBoxFlat_iqetf")
+max_value = 1.0
+value = 1.0
+show_percentage = false
+
+[node name="HealthComponent" parent="." unique_id=130533424 instance=ExtResource("8_iqetf")]
+
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
+[connection signal="on_unit_damaged" from="HealthComponent" to="." method="_on_health_component_on_unit_damaged"]
+[connection signal="on_unit_dead" from="HealthComponent" to="." method="_on_health_component_on_unit_dead"]

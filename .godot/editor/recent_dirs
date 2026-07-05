@@ -1,14 +1,15 @@
+res://Extra/
+res://Shaders/
+res://Scenes/Bullets/
 res://Scenes/Effects/
 res://Scenes/Enemy/
 res://Scenes/Props/
 res://Scenes/UI/MapCell/
 res://Scenes/Levels/
 res://Data/Level/
-res://Extra/
 res://Scenes/Extra/
 res://Sprites/Weapons/
 res://Scenes/Weapons/Melee/
-res://Scenes/Bullets/
 res://Scenes/UI/DescriptionPanel/
 res://Scenes/UI/WeaponCard/
 res://Scenes/UI/PlayerCard/
@@ -19,4 +20,3 @@ res://Scenes/Weapons/
 res://Data/weapons/
 res://Scenes/Arena/
 res://Scenes/Components/
-res://Scenes/Player/

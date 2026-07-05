@@ -11,6 +11,8 @@ const DAMAGE_TEXT_SCENE = preload("uid://dksmdpebiv671")
 const SPAWN_MARKER_SCENE = preload("uid://bboohpqo6tdh")
 ## 敌人死亡粒子特效预制场景，死亡时播放粒子爆发动画
 const DEAD_PARTICLE_SCENE = preload("uid://c73pc8uwdapr5")
+## 受击闪白材质（ShaderMaterial），临时替换敌人精灵材质实现受击视觉反馈
+const HIT_MATERIAL = preload("uid://djspx7emtgpys")
 
 
 ## 全局设置，存储音量、音效和全屏等用户偏好
@@ -87,9 +89,12 @@ func create_damage_text(value: float, pos: Vector2) -> void:
 ##
 ## [b]难点说明[/b]：GPUParticles2D 的 texture 属性需在实例化后动态赋值
 ## 因为不同敌人使用不同的死亡粒子纹理，无法在预制场景中硬编码
-func create_dead_particle(texture: Texture2D) -> void:
+## pos 参数指定粒子生成位置，确保特效出现在敌人死亡位置
+func create_dead_particle(texture: Texture2D, pos: Vector2) -> void:
 	var particle = DEAD_PARTICLE_SCENE.instantiate() as GPUParticles2D
 	get_tree().root.add_child(particle)
+	# 设置粒子位置为敌人死亡位置（世界坐标）
+	particle.global_position = pos
 	particle.texture = texture
 
 ## 在指定世界坐标位置生成爆炸特效并添加到场景树
