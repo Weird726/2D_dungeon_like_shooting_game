@@ -1,3 +1,4 @@
+res://Scenes/Effects/
 res://Scenes/Enemy/
 res://Scenes/Props/
 res://Scenes/UI/MapCell/
@@ -6,7 +7,6 @@ res://Data/Level/
 res://Extra/
 res://Scenes/Extra/
 res://Sprites/Weapons/
-res://Scenes/Effects/
 res://Scenes/Weapons/Melee/
 res://Scenes/Bullets/
 res://Scenes/UI/DescriptionPanel/

@@ -1,13 +1,8 @@
-res://Scenes/Levels/level_01_room.tscn
 res://Shaders/transition.gdshader
 res://Shaders/background.gdshader
 res://Extra/level_01_tileset.tres
-res://Autoloads/event_bus.gd
-res://Scenes/Enemy/enemy_1.tscn
-res://Scenes/Enemy/enemy.gd
+res://Scenes/Effects/spawn_marker.tscn
+res://Autoloads/global.gd
 res://Scenes/Arena/arena.tscn
 res://Scenes/Arena/enemy_spawner.gd
-res://Scenes/Levels/room.gd
-res://Scenes/Arena/arena.gd
-res://Data/Level/level_01.tres
-res://Scenes/Enemy/enemy_2.tscn
+res://Scenes/Effects/dead_particle.tscn

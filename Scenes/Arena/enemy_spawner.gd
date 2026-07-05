@@ -16,7 +16,7 @@ var enemies_killed: int
 func _ready() -> void:
 	EventBus.on_enemy_die.connect(_on_enemy_die)
 
-## 在指定房间内生成随机敌人
+## 在指定房间内生成随机敌人，每个敌人出现前播放生成标记动画
 ##
 ## [b]难点说明[/b]：生成流程与坐标转换
 ## 1. 防御性检查：enemy_scenes 为空时直接返回
@@ -24,6 +24,12 @@ func _ready() -> void:
 ## 3. 随机数量：min~max 范围内随机
 ## 4. 坐标转换：get_free_spawn_position() 返回房间本地坐标
 ##    需通过 to_global() 转换为世界坐标
+## 5. 生成标记动画：先实例化 Marker 场景，播放 "in" 动画后再生成敌人
+##
+## [b]难点说明[/b]：Marker 节点生命周期与信号时序
+## global_position 必须在 add_child 之后设置，否则父节点 transform 未参与计算
+## play("in") 必须在 add_child 之后调用，否则动画节点未就绪
+## await animation_finished 必须在 play() 之后，否则信号永不触发
 func spawn_enemies(data: LevelData, room: LevelRoom) -> void:
 	if data.enemy_scenes.is_empty():
 		return
@@ -34,6 +40,20 @@ func spawn_enemies(data: LevelData, room: LevelRoom) -> void:
 	# 在配置范围内随机生成敌人数量
 	var amount = randi_range(data.min_enemies_per_room, data.max_enemies_per_room)
 	for i in amount:
+		var spawn_local_pos = room.get_free_spawn_position()
+		var spawn_global_pos = room.to_global(spawn_local_pos)
+		
+		# 实例化生成标记特效（Marker 场景包含一个 AnimatedSprite2D 子节点）
+		var marker = Global.SPAWN_MARKER_SCENE.instantiate()
+		# 先加入场景树，确保父节点 transform 参与 global_position 计算
+		get_parent().add_child(marker)
+		# 在场景树中设置 global_position，位置准确
+		marker.global_position = spawn_global_pos
+		# 播放入场动画（"in" 动画名需在 Marker 场景的 SpriteFrames 中定义）
+		marker.get_child(0).play("in")
+		# 等待入场动画播放完毕（非循环动画才会触发 animation_finished）
+		await marker.get_child(0).animation_finished
+		
 		# 从敌人场景池中随机抽取一个预制体
 		var random_scene = data.enemy_scenes.pick_random()
 		var enemy: Enemy = random_scene.instantiate()
@@ -41,8 +61,6 @@ func spawn_enemies(data: LevelData, room: LevelRoom) -> void:
 		# 添加到 Arena 节点下（enemy_spawner 的父节点）
 		get_parent().add_child(enemy)
 		# 获取房间内随机地砖位置（本地坐标）→ 转换为世界坐标
-		var spawn_local_pos = room.get_free_spawn_position()
-		var spawn_global_pos = room.to_global(spawn_local_pos)
 		enemy.global_position = spawn_global_pos
 
 ## 敌人死亡信号回调：累加击杀计数，全灭时通知房间解锁
