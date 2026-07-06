@@ -28,3 +28,31 @@ class_name LevelData
 @export var enemy_scenes: Array[PackedScene]
 ## 商店物品配置列表，定义关卡中可出现的商品
 @export var store_data: Array[LevelStoreData]
+
+## 按权重随机抽取一个商店物品数据
+##
+## [b]模块关系[/b]：
+## room.setup_room_as_shop() → data.get_random_store_item() → 返回 ItemData
+## LevelStoreData.item_prob 作为权重，rng.rand_weighted() 按概率抽取
+##
+## [b]难点说明[/b]：权重数组构建与 rand_weighted 用法
+## 1. 遍历 store_data 提取每个 LevelStoreData.item_prob 组成权重数组
+## 2. rng.rand_weighted(weights) 返回按权重加权的随机索引
+## 3. 通过索引从 store_data 取出对应的 item_data 返回
+##
+## [b]难点说明[/b]：类型不一致问题
+## LevelStoreData.item_data 声明为 Resource，但实际存储 ItemData
+## get_random_store_item() 返回类型声明为 ItemData
+## 需在编辑器中确保 store_data 数组中配置的是 ItemData 资源
+func get_random_store_item() -> ItemData:
+	var rng := RandomNumberGenerator.new()
+	rng.randomize()
+	
+	# 从 store_data 中提取每个物品的出现概率作为权重
+	var weights: PackedFloat32Array = []
+	for data in store_data:
+		weights.append(data.item_prob)
+	
+	# 按权重随机选择索引，返回对应的物品数据
+	var index = rng.rand_weighted(weights)
+	return store_data[index].item_data

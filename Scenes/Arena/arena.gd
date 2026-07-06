@@ -29,6 +29,8 @@ var grid: Dictionary[Vector2i, LevelRoom] = {}
 var start_room_coord: Vector2i
 ## 终点房间坐标（距起点欧式距离最远的房间）
 var end_room_coord: Vector2i
+var store_room_coord: Vector2i
+
 ## 单元格尺寸 = 房间尺寸 + 走廊尺寸，用于网格坐标到像素位置的换算
 var grid_cell_size: Vector2i
 
@@ -125,6 +127,12 @@ func create_rooms() -> void:
 		
 		# 替换 null 占位为实际房间实例
 		grid[room_coord] = room_instance
+		
+		if room_coord == store_room_coord:
+			room_instance.is_cleared = true
+			room_instance.setup_room_as_shop(level_data)
+		
+		# 通过方向来连接房间
 		connect_rooms(room_coord, room_instance)
 
 ## 在相邻房间之间生成走廊视觉连接
@@ -168,8 +176,17 @@ func connect_rooms(room_coord: Vector2i, room_instance: LevelRoom) -> void:
 func select_special_rooms() -> void:
 	start_room_coord = Vector2i.ZERO
 	end_room_coord = find_farthest_room()
-	print("Start: %s" % start_room_coord)
-	print("End: %s" % end_room_coord)
+	
+	var candidate_coords = grid.keys()
+	candidate_coords.erase(start_room_coord)
+	candidate_coords.erase(end_room_coord)
+	
+	if not candidate_coords.is_empty():
+		store_room_coord = candidate_coords.pick_random()
+	else:
+		store_room_coord = Vector2i.MAX
+		print("No shop coord")
+
 
 ## 使用欧式距离找到离起点最远的房间（作为终点/主线房）
 ##
@@ -237,13 +254,33 @@ func _on_player_room_entered(room: LevelRoom) -> void:
 			room.lock_room()
 			enemy_spawner.spawn_enemies(level_data, room)
 
-## 房间清理完成信号回调：解锁当前房间并标记为已清理
+## 房间清理完成信号回调：解锁当前房间 → 标记已清理 → 在随机位置生成宝箱
+##
+## [b]模块关系[/b]：
+## EnemySpawner → EventBus.on_room_cleared.emit()
+## → Arena._on_room_cleared() → unlock_room() + 生成 Chest
+## → Chest._on_area_2d_body_entered() → 掉落 Coin → EventBus.on_coin_picked
 ##
 ## [b]难点说明[/b]：由 EnemySpawner 在全部敌人被击杀后发射 on_room_cleared
 ## Arena 监听此信号后执行 unlock_room()，恢复通行
+##
+## [b]难点说明[/b]：宝箱位置计算流程
+## 1. get_free_spawn_position() 返回 TileMap 本地坐标（房间坐标系）
+## 2. to_global() 将本地坐标转换为世界坐标
+## 3. call_deferred 延迟挂载，确保当前帧结束后再添加到场景树
+## 4. 挂载后设置 global_position（此时节点已在树中，坐标计算正确）
 func _on_room_cleared() -> void:
 	current_room.unlock_room()
 	current_room.is_cleared = true
+	# 获取房间内随机地砖位置（本地坐标）
+	var tile_pos := current_room.get_free_spawn_position()
+	# 转换为世界坐标
+	var chest_pos := current_room.to_global(tile_pos)
+	# 实例化宝箱并延迟挂载（避免在当前帧信号回调中直接修改场景树）
+	var chest_instance: Chest = Global.CHEST_SCENE.instantiate()
+	call_deferred("add_child", chest_instance)
+	chest_instance.global_position = chest_pos
+	
 
 ## 金币拾取信号回调：播放音效 + 更新金币显示
 ##

@@ -15,7 +15,7 @@ class_name StoreItem
 @export var epic_glow: Color
 
 ## 道具精灵，显示 ItemData 中配置的图标
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: Sprite2D = $Sprite
 ## 光晕精灵，通过 self_modulate 显示稀有度对应颜色
 @onready var glow: Sprite2D = $Glow
 ## 价格标签（RichTextLabel），支持 BBCode 格式显示金币图标 + 价格数字
@@ -47,10 +47,15 @@ func setup(item_data: ItemData) -> void:
 ## 购买后立即 queue_free()，防止重复购买
 func buy_item() -> void:
 	if not data: return
+	if Global.coins < data.price: return
+	
+	
 	match data.id:
 		"Potion":
 			# 药水效果：调用玩家生命组件的治疗方法，恢复 value 点生命值
 			Global.player_ref.health_component.heal(data.value)
+	
+	Global.coins -= data.price
 	queue_free()
 
 ## 输入检测：玩家按确认键且处于可购买范围时执行购买

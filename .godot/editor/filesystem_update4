@@ -16,3 +16,6 @@ res://Scenes/Items/coin.gd
 res://Scenes/Levels/level_01_room.tscn
 res://Scenes/Extra/chest.tscn
 res://Scenes/Extra/chest.gd
+res://Scenes/Levels/room.gd
+res://Data/Level/level_01.tres
+res://Data/Level/level_data.gd

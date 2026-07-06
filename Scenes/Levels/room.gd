@@ -7,6 +7,9 @@
 extends Node2D
 class_name LevelRoom
 
+## 商店道具放置点数组（在编辑器中配置 Marker2D 节点位置）
+## setup_room_as_shop() 遍历此数组，在每个标记点生成商店道具
+@export var item_positions: Array[Marker2D]
 ## 玩家出生点标记，决定玩家实例化后的初始位置
 @onready var player_spawn_pos: Marker2D = $PlayerSpawnPos
 ## 房间地面 TileMap 层，用于获取地砖坐标供敌人/物品生成使用
@@ -55,6 +58,31 @@ func _ready() -> void:
 func register_tiles() -> void:
 	for tile in tile_data.get_used_cells():
 		tiles.append(tile)
+
+## 将当前房间设置为商店：在每个放置点生成一个商店道具
+##
+## [b]模块关系[/b]：
+## Arena._on_room_cleared() → current_room.setup_room_as_shop(data)
+## → data.get_random_store_item() 按权重抽取 ItemData
+## → Global.STORE_ITEM_SCENE.instantiate() 创建 StoreItem 实例
+## → StoreItem.setup(item_data) 初始化道具外观/价格
+##
+## [b]难点说明[/b]：add_child 与 setup 的时序
+## add_child 触发 StoreItem._ready()，初始化 @onready 变量（sprite/glow/price）
+## 随后 setup() 才能安全访问这些变量设置纹理和文本
+## 若颠倒顺序（先 setup 后 add_child），@onready 变量为 null，导致崩溃
+func setup_room_as_shop(data: LevelData) -> void:
+	# 无商店数据时直接返回（空配置保护）
+	if data.store_data.is_empty():
+		return
+	
+	# 遍历编辑器中配置的放置点，逐个生成商店道具
+	for item_pos: Marker2D in item_positions:
+		var item_data: ItemData = data.get_random_store_item()
+		var item_instance: StoreItem = Global.STORE_ITEM_SCENE.instantiate()
+		add_child(item_instance)
+		item_instance.global_position = item_pos.global_position
+		item_instance.setup(item_data)
 
 ## 获取房间内一个随机的空闲地砖位置（本地坐标）
 ##

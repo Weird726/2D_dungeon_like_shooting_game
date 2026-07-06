@@ -14,6 +14,8 @@ const DEAD_PARTICLE_SCENE = preload("uid://c73pc8uwdapr5")
 ## 受击闪白材质（ShaderMaterial），临时替换敌人精灵材质实现受击视觉反馈
 const HIT_MATERIAL = preload("uid://djspx7emtgpys")
 const BLOOD_EFFECT_SCENE = preload("uid://ccw5ny12ep13e")
+const CHEST_SCENE = preload("uid://der68e5bq56yr")
+const STORE_ITEM_SCENE = preload("uid://shcn1g4esyq8")
 
 
 ## 全局设置，存储音量、音效和全屏等用户偏好
