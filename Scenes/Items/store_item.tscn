@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://shcn1g4esyq8"]
+
+[ext_resource type="Texture2D" uid="uid://dw8ew530rlfr" path="res://Sprites/glow4.png" id="1_gpbfl"]
+[ext_resource type="Script" uid="uid://dwuqi0jxq4so2" path="res://Scenes/Items/store_item.gd" id="1_shsl4"]
+[ext_resource type="Texture2D" uid="uid://0poobuecm0un" path="res://Sprites/Items/Item_White1.png" id="2_58sho"]
+[ext_resource type="FontFile" uid="uid://cmkei0r5t77jr" path="res://Font/Lilian.ttf" id="3_58sho"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w05ls"]
+radius = 36.0
+
+[sub_resource type="Animation" id="Animation_58sho"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Glow:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_shsl4"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Glow:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 3.141592653589793, 6.283185307179586]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iau1q"]
+_data = {
+&"RESET": SubResource("Animation_58sho"),
+&"idle": SubResource("Animation_shsl4")
+}
+
+[node name="StoreItem" type="Area2D" unique_id=1475527445]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_shsl4")
+common_glow = Color(1, 1, 1, 1)
+epic_glow = Color(0.73860615, 0.49322283, 0.98332554, 1)
+
+[node name="Glow" type="Sprite2D" parent="." unique_id=1025767428]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_gpbfl")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1053723544]
+texture = ExtResource("2_58sho")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1928439557]
+shape = SubResource("CircleShape2D_w05ls")
+
+[node name="Price" type="RichTextLabel" parent="." unique_id=1314984735]
+offset_left = -20.0
+offset_top = -39.0
+offset_right = 20.0
+offset_bottom = 1.0
+theme_override_fonts/normal_font = ExtResource("3_58sho")
+bbcode_enabled = true
+text = "[code][img=10]Sprites/coin.png[/img][/code]50"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=782920539]
+libraries/ = SubResource("AnimationLibrary_iau1q")
+autoplay = &"idle"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

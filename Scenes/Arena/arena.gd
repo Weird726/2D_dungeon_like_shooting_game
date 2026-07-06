@@ -19,6 +19,9 @@ class_name Arena
 @onready var map_controller: MapController = $UI/MapController
 ## 敌人生成器，管理房间内敌人的生成与清理检测
 @onready var enemy_spawner: EnemySpawner = $EnemySpawner
+## 金币总数显示标签，由 _ready() 和 _on_coin_picked() 实时更新
+@onready var total_conins: Label = %TotalConins
+@onready var coin_sound: AudioStreamPlayer = $CoinSound
 
 ## 网格坐标 → 房间实例的映射字典，null 占位表示坐标已分配但房间未实例化
 var grid: Dictionary[Vector2i, LevelRoom] = {}
@@ -45,6 +48,7 @@ func _ready() -> void:
 	EventBus.on_player_health_updated.connect(_on_player_health_updated)
 	EventBus.on_player_room_entered.connect(_on_player_room_entered)
 	EventBus.on_room_cleared.connect(_on_room_cleared)
+	EventBus.on_coin_picked.connect(_on_coin_picked)
 	
 	# 单元格尺寸 = 房间宽高 + 走廊宽高，使相邻房间之间留出走廊空间
 	grid_cell_size = Vector2i(
@@ -61,6 +65,8 @@ func _ready() -> void:
 	# 标记起始房间为已清理，防止玩家出生在检测区内时误触发锁门
 	var first_room: LevelRoom = grid[Vector2i.ZERO]
 	first_room.is_cleared = true
+	# 同步金币显示与 Global.coins 实际值（防止编辑器硬编码的假数据）
+	total_conins.text = str(Global.coins)
 
 ## 测试用调试输入：Esc 键强制解锁当前房间
 func _input(event: InputEvent) -> void:
@@ -238,3 +244,14 @@ func _on_player_room_entered(room: LevelRoom) -> void:
 func _on_room_cleared() -> void:
 	current_room.unlock_room()
 	current_room.is_cleared = true
+
+## 金币拾取信号回调：播放音效 + 更新金币显示
+##
+## [b]难点说明[/b]：与 _on_player_health_updated 对称
+## 健康值由 on_player_health_updated 信号实时更新 health_bar
+## 金币由 on_coin_picked 信号实时更新 total_conins
+## 两者均通过 EventBus 信号驱动，保持 UI 与数据层同步
+func _on_coin_picked() -> void:
+	coin_sound.play()
+	# 更新金币总数显示（Global.coins 已由 Coin._on_body_entered 递增）
+	total_conins.text = str(Global.coins)

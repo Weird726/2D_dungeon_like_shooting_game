@@ -10,3 +10,5 @@ signal on_player_room_entered(room: LevelRoom)
 signal on_enemy_die
 ## 房间所有敌人被消灭时触发，Arena 监听后执行 unlock_room()
 signal on_room_cleared
+## 玩家拾取金币时触发，Arena 监听后播放音效 + 更新金币显示
+signal on_coin_picked

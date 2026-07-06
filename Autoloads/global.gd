@@ -54,6 +54,12 @@ var player_ref: Player
 var selected_player: PlayerData
 ## 当前选中的武器数据（由角色选择界面赋值，未选择时为 null）
 var selected_weapon: WeaponData
+## 玩家当前金币总数，由 Coin 拾取时递增，Arena UI 实时显示
+##
+## [b]难点说明[/b]：coins 未纳入存档系统
+## save_data/load_data 仅处理 settings 字典，coins 每次开局归零
+## 若需跨局保留金币，需将 coins 加入存档序列化
+var coins: float
 
 ## 节点初始化：引擎启动时自动加载磁盘存档（设置项）
 func _ready() -> void:

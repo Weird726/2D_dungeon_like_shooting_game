@@ -1,5 +1,7 @@
-res://Scenes/Effects/
+res://Scenes/Items/
 res://Sprites/
+res://Data/Items/
+res://Scenes/Effects/
 res://Sprites/Weapons/
 res://Scenes/Bullets/Enemy/
 res://Scenes/Bullets/
@@ -18,5 +20,3 @@ res://Scenes/UI/DescriptionPanel/
 res://Scenes/UI/WeaponCard/
 res://Scenes/UI/PlayerCard/
 res://Scenes/UI/
-res://Scenes/Weapons/Range/
-res://Autoloads/
