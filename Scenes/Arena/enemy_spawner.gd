@@ -7,9 +7,12 @@
 extends Node2D
 class_name EnemySpawner
 
+## Arena 场景引用，用于获取当前房间（arena.current_room）传递给生成的敌人
+@export var arena: Arena
+
 ## 当前房间内所有存活的敌人实例列表，用于计数和清理判定
 var enemies: Array[Enemy] = []
-## 当前房间已击杀的敌人数量（每清一个房间重置为 0）
+## 剩余未击杀的敌人数量（递减计数器，生成时设为总数，每死一个减 1，归零时房间解锁）
 var enemies_killed: int
 
 ## 初始化：连接敌人死亡全局信号
@@ -30,6 +33,10 @@ func _ready() -> void:
 ## global_position 必须在 add_child 之后设置，否则父节点 transform 未参与计算
 ## play("in") 必须在 add_child 之后调用，否则动画节点未就绪
 ## await animation_finished 必须在 play() 之后，否则信号永不触发
+##
+## [b]难点说明[/b]：递减计数器初始化
+## enemies_killed 在生成时设为本次总数（amount），而非从 0 开始递增
+## 这样 _on_enemy_die 只需递减判断 <= 0，无需维护 enemies.size() 的对比
 func spawn_enemies(data: LevelData, room: LevelRoom) -> void:
 	if data.enemy_scenes.is_empty():
 		return
@@ -39,6 +46,8 @@ func spawn_enemies(data: LevelData, room: LevelRoom) -> void:
 	
 	# 在配置范围内随机生成敌人数量
 	var amount = randi_range(data.min_enemies_per_room, data.max_enemies_per_room)
+	# 初始化递减计数器：设为本次生成总数，每死一个减 1
+	enemies_killed = amount
 	for i in amount:
 		var spawn_local_pos = room.get_free_spawn_position()
 		var spawn_global_pos = room.to_global(spawn_local_pos)
@@ -57,21 +66,25 @@ func spawn_enemies(data: LevelData, room: LevelRoom) -> void:
 		# 从敌人场景池中随机抽取一个预制体
 		var random_scene = data.enemy_scenes.pick_random()
 		var enemy: Enemy = random_scene.instantiate()
-		enemies.append(enemy)
 		# 添加到 Arena 节点下（enemy_spawner 的父节点）
 		get_parent().add_child(enemy)
+		enemy.parent_room = arena.current_room
 		# 获取房间内随机地砖位置（本地坐标）→ 转换为世界坐标
 		enemy.global_position = spawn_global_pos
+		enemies.append(enemy)
 
-## 敌人死亡信号回调：累加击杀计数，全灭时通知房间解锁
+## 敌人死亡信号回调：递减计数，归零时通知房间解锁
 ##
-## [b]难点说明[/b]：房间清理判定逻辑
-## 每次敌人死亡时检查：击杀数 >= 存活敌人数
-## 条件满足时发射 on_room_cleared 信号，Arena 监听后执行 unlock_room()
+## [b]难点说明[/b]：递减计数器判定逻辑（重构后）
+## 每次敌人死亡时 enemies_killed -= 1
+## 当 enemies_killed <= 0 时发射 on_room_cleared 信号
+## 相比递增计数（需对比 enemies.size()），递减计数更简洁：无需维护数组大小对比
 ## 最后清空列表和计数器，为下一个房间做准备
 func _on_enemy_die() -> void:
-	enemies_killed += 1
-	if enemies_killed >= enemies.size():
+	# 递减剩余敌人数量
+	enemies_killed -= 1
+	# 所有敌人已击杀（计数器归零）→ 通知房间解锁
+	if enemies_killed <= 0:
 		EventBus.on_room_cleared.emit()
 		enemies.clear()
 		enemies_killed = 0

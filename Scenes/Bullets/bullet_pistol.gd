@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	# 在碰撞点生成爆炸特效（无论碰撞到什么都会触发）
 	Global.create_explosion(global_position)
-	if body is Enemy:
+	if body is Enemy or body is Player:
 		# 在碰撞体位置生成伤害数字
 		Global.create_damage_text(data.damage, body.global_position)
 		# 直接调用敌人生命组件的受伤方法，触发扣血 + 闪白 + 血条更新

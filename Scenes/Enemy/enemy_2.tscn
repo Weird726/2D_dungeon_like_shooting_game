@@ -37,6 +37,7 @@ animations = [{
 }]
 
 [node name="Enemy2" unique_id=1247672091 instance=ExtResource("1_t4rl3")]
+dead_texture = ExtResource("2_3oo0a")
 
 [node name="AnimSprite" parent="." index="1" unique_id=1788881857]
 sprite_frames = SubResource("SpriteFrames_45oeo")

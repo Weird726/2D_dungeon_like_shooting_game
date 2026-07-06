@@ -1,16 +1,18 @@
+res://Scenes/Effects/
+res://Sprites/
+res://Sprites/Weapons/
+res://Scenes/Bullets/Enemy/
+res://Scenes/Bullets/
 res://Scenes/Weapons/Enemy/
 res://Scenes/Weapons/
 res://Extra/
 res://Shaders/
-res://Scenes/Bullets/
-res://Scenes/Effects/
 res://Scenes/Enemy/
 res://Scenes/Props/
 res://Scenes/UI/MapCell/
 res://Scenes/Levels/
 res://Data/Level/
 res://Scenes/Extra/
-res://Sprites/Weapons/
 res://Scenes/Weapons/Melee/
 res://Scenes/UI/DescriptionPanel/
 res://Scenes/UI/WeaponCard/
@@ -18,5 +20,3 @@ res://Scenes/UI/PlayerCard/
 res://Scenes/UI/
 res://Scenes/Weapons/Range/
 res://Autoloads/
-res://Data/weapons/
-res://Scenes/Arena/

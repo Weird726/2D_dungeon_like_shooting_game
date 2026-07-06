@@ -13,6 +13,7 @@ const SPAWN_MARKER_SCENE = preload("uid://bboohpqo6tdh")
 const DEAD_PARTICLE_SCENE = preload("uid://c73pc8uwdapr5")
 ## 受击闪白材质（ShaderMaterial），临时替换敌人精灵材质实现受击视觉反馈
 const HIT_MATERIAL = preload("uid://djspx7emtgpys")
+const BLOOD_EFFECT_SCENE = preload("uid://ccw5ny12ep13e")
 
 
 ## 全局设置，存储音量、音效和全屏等用户偏好
@@ -82,8 +83,10 @@ func create_damage_text(value: float, pos: Vector2) -> void:
 	get_parent().add_child(damage)
 	var random_pos = randf_range(0, TAU)
 	damage.global_position = pos + Vector2.RIGHT.rotated(random_pos) * 20
-	
 	damage.setup(value)
+	var blood = BLOOD_EFFECT_SCENE.instantiate()
+	get_parent().add_child(blood)
+	blood.global_position = pos
 
 ## 在指定位置生成敌人死亡粒子特效并添加到场景树
 ##
@@ -96,6 +99,7 @@ func create_dead_particle(texture: Texture2D, pos: Vector2) -> void:
 	# 设置粒子位置为敌人死亡位置（世界坐标）
 	particle.global_position = pos
 	particle.texture = texture
+	particle.emitting = true
 
 ## 在指定世界坐标位置生成爆炸特效并添加到场景树
 func create_explosion(pos: Vector2) -> void:

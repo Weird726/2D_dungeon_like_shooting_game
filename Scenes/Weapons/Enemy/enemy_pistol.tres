@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://drjnl3vp1rdf6"]
 
-[ext_resource type="PackedScene" uid="uid://bd0t6nb3d21yh" path="res://Scenes/Bullets/bullet_pistol.tscn" id="1_vuhn3"]
+[ext_resource type="PackedScene" uid="uid://cqvkg2byyc2wy" path="res://Scenes/Bullets/Enemy/bullet_pistol_enemy.tscn" id="1_vuhn3"]
 [ext_resource type="Script" uid="uid://bsj8uog4jqrwe" path="res://Data/weapons/weapon_data.gd" id="1_yxlv8"]
 [ext_resource type="Texture2D" uid="uid://c8876yfxbaoxl" path="res://Sprites/Weapons/Tiles/weapon_pistol.png" id="2_3th71"]
 
@@ -9,7 +9,7 @@ script = ExtResource("1_yxlv8")
 weapon_name = "Pistol"
 icon = ExtResource("2_3th71")
 damage = 1.0
-cooldown = 0.5
+cooldown = 2.0
 spread = 10.0
 bullet_speed = 250.0
 bullet_scene = ExtResource("1_vuhn3")

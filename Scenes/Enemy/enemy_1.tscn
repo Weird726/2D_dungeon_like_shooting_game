@@ -59,6 +59,7 @@ bg_color = Color(0.7867767, 0, 0.19790784, 1)
 scale = Vector2(1.5, 1.5)
 collision_layer = 4
 script = ExtResource("1_nwq83")
+dead_texture = ExtResource("3_45oeo")
 chase_speed = 60.0
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=295252183]

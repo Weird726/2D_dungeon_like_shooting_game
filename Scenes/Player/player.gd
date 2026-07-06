@@ -12,7 +12,7 @@ class_name Player
 @onready var anim_sprite: AnimatedSprite2D = %AnimatedSprite2D
 ## 生命值组件，处理受伤/治疗/死亡逻辑
 @onready var health_component: HealthComponent = $HealthComponent
-## 武器的引用
+## 武器控制器，存储 target_pos 供 WeaponRange 自行读取并旋转
 @onready var weapon_controller: WeaponController = $WeaponController
 
 ## 控制玩家是否可移动（被击晕、死亡等状态时设为 false）
@@ -28,16 +28,20 @@ var cooldown: float
 func _ready() -> void:
 	health_component.init_health(data.max_hp)
 
-## 每帧处理：武器瞄准鼠标 + 射击冷却判断
+## 每帧处理：设置瞄准目标 → 武器自旋转 → 射击冷却判断
+##
+## [b]难点说明[/b]：旋转职责下放
+## Player 仅设置 weapon_controller.target_pos = 鼠标位置
+## WeaponRange._process() 自行读取 target_pos 并执行旋转+翻转
+## 不再调用 weapon_controller.rotate_weapon()（该方法已移除）
 ##
 ## [b]难点说明[/b]：射击冷却机制
 ## cooldown 每帧递减，归零时允许射击
 ## 射击后立即重置为武器数据中的 cooldown 值（控制射速）
 ## 使用 is_action_pressed 支持长按连射（冷却结束自动发射下一发）
 func _process(delta: float) -> void:
-	# 将鼠标全局位置设为武器瞄准目标
+	# 将鼠标全局位置设为武器瞄准目标（WeaponRange 每帧自行读取此值并旋转）
 	weapon_controller.target_pos = get_global_mouse_position()
-	weapon_controller.rotate_weapon()
 	
 	# 冷却倒计时递减
 	cooldown -= delta
