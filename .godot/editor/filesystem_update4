@@ -14,3 +14,5 @@ res://Scenes/Items/coin.tscn
 res://Autoloads/event_bus.gd
 res://Scenes/Items/coin.gd
 res://Scenes/Levels/level_01_room.tscn
+res://Scenes/Extra/chest.tscn
+res://Scenes/Extra/chest.gd
