@@ -57,6 +57,8 @@ func buy_item() -> void:
 	
 	Global.coins -= data.price
 	queue_free()
+	#更新ui的事件总线
+	EventBus.on_coin_picked.emit()
 
 ## 输入检测：玩家按确认键且处于可购买范围时执行购买
 ##

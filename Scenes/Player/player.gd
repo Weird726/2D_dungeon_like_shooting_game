@@ -94,4 +94,4 @@ func _on_health_component_on_unit_dead() -> void:
 
 ## 治疗信号回调，可在此扩展治疗特效等逻辑
 func _on_health_component_on_unit_healed(amount: float) -> void:
-	pass
+	EventBus.on_player_health_updated.emit(health_component.current_health, data.max_hp)

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://dt3uu1vc0shp7"]
+
+[ext_resource type="Texture2D" uid="uid://dgyhmvw6v1grs" path="res://Sprites/Items/Item_White2.png" id="1_lewop"]
+[ext_resource type="Script" uid="uid://b5yjl8gpw354q" path="res://Data/Items/item_data.gd" id="2_5emxc"]
+
+[resource]
+script = ExtResource("2_5emxc")
+icon = ExtResource("1_lewop")
+id = "ManaBoost"
+name = "Mana +10"
+value = 10.0
+price = 10.0
+rarity = "Rare"
+description = "Increases max mana by 10 points."
+metadata/_custom_type_script = "uid://b5yjl8gpw354q"

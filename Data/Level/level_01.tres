@@ -14,23 +14,32 @@
 [ext_resource type="PackedScene" uid="uid://c0i22082u8tw8" path="res://Scenes/Props/plant_4.tscn" id="5_bvicp"]
 [ext_resource type="PackedScene" uid="uid://ifgaxorcnev3" path="res://Scenes/Levels/level_01_v_corridor.tscn" id="5_xaqnb"]
 [ext_resource type="Resource" uid="uid://dp3uote1ex3gw" path="res://Data/Items/item_potion_2.tres" id="13_ipixk"]
+[ext_resource type="Resource" uid="uid://b232mw10ny8lp" path="res://Data/Items/item_potion_5.tres" id="14_ftmta"]
+[ext_resource type="Resource" uid="uid://bmxvcyq0ij8sd" path="res://Data/Items/item_mana_5.tres" id="15_32iwk"]
+[ext_resource type="Resource" uid="uid://dt3uu1vc0shp7" path="res://Data/Items/item_mana_boost_5.tres" id="16_scddg"]
 
 [sub_resource type="Resource" id="Resource_5mnrw"]
 script = ExtResource("3_bgbbl")
 item_data = ExtResource("13_ipixk")
-item_prob = 4.0
+item_prob = 5.0
 metadata/_custom_type_script = "uid://duq82su5glcig"
 
 [sub_resource type="Resource" id="Resource_ony35"]
 script = ExtResource("3_bgbbl")
-item_data = ExtResource("13_ipixk")
-item_prob = 2.0
+item_data = ExtResource("14_ftmta")
+item_prob = 3.0
 metadata/_custom_type_script = "uid://duq82su5glcig"
 
 [sub_resource type="Resource" id="Resource_3syw6"]
 script = ExtResource("3_bgbbl")
-item_data = ExtResource("13_ipixk")
-item_prob = 1.0
+item_data = ExtResource("15_32iwk")
+item_prob = 4.0
+metadata/_custom_type_script = "uid://duq82su5glcig"
+
+[sub_resource type="Resource" id="Resource_bynfc"]
+script = ExtResource("3_bgbbl")
+item_data = ExtResource("16_scddg")
+item_prob = 2.0
 metadata/_custom_type_script = "uid://duq82su5glcig"
 
 [resource]
@@ -41,5 +50,5 @@ h_corridor = ExtResource("1_lrgif")
 v_corridor = ExtResource("5_xaqnb")
 props = Array[PackedScene]([ExtResource("2_2k02h"), ExtResource("3_wqwp3"), ExtResource("4_w13gu"), ExtResource("5_bvicp")])
 enemy_scenes = Array[PackedScene]([ExtResource("1_0wmi3"), ExtResource("2_ipixk"), ExtResource("3_djh8p"), ExtResource("4_xk63r")])
-store_data = Array[ExtResource("3_bgbbl")]([SubResource("Resource_5mnrw"), SubResource("Resource_ony35"), SubResource("Resource_3syw6")])
+store_data = Array[ExtResource("3_bgbbl")]([SubResource("Resource_5mnrw"), SubResource("Resource_ony35"), SubResource("Resource_3syw6"), SubResource("Resource_bynfc")])
 metadata/_custom_type_script = "uid://c06vxso3q5u7w"

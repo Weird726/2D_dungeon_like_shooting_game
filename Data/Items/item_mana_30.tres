@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://dkp72doncbtw3"]
+
+[ext_resource type="Texture2D" uid="uid://ca38s4prcgtct" path="res://Sprites/Items/Item_White3.png" id="1_5dqfg"]
+[ext_resource type="Script" uid="uid://b5yjl8gpw354q" path="res://Data/Items/item_data.gd" id="2_gvxof"]
+
+[resource]
+script = ExtResource("2_gvxof")
+icon = ExtResource("1_5dqfg")
+id = "Mana"
+name = "Mana +30"
+value = 30.0
+price = 12.0
+rarity = "Epic"
+description = "Restores 2 points of mana"
+metadata/_custom_type_script = "uid://b5yjl8gpw354q"

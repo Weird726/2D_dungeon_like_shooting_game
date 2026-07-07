@@ -71,7 +71,7 @@ func _on_play_button_pressed() -> void:
 ## 返回按钮回调：过渡回主菜单
 func _on_back_button_pressed() -> void:
 	ui_sound.play()
-	Transition.transition_to("res://Scenes/UI/main_menu.tscn")
+	Transition.transition_to("res://Scenes/UI/MainMenu/main_menu.tscn")
 
 
 ## 角色卡片点击回调：将选中的角色数据存入全局单例，并显示选择框

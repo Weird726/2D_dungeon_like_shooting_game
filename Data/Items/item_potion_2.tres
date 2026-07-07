@@ -10,4 +10,6 @@ id = "Potion"
 name = "Potion +2"
 value = 2.0
 price = 3.0
+rarity = "Epic"
+description = "Restores 2 points of health"
 metadata/_custom_type_script = "uid://b5yjl8gpw354q"

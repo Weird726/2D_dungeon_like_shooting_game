@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://pxcik38rwnyn"]
+
+[ext_resource type="Texture2D" uid="uid://0poobuecm0un" path="res://Sprites/Items/Item_White1.png" id="1_jf8ku"]
+[ext_resource type="Script" uid="uid://b5yjl8gpw354q" path="res://Data/Items/item_data.gd" id="2_8nkmb"]
+
+[resource]
+script = ExtResource("2_8nkmb")
+icon = ExtResource("1_jf8ku")
+id = "Potion"
+name = "Potion +10"
+value = 10.0
+price = 15.0
+rarity = "Epic"
+description = "Restores 10 points of health"
+metadata/_custom_type_script = "uid://b5yjl8gpw354q"

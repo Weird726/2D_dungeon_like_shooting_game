@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bmxvcyq0ij8sd"]
+
+[ext_resource type="Texture2D" uid="uid://ca38s4prcgtct" path="res://Sprites/Items/Item_White3.png" id="1_36l4s"]
+[ext_resource type="Script" uid="uid://b5yjl8gpw354q" path="res://Data/Items/item_data.gd" id="2_3dddf"]
+
+[resource]
+script = ExtResource("2_3dddf")
+icon = ExtResource("1_36l4s")
+id = "Mana"
+name = "Mana +5"
+value = 5.0
+price = 2.0
+description = "Restores 2 points of mana"
+metadata/_custom_type_script = "uid://b5yjl8gpw354q"
