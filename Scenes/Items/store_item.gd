@@ -20,6 +20,8 @@ class_name StoreItem
 @onready var glow: Sprite2D = $Glow
 ## 价格标签（RichTextLabel），支持 BBCode 格式显示金币图标 + 价格数字
 @onready var price: RichTextLabel = $Price
+@onready var description_panel: DescriptionPanel = $DescriptionPanel
+
 
 ## 当前道具的数据引用（由 setup() 赋值）
 var data: ItemData
@@ -39,6 +41,8 @@ func setup(item_data: ItemData) -> void:
 	glow.self_modulate = get_rarity_color()
 	# 格式化价格标签：金币图标 + 价格数值
 	price.text = "[code][img=10]Sprites/coin.png[/img][/code] %s" % data.price
+	description_panel.set_text(data.description)
+
 
 ## 购买道具：根据道具 ID 执行对应效果，然后销毁自身
 ##
@@ -54,6 +58,13 @@ func buy_item() -> void:
 		"Potion":
 			# 药水效果：调用玩家生命组件的治疗方法，恢复 value 点生命值
 			Global.player_ref.health_component.heal(data.value)
+		"Mana":
+			Global.player_ref.current_mana += data.value
+		"ManaBoost":
+			Global.player_ref.data.magic += data.value
+		"SpeedBoost":
+			Global.player_ref.data.move_speed += data.value
+	
 	
 	Global.coins -= data.price
 	queue_free()
@@ -87,8 +98,11 @@ func get_rarity_color() -> Color:
 ## 玩家进入检测区域：设为可购买状态
 func _on_body_entered(body: Node2D) -> void:
 	can_buy_item = true
-
+	description_panel.show()
+	DampedOscillator.animate(description_panel, "scale", randf_range(400, 450), randf_range(5, 10), randf_range(10, 15), 0.5)
+	DampedOscillator.animate(description_panel, "rotation_degrees", 300, 7.5, 15, randf_range(-20, 20) * 0.5)
 
 ## 玩家离开检测区域：设为不可购买状态
 func _on_body_exited(body: Node2D) -> void:
 	can_buy_item = false
+	description_panel.hide()

@@ -24,8 +24,11 @@ var direction: Vector2
 ## 射击冷却倒计时（秒），每次射击后重置为武器数据中的 cooldown 值
 var cooldown: float
 
+var current_mana: float
+
 ## 初始化角色属性，从 PlayerData 资源读取配置
 func _ready() -> void:
+	current_mana = data.magic
 	health_component.init_health(data.max_hp)
 
 ## 每帧处理：设置瞄准目标 → 武器自旋转 → 射击冷却判断
@@ -45,12 +48,13 @@ func _process(delta: float) -> void:
 	
 	# 冷却倒计时递减
 	cooldown -= delta
-	if Input.is_action_pressed("shoot"):
+	if Input.is_action_pressed("shoot") and current_mana >= weapon_controller.current_weapon.data.mana_cost:
 		if cooldown <= 0:
 			# 调用当前武器的攻击方法（生成子弹/挥砍等）
 			weapon_controller.current_weapon.use_weapon()
 			# 重置冷却为武器数据中设定的射击间隔
 			cooldown = weapon_controller.current_weapon.data.cooldown
+			use_mana(weapon_controller.current_weapon.data.mana_cost)
 
 ## 物理帧处理：读取输入 → 计算移动 → 播放动画 → 翻转朝向
 func _physics_process(delta: float) -> void:
@@ -83,6 +87,10 @@ func rotate_player() -> void:
 		else:
 			# 向左：scale.x 为负，实现水平镜像翻转
 			visuals.scale = Vector2(-1.25, 1.25)
+
+func use_mana(value: float) -> void:
+	if current_mana < value: return
+	current_mana -= value
 
 ## 受伤信号回调，将生命值变化广播到事件总线供 HUD 监听
 func _on_health_component_on_unit_damaged(amount: float) -> void:

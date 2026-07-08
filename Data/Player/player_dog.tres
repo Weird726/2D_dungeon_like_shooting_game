@@ -7,4 +7,5 @@
 script = ExtResource("1_wn0e5")
 icon = ExtResource("1_ct6l2")
 id = "Dog"
+magic = 100.0
 metadata/_custom_type_script = "uid://b4d8c7xiovqbb"

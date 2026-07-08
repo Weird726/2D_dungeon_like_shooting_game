@@ -9,4 +9,5 @@ icon = ExtResource("1_85t5d")
 id = "Cat"
 max_hp = 9.0
 move_speed = 220
+magic = 100.0
 metadata/_custom_type_script = "uid://b4d8c7xiovqbb"

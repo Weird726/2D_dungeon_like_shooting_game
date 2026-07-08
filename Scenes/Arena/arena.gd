@@ -20,7 +20,7 @@ class_name Arena
 ## 敌人生成器，管理房间内敌人的生成与清理检测
 @onready var enemy_spawner: EnemySpawner = $EnemySpawner
 ## 金币总数显示标签，由 _ready() 和 _on_coin_picked() 实时更新
-@onready var total_conins: Label = %TotalConins
+@onready var total_coins: Label = %TotalConins
 @onready var coin_sound: AudioStreamPlayer = $CoinSound
 
 ## 网格坐标 → 房间实例的映射字典，null 占位表示坐标已分配但房间未实例化
@@ -67,8 +67,13 @@ func _ready() -> void:
 	# 标记起始房间为已清理，防止玩家出生在检测区内时误触发锁门
 	var first_room: LevelRoom = grid[Vector2i.ZERO]
 	first_room.is_cleared = true
+
+
+func _process(_delta: float) -> void:
 	# 同步金币显示与 Global.coins 实际值（防止编辑器硬编码的假数据）
-	total_conins.text = str(Global.coins)
+	total_coins.text = str(Global.coins)
+	if is_instance_valid(Global.player_ref):
+		mana_bar.value = Global.player_ref.current_mana / Global.player_ref.data.magic
 
 ## 测试用调试输入：Esc 键强制解锁当前房间
 func _input(event: InputEvent) -> void:
@@ -291,4 +296,4 @@ func _on_room_cleared() -> void:
 func _on_coin_picked() -> void:
 	coin_sound.play()
 	# 更新金币总数显示（Global.coins 已由 Coin._on_body_entered 递增）
-	total_conins.text = str(Global.coins)
+	total_coins.text = str(Global.coins)
